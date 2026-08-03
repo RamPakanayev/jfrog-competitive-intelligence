@@ -1,11 +1,35 @@
 from datetime import datetime, timezone
 
-from sqlalchemy import JSON, Text
+from sqlalchemy import JSON, DateTime, Text, TypeDecorator
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 def utcnow() -> datetime:
     return datetime.now(timezone.utc)
+
+
+class UtcDateTime(TypeDecorator):
+    """Stores datetimes as naive UTC, always returns them timezone-aware.
+
+    SQLite has no native datetime type and drops tzinfo, so a value written as
+    aware UTC reads back naive. That would leak into API responses as offset-less
+    ISO strings, which browsers parse as local time.
+    """
+
+    impl = DateTime
+    cache_ok = True
+
+    def process_bind_param(self, value, dialect):
+        if value is None:
+            return None
+        if value.tzinfo is None:
+            return value
+        return value.astimezone(timezone.utc).replace(tzinfo=None)
+
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return None
+        return value.replace(tzinfo=timezone.utc) if value.tzinfo is None else value
 
 
 class Base(DeclarativeBase):
@@ -22,8 +46,8 @@ class Article(Base):
     body_excerpt: Mapped[str] = mapped_column(Text, default="")
     source_name: Mapped[str]
     source_type: Mapped[str]  # rss | hackernews | reddit | tavily | demo
-    published_at: Mapped[datetime | None]
-    fetched_at: Mapped[datetime] = mapped_column(default=utcnow)
+    published_at: Mapped[datetime | None] = mapped_column(UtcDateTime)
+    fetched_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
     status: Mapped[str] = mapped_column(default="new", index=True)  # new|enriched|irrelevant|failed
     # enrichment
     relevant: Mapped[bool | None]
@@ -33,7 +57,7 @@ class Article(Base):
     summary: Mapped[str | None] = mapped_column(Text)
     jfrog_impact: Mapped[int | None]
     so_what: Mapped[str | None] = mapped_column(Text)
-    enriched_at: Mapped[datetime | None]
+    enriched_at: Mapped[datetime | None] = mapped_column(UtcDateTime)
     # delta (only when jfrog_impact >= 4)
     delta_move: Mapped[str | None] = mapped_column(Text)
     delta_jfrog_equivalent: Mapped[str | None] = mapped_column(Text)
@@ -48,7 +72,7 @@ class Digest(Base):
     date: Mapped[str] = mapped_column(unique=True, index=True)  # YYYY-MM-DD
     exec_summary: Mapped[str] = mapped_column(Text)
     sections: Mapped[dict] = mapped_column(JSON)
-    generated_at: Mapped[datetime] = mapped_column(default=utcnow)
+    generated_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
     model_used: Mapped[str] = mapped_column(default="")
 
 
@@ -58,7 +82,7 @@ class Battlecard(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     competitor_slug: Mapped[str] = mapped_column(unique=True, index=True)
     recent_moves: Mapped[list] = mapped_column(JSON, default=list)
-    generated_at: Mapped[datetime] = mapped_column(default=utcnow)
+    generated_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
 
 
 class SourceRun(Base):
@@ -67,7 +91,7 @@ class SourceRun(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     run_id: Mapped[str] = mapped_column(index=True)
     source_name: Mapped[str]
-    started_at: Mapped[datetime] = mapped_column(default=utcnow)
+    started_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
     ok: Mapped[bool] = mapped_column(default=True)
     items_found: Mapped[int] = mapped_column(default=0)
     error: Mapped[str | None] = mapped_column(Text)
