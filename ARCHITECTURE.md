@@ -19,7 +19,6 @@ flowchart LR
         PIPE[Pipeline<br/>dedupe → enrich → delta → digest → battlecards]
         DB[(SQLite + FTS5)]
         SCH[APScheduler<br/>daily @ REFRESH_HOUR]
-        RET[Retrieval<br/>FTS5 BM25]
     end
 
     subgraph LLMGW[LiteLLM gateway]
@@ -28,7 +27,7 @@ flowchart LR
         OTH[OpenAI / Gemini]
     end
 
-    UI[React + TS dashboard<br/>Today · Feed · Competitors · Compare · Chat]
+    UI[React + TS dashboard<br/>Today · Feed · Competitors · Compare]
     CFG[[YAML config<br/>competitors · matrix · JFrog capabilities]]
 
     SRC --> ADP --> PIPE --> DB
@@ -36,8 +35,11 @@ flowchart LR
     PIPE <--> LLMGW
     CFG --> PIPE
     UI <-->|REST /api| API
-    RET --> DB
 ```
+
+Note: the FTS5 table already backs the Feed tab's search box today. An analyst-chat
+tab with its own BM25-ranked retrieval module was designed (ADR-006) but not built in
+this pass — see the roadmap in README.md.
 
 ## 2. Daily pipeline sequence
 
@@ -51,7 +53,9 @@ sequenceDiagram
 
     S->>A: run(window = 2 days)
     A->>P: raw items (per-source isolation)
+    P->>D: record source_runs (health, per source, before dedupe)
     P->>P: canonicalize URL + hash → dedupe
+    Note over P,L: enrich → delta → digest → battlecards run inside a worker thread<br/>(asyncio.to_thread, own DB session) so the API event loop stays<br/>responsive to concurrent requests during a multi-minute refresh (ADR-021)
     loop each new item
         P->>L: enrich (structured JSON)
         L-->>P: relevant, competitors, domain, event_type,<br/>summary, jfrog_impact, so_what
@@ -65,7 +69,6 @@ sequenceDiagram
     L-->>D: digest with article_ids per claim
     P->>L: refresh battlecard recent-moves per competitor
     L-->>D: cited recent moves
-    P->>D: record source_runs (health)
 ```
 
 ## 3. Data model
@@ -142,3 +145,9 @@ flowchart TB
 - **Demo mode**: no usable LLM at startup → seed `data/demo/seed.json` → banner in UI; Refresh disabled.
 - **Citation enforcement**: digest/battlecard JSON is schema-validated; claims without existing `article_ids` are dropped before save.
 - **Provider swap**: `LLM_PROVIDER`/`LLM_MODEL` env vars only — no code change (ADR-004).
+- **LLM stages off the event loop**: the four LLM-touching stages run via `asyncio.to_thread`
+  on their own DB session, separate from the fetch/insert session (ADR-021); the pipeline
+  also refuses to start a second run while one is already in progress (ADR-022).
+- **No vector database anywhere**: retrieval is SQLite FTS5 — already powering the Feed
+  tab's search box. A dedicated BM25-ranked retrieval module for an analyst-chat tab was
+  designed (ADR-006) but is not built; it is a roadmap item, not a shipped diagram box.

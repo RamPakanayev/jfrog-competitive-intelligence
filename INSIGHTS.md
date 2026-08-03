@@ -31,3 +31,29 @@ Running log of insights, challenges, and learnings gathered while building Ribbi
 11. **`.replace(tzinfo=utc)` is not a conversion.** Applied to an already-aware timestamp it relabels the instant rather than converting it, so a `10:00+02:00` publication was stored as `10:00Z` — off by the offset, silently, forever. The correct form branches: convert when aware, assume UTC only when naive.
 
 12. **The most valuable review findings were about what wasn't there.** Spec review confirms the code matches the plan; the findings that actually improved the system came from asking what the code fails to do — untested grounding text, two config files with nothing tying them together, secrets typed as plain strings. Verification catches deviation; adversarial questions catch design gaps.
+
+## 2026-08-03 — Delivery pass (Task 24)
+
+13. **Scope note, stated plainly:** this pass did not run the pipeline against a real
+    Anthropic key (Task 24 Steps 1-2 — live refresh + `capture_seed.py`) because no key
+    was available to the implementer. `data/demo/seed.json` is unchanged: the original 3
+    hand-written sample articles, not a live capture. The README says exactly that rather
+    than implying otherwise — the honest version of this log is worth more than a tidier
+    one.
+14. **The keyless reviewer path was verified for real, not assumed.** `docker compose up
+    --build -d` with no `.env` file present, then a true `--no-cache` rebuild (no shared
+    Docker layer cache) timed at ~30s on the verifying machine. All four tabs — Today,
+    Feed, Competitors (list + a battlecard detail page), Compare — loaded populated data
+    with zero browser console errors and nothing but `200 OK` in the API container log.
+    The four README screenshots are real captures from that running stack, not mockups.
+15. **Diagrams rot exactly where the plan and the shipped code part ways, and nobody
+    notices until someone compares them side by side.** ARCHITECTURE.md had drifted from
+    the implementation in three places by delivery time, none of them caught until this
+    pass: the system-context diagram listed a "Chat" tab and a dedicated FTS5-retrieval
+    component that Task 25 (stretch) never actually shipped; the pipeline sequence
+    diagram didn't show that the four LLM stages run inside a worker thread
+    (`asyncio.to_thread`, ADR-021) rather than inline on the API's event loop; and that
+    same diagram recorded `source_runs` health rows as the *last* step of a refresh, when
+    the code actually writes them right after fetching, before dedupe. All three are
+    fixed now. None would have been caught by re-reading the diagram in isolation — only
+    by re-deriving it from the code that was actually shipped.
