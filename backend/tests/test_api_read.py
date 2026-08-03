@@ -80,3 +80,23 @@ def test_matrix_meta_sources(client, session):
     meta = client.get("/api/meta").json()
     assert meta["demo_mode"] is False and "provider" in meta
     assert client.get("/api/sources/health").json() == []
+
+
+def test_search_survives_quotes_and_operators(client, session):
+    seed(session)
+    for q in ['pricing"', '"pricing', 'the "so-called" pricing', 'pricing AND snyk', '   ']:
+        r = client.get("/api/articles", params={"q": q})
+        assert r.status_code == 200, f"query {q!r} returned {r.status_code}"
+    assert client.get("/api/articles", params={"q": '"pricing"'}).json()["total"] >= 0
+
+
+def test_digest_survives_malformed_article_ids(client, session):
+    session.add(Digest(date="2026-08-04", exec_summary="malformed",
+                       sections={"top_developments": [
+                           {"text": "bad", "article_ids": [1, {"x": 1}, "2", None, True]}],
+                           "by_competitor": [], "threats_opportunities": []},
+                       model_used="test"))
+    session.commit()
+    r = client.get("/api/digest", params={"date": "2026-08-04"})
+    assert r.status_code == 200
+    assert r.json()["articles"] == {}

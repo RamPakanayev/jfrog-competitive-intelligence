@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import desc, select, text
+from sqlalchemy.exc import OperationalError
 
 from app.api.deps import get_appcfg, get_session_factory, get_settings
 from app.models import Article, Battlecard, Digest, SourceRun
@@ -34,7 +35,9 @@ def _resolve(session, sections: dict | list) -> dict:
 
     def walk(node):
         if isinstance(node, dict):
-            ids.update(node.get("article_ids", []) if isinstance(node.get("article_ids"), list) else [])
+            raw = node.get("article_ids")
+            if isinstance(raw, list):
+                ids.update(i for i in raw if isinstance(i, int) and not isinstance(i, bool))
             for v in node.values():
                 walk(v)
         elif isinstance(node, list):
@@ -60,9 +63,13 @@ def list_articles(competitor: str | None = None, domain: str | None = None,
             stmt = stmt.where(Article.event_type == event_type)
         if min_impact > 1:
             stmt = stmt.where(Article.jfrog_impact >= min_impact)
-        if q:
+        if q and q.strip():
+            escaped = q.replace('"', '""')
             fts = text("SELECT rowid FROM articles_fts WHERE articles_fts MATCH :q")
-            hit_ids = [r[0] for r in session.execute(fts, {"q": f'"{q}"'})]
+            try:
+                hit_ids = [r[0] for r in session.execute(fts, {"q": f'"{escaped}"'})]
+            except OperationalError:
+                hit_ids = []          # malformed query -> no matches, not a 500
             stmt = stmt.where(Article.id.in_(hit_ids or [-1]))
         rows = list(session.scalars(stmt.order_by(desc(Article.fetched_at))))
         if competitor:
