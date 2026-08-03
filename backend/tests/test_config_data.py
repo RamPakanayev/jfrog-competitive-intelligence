@@ -26,11 +26,22 @@ def test_industry_feeds_load():
 def test_capabilities_and_matrix():
     c = cfg()
     assert len(c.jfrog_capabilities) >= 8
+    assert all(cap["name"] and cap["notes"] for cap in c.jfrog_capabilities)
     assert c.matrix["vendors"][0] == "jfrog"
     caps = {r["capability"] for r in c.matrix["rows"]}
     assert len(caps) == len(c.matrix["rows"])  # no duplicate rows
     for row in c.matrix["rows"]:
         assert set(row["values"]) == set(c.matrix["vendors"])
+    # matrix must stay in sync with the competitor list (config-as-code maintenance path)
+    assert set(c.matrix["vendors"]) - {"jfrog"} == set(c.slugs())
+    assert set(c.matrix["vendor_labels"]) == set(c.matrix["vendors"])
+
+
+def test_capabilities_text_grounds_delta_analysis():
+    text = cfg().capabilities_text()
+    assert "Xray contextual analysis" in text
+    assert "Artifactory universal repository" in text
+    assert text.startswith("- ")
 
 
 def test_slug_helpers():
