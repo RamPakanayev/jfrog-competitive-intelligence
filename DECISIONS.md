@@ -89,6 +89,11 @@ Every significant decision: the options we weighed, what we chose, and why. Newe
 **Chosen:** commit per item, catching `IntegrityError` to skip an item another writer already inserted.
 **Why:** Dedupe pre-checks the database, but a check-then-insert is a race: the architecture deliberately allows a manual "Refresh now" to overlap the scheduled daily run. Under one commit per batch, a single lost race raises an unhandled `IntegrityError` and rolls back *the entire batch* — verified in a two-session reproduction, where an unrelated valid article was lost alongside the duplicate. Losing one duplicate is correct; losing the rest of the day's news because of it is not. Per-item commits also mean a crash mid-run keeps the work already done. At this volume (~150 items/day) the extra commits cost nothing measurable, which is why the simpler batch commit isn't worth defending.
 
+## ADR-019 · The executive summary is labelled synthesis, not a cited claim
+**Options:** give `exec_summary` its own `article_ids` and enforce them · drop the field · constrain it by prompt and label it in the UI.
+**Chosen:** constrain by prompt (it may only synthesize facts already stated in the cited sections, introducing no new company, product, number, date or event) and mark it `AI SYNTHESIS` in the dashboard.
+**Why:** Adversarial testing of the citation firewall found that `exec_summary` is bare prose with no `article_ids` field, so no code path can validate it — a summary reading "Snyk raised $500M and JFrog is doomed" survives untouched even when zero articles have been ingested. That is the most-read line on the dashboard, so leaving the gap silent would have undermined the whole "every claim traces to a source" story. Attaching citations to a summary-of-summaries is the wrong shape (its job is prioritization across claims, not asserting new facts), and dropping it would cost the feature executives actually read. Constraining it and being visibly honest about what it is holds the line the enforcement code cannot.
+
 ## ADR-018 · Dedupe matches on canonical URL OR content hash
 **Options:** URL only · content hash only · both, ANDed · both, ORed.
 **Chosen:** OR — an item is a duplicate if either its canonicalized URL or its content hash (title + excerpt) already exists.

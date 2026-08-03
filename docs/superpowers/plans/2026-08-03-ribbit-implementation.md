@@ -1246,7 +1246,11 @@ CITATION RULE: every claim object MUST include article_ids drawn ONLY from the p
 Claims without a valid id will be deleted by the system. Do not use outside knowledge.
 
 Fields:
-- exec_summary: 2-4 sentences, the day in brief for an executive.
+- exec_summary: 2-4 sentences, the day in brief for an executive. This field carries no
+  article_ids and is therefore NOT citation-checked by the system, so it is held to a stricter
+  rule instead: it may ONLY synthesize and prioritize what you state in the cited sections
+  below. It must introduce no company, product, number, date, or event that does not appear in
+  a cited claim. If the cited sections are empty, say the day was quiet — do not fill space.
 - top_developments: 3-6 most important items (text + article_ids).
 - by_competitor: per competitor with news today: 1-3 highlight claims each.
 - threats_opportunities: kind=threat or opportunity, the strategic reads of the day."""
@@ -3412,7 +3416,13 @@ export default function Today() {
       </div>
 
       <Card>
-        <h2 className="mb-1 text-sm font-semibold text-slate-300">Executive summary</h2>
+        <h2 className="mb-1 text-sm font-semibold text-slate-300">
+          Executive summary
+          <span className="ml-2 rounded bg-slate-800 px-1.5 py-0.5 text-[10px] font-normal text-slate-400"
+                title="Synthesis of the cited claims below. Unlike those claims, this paragraph carries no per-source citations.">
+            AI SYNTHESIS
+          </span>
+        </h2>
         <p className="text-slate-100">{d.exec_summary}</p>
         <p className="mt-2 text-xs text-slate-500">generated {new Date(d.generated_at).toLocaleString()} · {d.model_used}</p>
       </Card>
