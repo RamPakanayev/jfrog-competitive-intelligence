@@ -36,6 +36,14 @@ def make_article(session: Session, *, url: str, title: str, status: str = "new",
     return a
 
 
+@pytest.fixture(autouse=True)
+def _reset_refresh_state():
+    from app.pipeline.run import REFRESH_STATE
+    REFRESH_STATE.update(running=False, stage="idle", counts={}, errors=[],
+                         started_at=None, finished_at=None)
+    yield
+
+
 class FakeGateway:
     """Queue of canned responses; records every call. None = simulated LLM failure."""
 

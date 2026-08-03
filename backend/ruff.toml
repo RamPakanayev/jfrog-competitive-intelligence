@@ -1,0 +1,6 @@
+[lint.flake8-bugbear]
+# FastAPI's dependency-injection pattern calls Depends(...) as a parameter default by
+# design (FastAPI resolves it per-request, not once at def time). Ruff's bugbear check
+# already allowlists fastapi.Query/Body/Path/etc. for this; Depends is not in that
+# built-in list, so it must be added explicitly to avoid false positives (B008).
+extend-immutable-calls = ["fastapi.Depends"]
