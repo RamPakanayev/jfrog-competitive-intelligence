@@ -13,6 +13,7 @@ competitors:
       rss:
         - "https://www.sonatype.com/blog/rss.xml"
       hn_query: 'sonatype OR "nexus repository"'
+      news_query: 'Sonatype OR "Nexus Repository"'
       tavily_query: "Sonatype Nexus news"
     battlecard_base:
       strengths:
@@ -31,6 +32,7 @@ competitors:
       rss:
         - "https://about.gitlab.com/atom.xml"
       hn_query: "gitlab"
+      news_query: 'GitLab security OR registry OR DevSecOps'
       tavily_query: "GitLab DevSecOps release news"
     battlecard_base:
       strengths:
@@ -50,6 +52,7 @@ competitors:
         - "https://github.blog/feed/"
         - "https://github.blog/changelog/feed/"
       hn_query: '"github packages" OR "github advanced security" OR dependabot'
+      news_query: '"GitHub Packages" OR "GitHub Advanced Security" OR Dependabot'
       tavily_query: "GitHub Packages Advanced Security news"
     battlecard_base:
       strengths:
@@ -68,6 +71,7 @@ competitors:
       rss:
         - "https://www.docker.com/blog/feed/"
       hn_query: '"docker hub" OR "docker scout"'
+      news_query: '"Docker Hub" OR "Docker Scout" OR "Docker Inc"'
       tavily_query: "Docker Hub Docker Scout news"
     battlecard_base:
       strengths:
@@ -86,6 +90,7 @@ competitors:
       rss:
         - "https://snyk.io/blog/feed/"
       hn_query: "snyk"
+      news_query: 'Snyk'
       tavily_query: "Snyk developer security news"
     battlecard_base:
       strengths:

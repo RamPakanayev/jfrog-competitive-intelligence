@@ -1,7 +1,10 @@
 # Domain feeds covering the software-supply-chain / DevSecOps space generally,
 # rather than any single competitor. All verified live on 2026-08-03.
-# InfoQ DevOps (https://feed.infoq.com/devops/) was dropped: it still returns
-# HTTP 200 but its newest entry is from 2022, so it is dead weight, not a source.
+# Two feeds were dropped after live runs:
+#   InfoQ DevOps (https://feed.infoq.com/devops/) still returns HTTP 200, but its newest
+#     entry is from 2022 — dead weight that looks healthy.
+#   Security Boulevard (https://securityboulevard.com/feed/) answers 403 Forbidden to our
+#     User-Agent in practice, even though a hand-issued request succeeds.
 feeds:
   - name: CNCF Blog
     url: "https://www.cncf.io/feed/"
@@ -11,5 +14,3 @@ feeds:
     url: "https://devops.com/feed/"
   - name: SD Times
     url: "https://sdtimes.com/feed/"
-  - name: Security Boulevard
-    url: "https://securityboulevard.com/feed/"

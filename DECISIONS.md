@@ -94,6 +94,11 @@ Every significant decision: the options we weighed, what we chose, and why. Newe
 **Chosen:** an autouse fixture in `conftest.py` that clears `env_file` from `Settings.model_config` and deletes the four secret environment variables.
 **Why:** `Settings(_env_file=None)` does **not** reliably disable dotenv loading — discovered when a gateway test began failing the moment a real `.env` existed, because the suite was reading the developer's live Anthropic key. Two problems: results depended on whether a developer happened to have credentials configured, and the suite sat one careless line away from issuing real, billed API calls from a test. Tests must be hermetic with respect to the environment they run in.
 
+## ADR-026 · Google News RSS replaces Reddit as the third-party source
+**Options:** leave each competitor with only their own blog + Hacker News · implement Reddit OAuth · add a Bing/Google News search feed · rely on the optional Tavily key.
+**Chosen:** a per-competitor `news_query` that builds a Google News RSS search URL, read by the existing RSS adapter.
+**Why:** Dropping Reddit (ADR-024) left each competitor covered only by their own blog plus Hacker News — mostly vendors describing themselves, which is the wrong diet for competitive intelligence. Google News RSS needs no key, returns ~100 fresh entries per query, and surfaces exactly what was missing: third-party coverage (trade press, analyst commentary) rather than vendor self-reporting. It is plain RSS, so it required no new adapter — only a URL builder and a config key, which is the payoff for having kept the adapter layer dumb. Measured effect on the same 14-day window: relevant articles rose from 30 to 64 and delta analyses from 7 to 20. A `max_items` cap (25) keeps one busy search term from consuming the run's enrichment budget, since news search returns an order of magnitude more entries than a vendor blog.
+
 ## ADR-024 · Reddit dropped as a source; the adapter is kept
 **Options:** keep the failing source and let the health panel show it red · implement Reddit OAuth · remove the source, keep the adapter.
 **Chosen:** removed all five Reddit sources from `competitors.yaml`; `sources/reddit.py` and its tests remain.

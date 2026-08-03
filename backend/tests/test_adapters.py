@@ -7,7 +7,7 @@ import pytest
 
 from app.sources.hackernews import fetch_hackernews
 from app.sources.reddit import fetch_reddit
-from app.sources.rss import fetch_rss
+from app.sources.rss import fetch_rss, google_news_url
 from app.sources.tavily import fetch_tavily
 
 FIX = Path(__file__).parent / "fixtures"
@@ -130,3 +130,25 @@ async def test_hackernews_skips_malformed_hits_without_losing_the_batch():
     client = client_returning(payload, "application/json")
     items = await fetch_hackernews(client, "q", WINDOW)
     assert [i.title for i in items] == ["Good"]
+
+
+def test_google_news_url_encodes_query():
+    url = google_news_url('Sonatype OR "Nexus Repository"')
+    assert url.startswith("https://news.google.com/rss/search?")
+    assert "q=Sonatype+OR+%22Nexus+Repository%22" in url
+    assert "ceid=US%3Aen" in url
+
+
+async def test_rss_max_items_caps_a_noisy_feed():
+    items = "".join(
+        f"<item><title>Story {i}</title><link>https://n.example/{i}</link>"
+        f"<description>d</description>"
+        f"<pubDate>Mon, 03 Aug 2026 08:00:00 GMT</pubDate></item>"
+        for i in range(60))
+    body = (f'<?xml version="1.0"?><rss version="2.0"><channel><title>T</title>'
+            f'{items}</channel></rss>').encode()
+    client = client_returning(body, "application/rss+xml")
+    assert len(await fetch_rss(client, "News", "https://n.example/rss", WINDOW)) == 60
+    client = client_returning(body, "application/rss+xml")
+    capped = await fetch_rss(client, "News", "https://n.example/rss", WINDOW, max_items=25)
+    assert len(capped) == 25

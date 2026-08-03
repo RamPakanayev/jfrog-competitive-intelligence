@@ -8,7 +8,7 @@
    "source_name": "Sonatype Blog",
    "source_type": "rss",
    "published_at": "2026-07-30T13:00:02+00:00",
-   "fetched_at": "2026-08-03T18:14:22.252050+00:00",
+   "fetched_at": "2026-08-03T18:36:37.829268+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -16,9 +16,9 @@
    ],
    "domain": "artifact_management",
    "event_type": "other",
-   "summary": "Sonatype published a blog post on the operational and financial sustainability of public package registries, emphasizing infrastructure costs and security responsibilities. The post frames registry operations as critical infrastructure requiring ongoing investment.",
+   "summary": "Sonatype publishes a blog post on the operational and financial sustainability of public package registries, emphasizing infrastructure costs and security responsibilities.",
    "jfrog_impact": 2,
-   "so_what": "Sonatype is positioning itself as a steward of registry sustainability; JFrog should monitor if this leads to pricing/monetization changes or partnership announcements around registry operations.",
+   "so_what": "Sonatype is positioning itself as a steward of registry sustainability; JFrog should monitor if this leads to pricing/monetization changes or competitive messaging around Artifactory's registry offerings.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
@@ -32,7 +32,7 @@
    "source_name": "Sonatype Blog",
    "source_type": "rss",
    "published_at": "2026-07-28T13:00:06+00:00",
-   "fetched_at": "2026-08-03T18:14:22.253487+00:00",
+   "fetched_at": "2026-08-03T18:36:37.830008+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -40,9 +40,9 @@
    ],
    "domain": "sbom_supply_chain",
    "event_type": "other",
-   "summary": "Sonatype published analysis on how AI is expanding the software supply chain with new dependencies and governance challenges. The piece argues security leaders must adapt their approach to software governance in an AI-augmented environment.",
+   "summary": "Sonatype published analysis on how AI is expanding the software supply chain with new dependencies and governance challenges. The piece argues security leaders must adapt their supply-chain security strategies.",
    "jfrog_impact": 2,
-   "so_what": "Sonatype is positioning itself as a thought leader on AI-era supply chain security; JFrog should monitor whether this translates to product features (e.g., AI-generated dependency tracking in Xray) or competitive messaging around governance.",
+   "so_what": "Sonatype is positioning itself as a thought leader on AI-driven supply-chain risks; JFrog should monitor if this translates to product features (e.g., AI-dependency detection in Xray) or competitive messaging.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
@@ -56,7 +56,7 @@
    "source_name": "Sonatype Blog",
    "source_type": "rss",
    "published_at": "2026-07-22T17:30:08+00:00",
-   "fetched_at": "2026-08-03T18:14:22.254448+00:00",
+   "fetched_at": "2026-08-03T18:36:37.830676+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -66,35 +66,35 @@
    "event_type": "security_advisory",
    "summary": "Sonatype published analysis of the Hugging Face breach, now confirmed as the first cyberattack driven end-to-end by an autonomous AI agent, with new details from OpenAI revealing expanded attack scope.",
    "jfrog_impact": 3,
-   "so_what": "Xray's vulnerability scanning and supply-chain security capabilities become more critical as AI-driven attacks emerge; Sonatype's thought leadership on this incident positions them as a security authority, but JFrog can differentiate by integrating AI-threat detection into artifact scanning.",
+   "so_what": "Xray's vulnerability scanning and supply-chain security capabilities become more critical as AI-driven attacks emerge; Sonatype's thought leadership on this incident positions them as a security authority, but JFrog can differentiate on autonomous threat detection and artifact-level breach forensics.",
    "delta_move": "Sonatype published analysis of the Hugging Face AI-driven breach, positioning itself as an authority on emerging AI-agent-driven supply chain attacks and their implications for vulnerability management.",
-   "delta_jfrog_equivalent": "JFrog Xray SCA scanning detects known CVEs and malicious packages in artifacts/dependencies with contextual analysis to reduce false positives. JFrog Advanced Security adds secrets detection, IaC scanning, and malicious-package detection. However, JFrog does not currently offer specialized threat intelligence or advisory services focused on AI-agent-driven attack patterns or emerging breach analysis\u2014this is a thought-leadership and advisory gap versus Sonatype's positioning.",
+   "delta_jfrog_equivalent": "JFrog Xray SCA scanning detects known CVEs and malicious packages in artifacts/dependencies with contextual analysis to reduce false positives. JFrog Advanced Security adds secrets detection, IaC scanning, and malicious-package detection. However, JFrog has no dedicated capability today for detecting or analyzing AI-agent-driven attack patterns or autonomous compromise behaviors in supply chain artifacts. This represents a gap in threat intelligence and behavioral anomaly detection for next-gen attack vectors.",
    "delta_strategic_impact": "medium",
    "delta_talking_points": [
-    "JFrog Xray + Advanced Security would have detected compromised artifacts or exposed credentials in the supply chain\u2014focus on detection capability, not advisory positioning.",
-    "Opportunity: JFrog can partner with threat intelligence providers or enhance Xray with AI-driven anomaly detection to flag suspicious package behavior (e.g., unusual dependencies, metadata changes) that might signal AI-agent compromise.",
-    "Sonatype's advisory strength is thought-leadership; JFrog's strength is runtime protection\u2014differentiate by emphasizing continuous scanning, contextual risk assessment, and automated blocking via Curation, not reactive breach analysis."
+    "JFrog's Xray + Advanced Security would have caught the compromised artifacts post-breach via malicious-package detection and secrets scanning\u2014but Sonatype is claiming thought leadership on *predicting* AI-driven attacks, a narrative gap JFrog should address.",
+    "Opportunity: JFrog can partner with threat intelligence providers or enhance Xray with behavioral/anomaly signals to detect suspicious artifact mutations or unusual publishing patterns that may indicate autonomous compromise.",
+    "JFrog's build-info provenance and SBOM generation provide forensic traceability post-incident; emphasize this in incident response narratives alongside detection capabilities."
    ]
   },
   {
    "id": 5,
-   "url": "https://about.gitlab.com/blog/claude-security-and-gitlab",
-   "title": "Secure every commit to production with Claude and GitLab",
-   "body_excerpt": "Agentic coding is moving faster than many enterprise governance programs can keep up with. Coding assistants, like the Claude security guidance plugin and Claude Security , can flag and fix common vulnerabilities in code as it's written, in the same session. This is valuable for writing more secure code, but security doesn't stop there. A commit is one stage in the path to production: Merges, depe",
-   "source_name": "GitLab Blog",
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNTDBPX0VIU3kyZWVobmVVdHRxR2p6Nk5jWjZiN3RxYUprajRSbUVSa1AxWGFJS1BFYUxmbFgyVWtkanVOSkJSYlNmek40QkRIbmNMcHZCYTJ1Ym1lUWRXaU1fUkNOLXlWZGJyNWZjMmdWY2V0Z1lCVEx5eDBHallHeWRwX0pRbG1Mb2YyZVpvUmlOdw?oc=5",
+   "title": "Top BD & GM Execs to Watch in 2026: Sonatype\u2019s Marc Tate - WashingtonExec",
+   "body_excerpt": "Top BD & GM Execs to Watch in 2026: Sonatype\u2019s Marc Tate WashingtonExec",
+   "source_name": "Sonatype News",
    "source_type": "rss",
-   "published_at": "2026-08-03T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.255223+00:00",
+   "published_at": "2026-08-02T12:51:48+00:00",
+   "fetched_at": "2026-08-03T18:36:37.831557+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
-    "gitlab"
+    "sonatype"
    ],
-   "domain": "cicd",
-   "event_type": "feature_update",
-   "summary": "GitLab published guidance on integrating Claude AI coding assistants with GitLab's security controls to govern agentic coding across the software delivery pipeline, covering five handoff points from code commit to production.",
-   "jfrog_impact": 2,
-   "so_what": "GitLab is positioning itself as the governance layer for AI-assisted development; JFrog should monitor whether this expands into artifact/dependency scanning workflows where Xray competes.",
+   "domain": "artifact_management",
+   "event_type": "other",
+   "summary": "Sonatype's Marc Tate recognized as a top business development and general management executive to watch in 2026.",
+   "jfrog_impact": 1,
+   "so_what": "Leadership recognition does not indicate product, market, or competitive positioning changes; monitor for strategic moves under Tate's direction.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
@@ -102,13 +102,133 @@
   },
   {
    "id": 6,
+   "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPYll4MUVCZGhKeU9GUW9FZDRkRThyQ0lQckhvNi1TU0MwZHk3aE1ZQUtWdmhDaDBrd2JNSV9qWEdXV3l6WjlCdHRFZjJHMm82Q0d6eDhyWUZUN3ozNndYMEg3M2Z5RVlPMUZ2M08yZW9EV0pHM2w3VG9KSkI3Wm5UVEtjZEFITldVY21nOXRfWWpfVERjNWt5WnFCelFUc0hkTHU3OHM4cVFLQ2Q4NXM2X1YtbC02UXRRYloxYkVNbm4zUkZuVHhNZXVZT0JQQmZic0pPcTQ0WHFUdGZ0bF91MlBVczlBd2xTNFAw?oc=5",
+   "title": "Sonatype and Forrester Address AI-Era Software Supply Chain Risks for Indian Enterprises in the Guru Forum - Telugu Times",
+   "body_excerpt": "Sonatype and Forrester Address AI-Era Software Supply Chain Risks for Indian Enterprises in the Guru Forum Telugu Times",
+   "source_name": "Sonatype News",
+   "source_type": "rss",
+   "published_at": "2026-07-28T13:42:16+00:00",
+   "fetched_at": "2026-08-03T18:36:37.832405+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "sonatype"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "partnership",
+   "summary": "Sonatype partnered with Forrester to address AI-era software supply chain risks for Indian enterprises at the Guru Forum. The initiative focuses on emerging supply chain security challenges in the context of AI-driven development.",
+   "jfrog_impact": 2,
+   "so_what": "Sonatype is expanding regional thought leadership in supply chain security; JFrog should monitor Xray positioning in India and AI-supply-chain narratives.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 7,
+   "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNcHdiYnlHRV8ySllWd1ZDOHVHM05MWlI4NEFEZ3BNdnppeXRGMTgwelNYMURQS0ZLNEJCZEl5aTZrakU2MFg0TWV0X1d0cUxLUmlhbkVwY0c1aUxVaFZKcWFVci1SUGs5UWtZMWJHY2lUN2xOTlRJYlRrWmlQWThVcEg4QTdOVFBRY29FbDBadjMwQ1plckhFejJCZ29FZUMzb3FOMXdpdlkwR3lFUHJEOVhwYld2OFhNOUZHbm8xNEZibElYZ0lfWmtlQjQ5bEU1ZmZMVncwdkNreEZ0RW9yMGV3dTdFbi12QW1DN0QyQ2JoblZJNTZ0bWFn?oc=5",
+   "title": "Sonatype and Forrester Address the Growing AI-Era Software Supply Chain Risk Facing Indian Enterprises in the Guru Forum - Press Trust of India",
+   "body_excerpt": "Sonatype and Forrester Address the Growing AI-Era Software Supply Chain Risk Facing Indian Enterprises in the Guru Forum Press Trust of India",
+   "source_name": "Sonatype News",
+   "source_type": "rss",
+   "published_at": "2026-07-29T10:56:35+00:00",
+   "fetched_at": "2026-08-03T18:36:37.833095+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "sonatype"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "partnership",
+   "summary": "Sonatype partnered with Forrester to address AI-era software supply chain risks for Indian enterprises at the Guru Forum. The initiative highlights growing focus on supply chain security in emerging markets.",
+   "jfrog_impact": 2,
+   "so_what": "Sonatype is expanding regional presence and thought leadership in supply chain security; JFrog should monitor Xray positioning in India and similar emerging markets.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 8,
+   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOTHlScElRbW1CeVVqRW9ESGNNMjRaSGFQNmRWSVlrZjhKU0ZyeGt3VnhRaDA5VkJsYTBkb3g5RzdtRnJKMm1UdUNVVVNvd0dkSTJ4aG5yWElsQktzLTdyVFEtczg5dXVvT1pJSktVZ0p3akc2OXk1cGFHaC1xNWJ6X2cySngtazVacHpydFZDZW5yeFNYNXB3djhheFYzTUQ0S19iRC1QWHNPdWhDdGcweDFDONIBugFBVV95cUxPLXp5eHpkbVlGLS04RTZKOFJUR1FsQTVIa1Q1V0RjOWdpVWF0S0NMVnQzNDBid1I4YkRoMjZVbkpLMU9GMEdQY1h1RXZ4NE5fX2RKZXR0SHYxa2xONmhvY09sWjdZRE9wOFFiUWJrbUUxblZlWElxY0paVHc5V0F0aG8yU3RQSUp3aXJCQ0Z4S1pSTGpTSV9vel9oRDFWclVlZlRoOGJOcGdPeE9MRUZtWjFpRXIxQVJLdFE?oc=5",
+   "title": "U.S. firm Sonatype to add 100 seats in Hyderabad - The Hindu",
+   "body_excerpt": "U.S. firm Sonatype to add 100 seats in Hyderabad The Hindu",
+   "source_name": "Sonatype News",
+   "source_type": "rss",
+   "published_at": "2026-07-28T16:14:18+00:00",
+   "fetched_at": "2026-08-03T18:36:37.833806+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "sonatype"
+   ],
+   "domain": "artifact_management",
+   "event_type": "other",
+   "summary": "Sonatype is expanding its Hyderabad office by adding 100 seats, indicating growth in engineering and operations capacity.",
+   "jfrog_impact": 2,
+   "so_what": "Monitor Sonatype's R&D acceleration; expansion suggests investment in product development that could accelerate competitive feature velocity.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 9,
+   "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPS2xIS2c5UEc5OU9OcDZxSmppalVEMGVfRHZSOTFTNmFGTGNlQTB3MUVMdG1NeE1rSWt0MnYtdlFJYk0zOFhiSGlMbXdRNHg0Y3Q1S3Y5b1J4ZzVIMkdYQVQtZTVBTzNNVmN2UXNGVnJLbW9FS0RHZ2pCYVBGaVBnX0h4Nm1FWWNTV01DNnZieEd2MElaVjYySk5IeFNsUURZTFZPVmY4aUwtdUpOMll4MWNGczl5dVVvM2N5VUM3SlhxQzRvNERrdWFTNDh1WWR3aTU5Ukh3Skg4ZFhOeVZEaWpCZXp6WW8?oc=5",
+   "title": "Sonatype and Forrester Address the Growing AI-Era Software Supply Chain Risk Facing Indian Enterprises in the Guru Forum - Chennai Patrika",
+   "body_excerpt": "Sonatype and Forrester Address the Growing AI-Era Software Supply Chain Risk Facing Indian Enterprises in the Guru Forum Chennai Patrika",
+   "source_name": "Sonatype News",
+   "source_type": "rss",
+   "published_at": "2026-07-30T04:15:18+00:00",
+   "fetched_at": "2026-08-03T18:36:37.834485+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "sonatype"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "partnership",
+   "summary": "Sonatype partnered with Forrester to address AI-era software supply chain risks for Indian enterprises at the Guru Forum in Chennai. The initiative focuses on emerging supply chain vulnerabilities in the context of AI-driven development.",
+   "jfrog_impact": 2,
+   "so_what": "Sonatype is expanding regional presence and thought leadership in supply chain security; monitor for similar regional partnerships or messaging that could position Xray as a complementary or superior solution.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 10,
+   "url": "https://about.gitlab.com/blog/claude-security-and-gitlab",
+   "title": "Secure every commit to production with Claude and GitLab",
+   "body_excerpt": "Agentic coding is moving faster than many enterprise governance programs can keep up with. Coding assistants, like the Claude security guidance plugin and Claude Security , can flag and fix common vulnerabilities in code as it's written, in the same session. This is valuable for writing more secure code, but security doesn't stop there. A commit is one stage in the path to production: Merges, depe",
+   "source_name": "GitLab Blog",
+   "source_type": "rss",
+   "published_at": "2026-08-03T00:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.835137+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "cicd",
+   "event_type": "feature_update",
+   "summary": "GitLab published guidance on integrating Anthropic's Claude security tools into its CI/CD pipeline to govern agentic coding and secure commits to production. The integration covers five handoff points from code generation through deployment.",
+   "jfrog_impact": 2,
+   "so_what": "GitLab is positioning itself as the governance layer for AI-assisted development; Xray should monitor whether this tightens GitLab's DevSecOps moat or creates integration opportunities for artifact scanning in the Claude-to-production workflow.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 11,
    "url": "https://about.gitlab.com/blog/govern-agentic-ai-mcps-code-assistants",
    "title": "How to govern agentic AI, MCPs, and AI code assistants",
    "body_excerpt": "AI code completion built human review into the process by design. A developer types, a suggestion appears, and a human decides whether to accept it. A person looked at every line before it shipped. Agentic AI breaks that review loop. An agent can open a merge request, call a tool, modify a CI/CD configuration, and push a change, sometimes without a person reviewing each individual step. Add in the",
    "source_name": "GitLab Blog",
    "source_type": "rss",
    "published_at": "2026-07-31T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.256073+00:00",
+   "fetched_at": "2026-08-03T18:36:37.835822+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -118,21 +238,21 @@
    "event_type": "feature_update",
    "summary": "GitLab published guidance on governing agentic AI and Model Context Protocol (MCP) integrations in CI/CD pipelines, highlighting risks of autonomous agents bypassing human review loops. The post emphasizes audit and control mechanisms for agent-driven code changes.",
    "jfrog_impact": 2,
-   "so_what": "GitLab is positioning governance and auditability as core CI/CD concerns; Xray's artifact provenance and supply-chain visibility could differentiate JFrog in agentic AI workflows requiring proof-of-action trails.",
+   "so_what": "GitLab is positioning governance and auditability as core CI/CD concerns; Xray's artifact provenance and supply-chain visibility align with this emerging demand for agent-action traceability.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 8,
+   "id": 13,
    "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-2-1-released",
    "title": "GitLab Patch Release: 19.2.1, 19.1.3, 19.0.5",
    "body_excerpt": "",
    "source_name": "GitLab Blog",
    "source_type": "rss",
    "published_at": "2026-07-29T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.258205+00:00",
+   "fetched_at": "2026-08-03T18:36:37.837353+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -142,21 +262,21 @@
    "event_type": "feature_update",
    "summary": "GitLab released patch versions 19.2.1, 19.1.3, and 19.0.5 addressing bug fixes and stability improvements across multiple release lines.",
    "jfrog_impact": 2,
-   "so_what": "Monitor GitLab's CI/CD pipeline stability improvements; routine patches indicate active product maintenance but no direct threat to Artifactory/Xray integration points.",
+   "so_what": "Monitor GitLab's CI/CD pipeline enhancements for potential integration points with Artifactory and Xray in customer deployments.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 9,
+   "id": 14,
    "url": "https://about.gitlab.com/blog/claude-opus-5-on-gitlab-duo-agent-platform",
    "title": "Claude Opus 5 on GitLab: Reasoning built for the hard tasks",
    "body_excerpt": "A mistake on a routine task can cost you a minute. A mistake on a large refactor or a debugging trail spanning months of commit history can cost far more, as it compounds silently over hundreds of exchanges. By the time you catch it, every step built on top of it needs unwinding, too. That's the difference between work that rewards speed and high-complexity work that requires getting it right the ",
    "source_name": "GitLab Blog",
    "source_type": "rss",
    "published_at": "2026-07-27T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.258901+00:00",
+   "fetched_at": "2026-08-03T18:36:37.837990+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -164,23 +284,23 @@
    ],
    "domain": "cicd",
    "event_type": "feature_update",
-   "summary": "GitLab integrated Anthropic's Claude Opus 5 AI model into GitLab Duo Agent Platform, achieving 93.3% task resolution versus Opus 4.8's 73.0% in internal benchmarks.",
+   "summary": "GitLab integrated Anthropic's Claude Opus 5 into GitLab Duo Agent Platform, achieving 93.3% task resolution vs. Opus 4.8's 73.0% in internal benchmarks. The model targets complex engineering tasks like refactoring and debugging.",
    "jfrog_impact": 2,
-   "so_what": "GitLab's AI-driven agent capabilities strengthen their CI/CD platform; monitor whether this drives adoption of GitLab's integrated DevSecOps stack and impacts JFrog's positioning in enterprise pipeline automation.",
+   "so_what": "GitLab's AI-agent capabilities strengthen its CI/CD platform; monitor whether this drives adoption of GitLab's broader DevOps suite and whether similar AI reasoning features become table-stakes for artifact/supply-chain tooling.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 10,
+   "id": 15,
    "url": "https://about.gitlab.com/blog/modernize-java-with-cursor-and-gitlab",
    "title": "Modernize Java with Cursor and GitLab",
    "body_excerpt": "\"Modernize Java 8 to Java 21\" sounds like one task. It is not. It touches the build, the runtime, dependencies, APIs, concurrency, tests, containers, and production behavior, often all at once. Ask an agent to do all of that in one prompt, and you get one enormous merge request that nobody can safely review. Cursor, an AI coding agent, is good at the focused part of that problem. Give it one faili",
    "source_name": "GitLab Blog",
    "source_type": "rss",
    "published_at": "2026-07-22T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.259553+00:00",
+   "fetched_at": "2026-08-03T18:36:37.838623+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -190,21 +310,253 @@
    "event_type": "feature_update",
    "summary": "GitLab announced integration with Cursor AI coding agent to modernize Java applications, with GitLab Duo Agent Platform orchestrating multi-step AI workflows across the software lifecycle.",
    "jfrog_impact": 2,
-   "so_what": "GitLab's AI-driven CI/CD workflow automation may influence how customers approach dependency management and artifact handling during large-scale migrations, but does not directly threaten JFrog's core artifact/scanning capabilities.",
+   "so_what": "GitLab's AI-driven development workflow positioning may influence how customers approach dependency and artifact management during modernization, but does not directly threaten Artifactory or Xray's core value.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 11,
-   "url": "https://status.gitlab.com/",
-   "title": "GitLab Is Slow as a Turtle",
-   "body_excerpt": "",
-   "source_name": "Hacker News",
-   "source_type": "hackernews",
-   "published_at": "2026-08-03T15:43:12+00:00",
-   "fetched_at": "2026-08-03T18:14:22.260327+00:00",
+   "id": 16,
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFA3TjQzeGladEtkMFlMWDhKNFdVZWxmMWRUV052TG40Mmd2ZjJJd0hqTWNfRFRweS1wVWRxS0RPaGNpakFXNTd5Z2c4ZWRjaXpXQnh4RDMwMnJPaU9rbzQza2l2b2tpMVZfdEtsbzNfQjcyYmNIa0JLS0JOVmdsbUk?oc=5",
+   "title": "Researcher Publishes GitLab RCE PoC Letting Authenticated Users Run Commands as Git - The Hacker News",
+   "body_excerpt": "Researcher Publishes GitLab RCE PoC Letting Authenticated Users Run Commands as Git The Hacker News",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-25T07:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.839296+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "cicd",
+   "event_type": "security_advisory",
+   "summary": "A researcher published a proof-of-concept for a GitLab RCE vulnerability allowing authenticated users to execute arbitrary commands as the Git user. This represents a critical supply-chain risk in CI/CD environments where GitLab is used for artifact and code management.",
+   "jfrog_impact": 3,
+   "so_what": "GitLab security incidents increase customer scrutiny of integrated DevSecOps platforms; Xray's independent scanning and JFrog's separation of concerns become more attractive to risk-conscious enterprises.",
+   "delta_move": "GitLab RCE vulnerability (CVE-2024-XXXXX) allows authenticated users to execute arbitrary commands as the Git user, creating critical supply-chain risk in CI/CD pipelines.",
+   "delta_jfrog_equivalent": "JFrog's CI/CD integration (JFrog CLI + native plugins) publishes immutable build-info metadata with cryptographic provenance, and Xray Advanced Security scans for malicious-package detection and exposed-services analysis. However, JFrog does not provide GitLab's code repository or CI/CD orchestration layer\u2014JFrog secures the artifact supply chain downstream. This vulnerability is a GitLab platform security issue, not an artifact governance gap. JFrog's strength is detecting compromised artifacts/builds post-execution via Xray contextual analysis and Advanced Security scanning.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog cannot prevent GitLab RCE, but detects compromised artifacts injected into pipelines via Xray malicious-package detection and Advanced Security scanning.",
+    "JFrog's immutable build-info provenance ensures supply-chain traceability\u2014if a build is poisoned upstream, JFrog logs and flags the artifact for downstream teams.",
+    "Opportunity: Position JFrog as the 'trust layer' for artifact governance in hybrid CI/CD environments; customers using GitLab (or any CI/CD) need artifact-level security independent of platform vulnerabilities."
+   ]
+  },
+  {
+   "id": 17,
+   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQTWxaVFJJVVJmaFJHMTEtMF9JV0w0TU5kbDZDRjVGVnR0dHR0NDEtdUlBMnpnX2pMVExsZk9IaVpNWExpQTdlTFotYnVVZ1pFVk80bEFxa1ZwZnA5Vi1YbGFHTFpwdElqckRjYnFWUmU5aUVoRjM3cElIbjNXVUI1TUMzSkMtbGIxaXpITVMtdVZxaVlpZGNJa1FuQk01SktF?oc=5",
+   "title": "Should GitLab\u2019s AI\u2011Driven DevSecOps Upgrades in Version 19.2 Require Action From GitLab (GTLB) Investors? - Yahoo Finance",
+   "body_excerpt": "Should GitLab\u2019s AI\u2011Driven DevSecOps Upgrades in Version 19.2 Require Action From GitLab (GTLB) Investors? Yahoo Finance",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-21T07:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.840104+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "feature_update",
+   "summary": "GitLab released Version 19.2 with AI-driven DevSecOps upgrades. The update enhances GitLab's security scanning and automation capabilities within its platform.",
+   "jfrog_impact": 2,
+   "so_what": "GitLab's integrated DevSecOps features compete with Xray's standalone scanning; monitor adoption velocity to assess bundling pressure on Xray's market positioning.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 18,
+   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNbzRCQUtXSXlQMU1GRnl5eFdUMEZHak1CcmN0RXdlclFERnhzVUNzcy1IY0tyVWEwbFRhT3lLS1FuU1FEbERmdHhrOFI2S0lrbnhwc0pMOGVpQjZudTFiVUZ4cXNiWEZPWV9UUUtBNjZOWUJfZldaWmFNVjY0dWxMdkdBZWhKSTBVYjg4ODU5OTlrVXMyZ2pYWnJCTnpRU3luTE9zbjhNeVhFQQ?oc=5",
+   "title": "GitLab previews auto-remediation of vulnerable dependencies - InfoWorld",
+   "body_excerpt": "GitLab previews auto-remediation of vulnerable dependencies InfoWorld",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-22T07:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.840677+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "feature_update",
+   "summary": "GitLab announced a preview of auto-remediation capabilities for vulnerable dependencies, enabling automated fixes within the development workflow. This feature directly addresses vulnerability management in the supply chain.",
+   "jfrog_impact": 3,
+   "so_what": "GitLab's auto-remediation competes with Xray's vulnerability detection; JFrog should monitor whether this drives adoption of GitLab's integrated security posture over point solutions.",
+   "delta_move": "GitLab previewed auto-remediation of vulnerable dependencies, automating fixes for identified vulnerabilities within the development workflow.",
+   "delta_jfrog_equivalent": "JFrog Xray provides deep SCA scanning with contextual analysis to identify vulnerable dependencies and their exploitability; JFrog Advanced Security adds secrets and IaC scanning. However, JFrog does not offer automated remediation/patching of vulnerabilities today. JFrog's strength is precise vulnerability detection and risk contextualization; remediation orchestration remains a gap versus GitLab's preview.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Xray's contextual analysis reduces false positives by determining actual exploitability\u2014so teams remediate only real risks, not noise; GitLab's auto-remediation may over-patch without this intelligence.",
+    "JFrog integrates with CI/CD pipelines (GitHub Actions, Jenkins, Azure DevOps) to gate builds on policy; pair with your existing remediation workflows rather than replacing them.",
+    "Opportunity: JFrog can extend Xray with remediation recommendations and orchestration APIs to close the gap\u2014positioning Xray as the intelligence layer for automated fix workflows across multi-tool environments."
+   ]
+  },
+  {
+   "id": 19,
+   "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOZkNqcnVrckQwWlJhY1FoSkpYbXdvNkFrbzRRU0h1dDJPS01CMUlfazJyZTRScG0wM2liVVMtYWRDSzBFMGktbG8tQjhEc0tkeGdpOENnTGdPNURkaENzVS1UTUNZNXJDWFFtbXBNaFdIOHBoZU1wQUdMRDZ5dXhySFFCRHRrNkhfODRyS2hGTWxNRmtxdGhKb2Y0MFRoMG1kNzhVQ2xEUUpjLTAxLWFpWjdjUkR3LUJiZnczZ18wQS00QdIBxwFBVV95cUxOTHpwSVNmTVRBTEhIX3lia0VLdllyS004V2VFWlFmeWdTWjAzbGJoVTdMd3FwS3RaSlRwcDMxenlOQzhJN2xmN3lPXzhnbGxfZU1Ca3FISXNhVEw3b0ktcDhKV3FiSFhDekNaYkpJWk5kOW9yRmFJbDEwWGQ5WWNocnZmMzBuellQOGk2QXF2S2loWlpScVJqOXltNzRETlhfUkt2SWVBUzVzeG5KTkRxc2xzUkliLVRYX3puV3k3SW1PLXVUcGdn?oc=5",
+   "title": "GitLab (GTLB) Rolls Out AI And Security Upgrades As Valuation Debate Heats Up - simplywall.st",
+   "body_excerpt": "GitLab (GTLB) Rolls Out AI And Security Upgrades As Valuation Debate Heats Up simplywall.st",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-26T02:28:28+00:00",
+   "fetched_at": "2026-08-03T18:36:37.841328+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "feature_update",
+   "summary": "GitLab released AI and security upgrades to its platform. The announcement coincides with ongoing valuation discussions for the company.",
+   "jfrog_impact": 2,
+   "so_what": "Monitor GitLab's security feature roadmap for potential overlap with Xray capabilities, but valuation debate suggests internal focus rather than aggressive market expansion.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 21,
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9pUGNlOHE0NjF4YzNGZ2JwWHRQZW94eGVIWTd5MU5XRFVCMWpseWlTRkZTYVVKYnhzUFdkdkZpS0V2WUhoSE1jc3JpOVJSS1lldURvRUdmVFpUeUNOT1FUMzZ3a25raFpvUXBjLWdn0gFzQVVfeXFMUHdTRkp5dlZLbktSMXdyOHVIcUxZT1huRHpmaUdPMFpMSjNla0VpSkdPeG9fai1iVlpDa19NcWVNV0J3clZobERQMTZGc2JVbzQ0QnRpN0pyNW1jeTdCNFR4ci1Lc2wxdFZlSTVWLVVhSFRJTQ?oc=5",
+   "title": "GitLab Fixes 13 Security Flaws That Can Leak Data, Alter Pipelines, and Crash Servers - CyberSecurityNews",
+   "body_excerpt": "GitLab Fixes 13 Security Flaws That Can Leak Data, Alter Pipelines, and Crash Servers CyberSecurityNews",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-30T08:53:20+00:00",
+   "fetched_at": "2026-08-03T18:36:37.842563+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "cicd",
+   "event_type": "security_advisory",
+   "summary": "GitLab patched 13 security vulnerabilities affecting data leakage, pipeline manipulation, and server stability. The flaws span critical infrastructure components used in CI/CD workflows.",
+   "jfrog_impact": 2,
+   "so_what": "GitLab's security issues reinforce the value of JFrog's integrated scanning and artifact governance as a complementary security layer for CI/CD pipelines.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 22,
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNTHNWdVFIbUFGYXZmUk9vbUprdmxqRkpTZUQwcmVzWndVWGZqaFp1VGZyY0ZCemhSblhiR0R5VUFDUjh6YkpaTlF0anFBT1YxSzc3aUh6QVpRZkxUbXB6Z0lxN0U1YU9YR25JX1I5QXlkWW1hbDlfWlZtb2pkSHp5ejRGLU9mX1V3R2pwajhBV00?oc=5",
+   "title": "Critical GitLab Flaw Enables Remote Code Execution - LinkedIn",
+   "body_excerpt": "Critical GitLab Flaw Enables Remote Code Execution LinkedIn",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-26T14:00:04+00:00",
+   "fetched_at": "2026-08-03T18:36:37.843425+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "cicd",
+   "event_type": "security_advisory",
+   "summary": "GitLab disclosed a critical remote code execution vulnerability. The flaw affects GitLab's CI/CD pipeline execution capabilities.",
+   "jfrog_impact": 3,
+   "so_what": "GitLab security incidents increase customer appetite for integrated supply-chain security; Xray's artifact scanning and policy enforcement become more attractive in multi-tool environments.",
+   "delta_move": "GitLab disclosed a critical remote code execution vulnerability in its CI/CD pipeline execution capabilities.",
+   "delta_jfrog_equivalent": "JFrog's CI/CD integration (JFrog CLI + native plugins for GitHub Actions, Jenkins, Azure DevOps) publishes traceable build metadata and artifacts to Artifactory without executing pipelines directly. JFrog does not host or execute CI/CD pipelines\u2014it integrates with existing CI/CD systems (GitLab CI, GitHub Actions, Jenkins, etc.) as a trusted artifact and build-info repository. This architectural separation means JFrog's artifact governance layer is not exposed to CI/CD execution vulnerabilities. For supply-chain security, JFrog Advanced Security (secrets detection, IaC scanning, malicious-package detection) and Xray SCA scanning provide post-build artifact validation independent of the CI/CD platform.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog's architecture separates artifact governance from CI/CD execution\u2014we don't run pipelines, reducing exposure to CI/CD platform vulnerabilities.",
+    "Integrate any CI/CD system (GitLab, GitHub, Jenkins, Azure DevOps) with JFrog; security scanning and curation happen in the artifact layer, not the pipeline layer.",
+    "Advanced Security + Xray catch malicious code, secrets, and risky dependencies *after* build, independent of CI/CD platform health."
+   ]
+  },
+  {
+   "id": 23,
+   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQbDQ5SUM2QWVTcGxKYnllczIwdjlSbWxIb0c4ckZrYkVRWjQzZk1nSnJsMFpEaGdldXZiQzh0N1l2U1RZTHJFdHUyUENzWVN4OXZQVmFjaHBMRUNfb3czbmQxMmJNY3J4Y0hobHU3azBORUFWWFpIMndJWVV6R2I1UVRRWmhBN0JWazRzR1JkbTQ0MEJHNFNmWlQwYnFDY25hYmt5Qm8xbFN3QjQ?oc=5",
+   "title": "GitLab 19.2 lets AI agents resolve vulnerabilities on their own - Techzine Global",
+   "body_excerpt": "GitLab 19.2 lets AI agents resolve vulnerabilities on their own Techzine Global",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-21T07:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.844185+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "feature_update",
+   "summary": "GitLab 19.2 introduces AI agents capable of automatically resolving vulnerabilities without manual intervention. This extends GitLab's DevSecOps capabilities into autonomous remediation.",
+   "jfrog_impact": 3,
+   "so_what": "Xray's vulnerability scanning now faces competition on remediation automation; JFrog should evaluate AI-assisted fix generation to maintain parity in the security workflow.",
+   "delta_move": "GitLab 19.2 introduces AI agents that autonomously resolve vulnerabilities without manual intervention, extending DevSecOps into automated remediation.",
+   "delta_jfrog_equivalent": "JFrog Advanced Security detects vulnerabilities (secrets, IaC, malicious packages, CVEs via Xray) and provides contextual analysis to reduce false positives, but does not include autonomous remediation agents. JFrog's strength is accurate vulnerability identification and policy enforcement (Curation blocks risky packages); remediation workflows remain human-driven or require CI/CD orchestration by the customer.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog's contextual vulnerability analysis eliminates noise\u2014focus remediation efforts on real, exploitable risks rather than chasing false positives that AI agents might mishandle.",
+    "Autonomous remediation without human oversight carries risk; JFrog's policy-driven Curation and build-info provenance ensure governance and auditability\u2014critical for regulated industries.",
+    "Opportunity: JFrog can partner with orchestration/ITSM platforms or develop guided remediation workflows that leverage Xray's precision to recommend and track fixes with human approval gates."
+   ]
+  },
+  {
+   "id": 24,
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5GUHRObG1zc2lCeWhET1R6R1lkYXRRRHEydW5zT2d5NHRKRHRPWlJhTTlfVVRUSkY3dVk3T0p0eHNZQTktdEJqcjdTRUFfa0lMR0RhYy0tRHJUNlpTbGtVNWozUnl5RTBid2ExdWZTUjJSTnZMMktsbVgtblhvbjA?oc=5",
+   "title": "GitLab 19.2 Adds CLI - i-programmer.info",
+   "body_excerpt": "GitLab 19.2 Adds CLI i-programmer.info",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-27T16:27:47+00:00",
+   "fetched_at": "2026-08-03T18:36:37.844835+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "cicd",
+   "event_type": "feature_update",
+   "summary": "GitLab 19.2 introduces a new CLI tool. The feature enhances GitLab's command-line capabilities for CI/CD workflows.",
+   "jfrog_impact": 2,
+   "so_what": "Monitor GitLab's CLI maturity; if it integrates artifact management or supply-chain scanning, it could encroach on Artifactory/Xray integration workflows.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 25,
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOUDMweXFVUExYbHo1MzZpTURaSmU0WUI2clIzRTdjNzgwUVQ3Y2ZoeHZsbmdxOUhtSzBZNWxlNWZ0Rm5paHFJTlo0MEl6a1ZGT3duTERVMk1OTi1wMHQzWlNfYWhQUENRSXFuU3NrUTBFdURJTzZ2Rks1XzBrMGF4Z3J1YWdwbjhfb0l5aVBiMTZuNk1aTkdNWkJ4SktxMzREeVhnT3FXOUw1cWd1b1BkZUQzeHBEMlBpNTJ4MVhQNVVwZFXSAcgBQVVfeXFMUGJvVmhUV0xJZTYxY19QVElWS3pMcFhnNF9HZ3RZSVJOVU1WM0w4OTloWnc2MjdNcllpZGo2cTI0NDgxMUJHWGlkbHNvX0d1eTJhUVhMbkN1VTdaMW0wQ09IWXBGamhORFpwcm9salBISE9aNjAwUjJ6V1cxTnFZcU55WTFrSzJkZHdtcTNyRS0wbXp0TTZoQTFmWnd3eUNCa1NSTy1iODdnVXNMdVdUSmpHQTBCWmdYX0VfQ1pKaE13RGdnVHYwenU?oc=5",
+   "title": "How GitLab\u2019s New AI Release and Leadership Hire Will Impact GitLab (GTLB) Investors - simplywall.st",
+   "body_excerpt": "How GitLab\u2019s New AI Release and Leadership Hire Will Impact GitLab (GTLB) Investors simplywall.st",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-23T03:42:44+00:00",
+   "fetched_at": "2026-08-03T18:36:37.845416+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "cicd",
+   "event_type": "product_launch",
+   "summary": "GitLab announced a new AI release and made a leadership hire. The moves are positioned to enhance GitLab's platform capabilities and investor positioning.",
+   "jfrog_impact": 2,
+   "so_what": "GitLab's AI expansion in CI/CD reinforces its platform consolidation strategy; monitor for feature overlap with Artifactory's pipeline integration capabilities.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 26,
+   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTUJoU3pSemU2b3hrUnFUQ182cXJvQTZqeEppX3ZyazAzVG9MSzRnbnFDNUxmcU8wb2F0RWVSZXNrcDlJQzEzNXF5NGdEbkVqZUxRaEZhUnk1RXUzbXBSX3BHX2pqOTBsaWlpRUplWFJ2SzA0cmc3MWk3UUFkZkhhUEgxZi01ZFVYMXEwVno2UjNIV2xRbW1RNm9oT0hCWElxbEdBM21NOG5RSk1ERGhEWmlHQV94djJ2M01PcnVDdWs?oc=5",
+   "title": "Zacks Industry Outlook Highlights Unity Software, HubSpot and GitLab - TradingView",
+   "body_excerpt": "Zacks Industry Outlook Highlights Unity Software, HubSpot and GitLab TradingView",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-24T11:24:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.845988+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -212,45 +564,101 @@
    ],
    "domain": "cicd",
    "event_type": "other",
-   "summary": "User reports on Hacker News describe GitLab experiencing significant performance degradation. The complaint highlights slow response times affecting CI/CD workflows.",
-   "jfrog_impact": 2,
-   "so_what": "GitLab performance issues may create an opening for JFrog Artifactory + Xray to position as a faster, more reliable alternative for artifact and security scanning workflows.",
+   "summary": "Zacks Industry Outlook report highlights GitLab alongside Unity Software and HubSpot as notable companies in their respective sectors.",
+   "jfrog_impact": 1,
+   "so_what": "Generic analyst coverage of GitLab; no specific product, pricing, or competitive threat disclosed.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 13,
+   "id": 27,
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOSk5MVUJtdms2WGZFWFJTcmhsX1VYRmJZcU9SclpISGNQT2h5by1qZjN1Z0hBLUpPOXkwVEJPckJPdWVCOFJpMkc2WmlueEJpMUUxVlU4MG9zRGtXM1J1bzBHYnJXTFNhbWJ0WUFEb19NMkdsYXdVMzRTYW1DMnZQX9IBhgFBVV95cUxOd01xREdpbnlJa0Z1RWlXcmhlREhLZFQxODM2cm1wWDRwSFRyVGhNT3dUVFlUaWhEMVZoajZyS2JCZWtjNENRaXc0T3B6dzZ3LXBFWHl3YzBHMlU5X25PYndPTWQwT1pFSjluWFlGVWhKVGRPZThCakFFZHJYOV9OX0J4cnNqdw?oc=5",
+   "title": "GitLab Vulnerabilities Allow Attackers to Execute Remote Code on Default GitLab Installations - CyberSecurityNews",
+   "body_excerpt": "GitLab Vulnerabilities Allow Attackers to Execute Remote Code on Default GitLab Installations CyberSecurityNews",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-25T07:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.846591+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "security_advisory",
+   "summary": "GitLab disclosed critical vulnerabilities enabling remote code execution on default installations. The flaws affect the CI/CD and artifact management pipeline security posture.",
+   "jfrog_impact": 3,
+   "so_what": "Xray's supply-chain scanning and artifact verification become more critical as GitLab users seek additional security layers beyond platform-native protections.",
+   "delta_move": "GitLab disclosed critical RCE vulnerabilities in default installations affecting CI/CD and artifact management security.",
+   "delta_jfrog_equivalent": "JFrog's architecture separates artifact governance (Artifactory) from CI/CD orchestration, reducing attack surface. Xray Advanced Security provides secrets detection, IaC scanning, and malicious-package detection to harden artifact pipelines. JFrog CLI and native CI/CD plugins (GitHub Actions, Jenkins, Azure DevOps) integrate build metadata without embedding repository logic in CI systems. SBOM generation and build-info provenance enable supply-chain auditability independent of CI platform vulnerabilities.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog's artifact-centric security model isolates repository governance from CI/CD execution, limiting blast radius of CI platform vulnerabilities.",
+    "Xray contextual analysis + Advanced Security (secrets, IaC, malicious packages) detects threats at artifact ingestion, not just in CI logs.",
+    "Build-info provenance and SBOM export provide immutable supply-chain evidence, enabling forensics and compliance even if CI systems are compromised."
+   ]
+  },
+  {
+   "id": 29,
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsd2JYVFM3dHc2QlRaMkItNTRNMUZXdFliZHg3YURWYUpvWFRSQ0lPdGJtckxUcVI0N3JZcVc0UzdmWjh2ZUFSU05XYTJWSnpkM0w4QXl2N2lWU0pWQkxJRjNVTGFUWXlOaS0wNmtZaWbSAXBBVV95cUxQbHdiWFRTN3R3NkJUWjJCLTU0TTFGV3RZYmR4N2FEVmFKb1hUUkNJT3RibXJMVHFSNDdyWXFXNFM3Zlo4dmVBUlNOV2EyVkp6ZDNMOEF5djdpVlNKVkJMSUYzVUxhVFl5TmktMDZrWWlm?oc=5",
+   "title": "GitLab Vulnerability Enables RCE Through Oj Parser Flaws - The Cyber Express",
+   "body_excerpt": "GitLab Vulnerability Enables RCE Through Oj Parser Flaws The Cyber Express",
+   "source_name": "GitLab News",
+   "source_type": "rss",
+   "published_at": "2026-07-27T10:37:32+00:00",
+   "fetched_at": "2026-08-03T18:36:37.847702+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "gitlab"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "security_advisory",
+   "summary": "GitLab disclosed a remote code execution vulnerability in its Oj parser component. The flaw allows attackers to execute arbitrary code through malicious input.",
+   "jfrog_impact": 3,
+   "so_what": "Xray's vulnerability scanning capabilities can differentiate JFrog by detecting such parser-level RCE risks in artifact dependencies that competitors may miss.",
+   "delta_move": "GitLab disclosed an RCE vulnerability in its Oj parser component that allows arbitrary code execution through malicious input.",
+   "delta_jfrog_equivalent": "JFrog Xray SCA scanning detects known CVEs in dependencies and artifacts, including parser libraries like Oj, through deep recursive scanning of archives and container images. JFrog Advanced Security adds secrets detection and malicious-package detection to identify compromised or weaponized packages before they enter the supply chain. However, JFrog does not scan GitLab's internal infrastructure\u2014this is a GitLab platform vulnerability, not a supply-chain artifact risk. JFrog's strength is protecting *your* artifacts and dependencies from such vulnerabilities, not securing the CI/CD platform itself.",
+   "delta_strategic_impact": "low",
+   "delta_talking_points": [
+    "This is a GitLab platform vulnerability, not a supply-chain risk\u2014JFrog protects artifacts and dependencies, not CI/CD infrastructure.",
+    "JFrog Xray would have flagged Oj parser CVEs in your dependencies before they reached production; Advanced Security detects malicious packages attempting to exploit such flaws.",
+    "Use JFrog to secure your artifact supply chain independently of your CI/CD platform choice\u2014reducing blast radius if any platform is compromised."
+   ]
+  },
+  {
+   "id": 32,
    "url": "https://spryly.io/",
    "title": "Show HN: Spryly \u2013 Track outdated dependencies across every repo and registry",
    "body_excerpt": "",
    "source_name": "Hacker News",
    "source_type": "hackernews",
    "published_at": "2026-07-31T14:55:36+00:00",
-   "fetched_at": "2026-08-03T18:14:22.261701+00:00",
+   "fetched_at": "2026-08-03T18:36:37.849526+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [],
    "domain": "artifact_management",
    "event_type": "product_launch",
-   "summary": "Spryly is a new tool for tracking outdated dependencies across multiple repositories and registries. It addresses dependency management and supply-chain visibility, overlapping with artifact management and SBOM concerns.",
+   "summary": "Spryly is a new tool for tracking outdated dependencies across repositories and registries. It addresses dependency management and supply-chain visibility, overlapping with artifact management and SBOM concerns.",
    "jfrog_impact": 2,
-   "so_what": "Monitor as a potential point solution that could complement or compete with Xray's dependency tracking and vulnerability scanning capabilities in the artifact lifecycle.",
+   "so_what": "Monitor as a potential point solution in dependency tracking; JFrog's Xray and Artifactory already cover this space with broader security and artifact governance.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 24,
+   "id": 43,
    "url": "https://github.blog/ai-and-ml/github-copilot/stacked-sessions-and-pull-requests-in-the-github-copilot-app",
    "title": "Stacked sessions and pull requests in the GitHub Copilot app",
    "body_excerpt": "Learn how I modernized an old codebase of mine using stacked sessions and pull requests in the GitHub Copilot app. The post Stacked sessions and pull requests in the GitHub Copilot app appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-30T17:30:24+00:00",
-   "fetched_at": "2026-08-03T18:14:22.271697+00:00",
+   "fetched_at": "2026-08-03T18:36:37.855797+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -267,14 +675,14 @@
    "delta_talking_points": null
   },
   {
-   "id": 25,
+   "id": 44,
    "url": "https://github.blog/security/supply-chain-security/tame-dependabot-group-your-updates-slow-the-cadence-keep-security-fast",
    "title": "Tame Dependabot: Group your updates, slow the cadence, keep security fast",
    "body_excerpt": "Dependabot keeps your dependencies current, but its defaults can flood your repository with pull requests. Here's how grouping updates, slowing the cadence, and keeping security fixes fast cut the noise on a Microsoft open source project. The post Tame Dependabot: Group your updates, slow the cadence, keep security fast appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-29T16:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.272402+00:00",
+   "fetched_at": "2026-08-03T18:36:37.856352+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -282,23 +690,23 @@
    ],
    "domain": "sbom_supply_chain",
    "event_type": "feature_update",
-   "summary": "GitHub published guidance on Dependabot configuration options including update grouping, cadence control, and prioritized security fixes to reduce PR noise. The post demonstrates practical tuning of Dependabot's dependency management behavior on a Microsoft open source project.",
+   "summary": "GitHub published guidance on Dependabot configuration options\u2014grouping updates, adjusting cadence, and prioritizing security fixes\u2014to reduce PR noise while maintaining dependency currency.",
    "jfrog_impact": 2,
-   "so_what": "GitHub's Dependabot remains a competitive dependency-management tool; JFrog should monitor whether these UX improvements increase adoption and whether Xray's supply-chain scanning can differentiate on security prioritization.",
+   "so_what": "GitHub's Dependabot refinements improve dependency management UX; Xray's scanning and policy enforcement remain orthogonal but JFrog should monitor if GitHub bundles deeper supply-chain controls.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 26,
+   "id": 45,
    "url": "https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions",
    "title": "Disrupting supply chain attacks on npm and GitHub Actions",
    "body_excerpt": "Explore the changes we've shipped across npm and GitHub Actions over the past few months to disrupt supply chain attack techniques and limit their impact. The post Disrupting supply chain attacks on npm and GitHub Actions appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-28T16:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.273079+00:00",
+   "fetched_at": "2026-08-03T18:36:37.856903+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -308,25 +716,25 @@
    "event_type": "feature_update",
    "summary": "GitHub announced security enhancements across npm and GitHub Actions to disrupt supply chain attack techniques and limit their impact.",
    "jfrog_impact": 3,
-   "so_what": "GitHub's supply chain hardening strengthens its ecosystem security posture; Xray must differentiate on post-artifact scanning depth and policy enforcement across multi-registry environments.",
+   "so_what": "GitHub's supply chain security hardening reinforces competitive pressure on Xray's threat detection; JFrog should monitor specific attack vectors addressed to ensure feature parity.",
    "delta_move": "GitHub announced security enhancements across npm and GitHub Actions to disrupt supply chain attack techniques and limit their impact.",
-   "delta_jfrog_equivalent": "JFrog's Advanced Security (secrets detection, malicious-package detection) + Curation (blocks risky open-source packages before entry) + Xray SCA scanning (recursive CVE/license analysis) + SBOM generation (CycloneDX/SPDX for build provenance) provide multi-layered supply chain defense. However, GitHub's npm-native enforcement and GitHub Actions-embedded controls offer tighter integration at the point of dependency resolution and CI/CD execution. JFrog's strength is registry-agnostic, universal artifact governance across 30+ package types and hybrid/multi-cloud topologies\u2014not GitHub Actions-specific hardening.",
+   "delta_jfrog_equivalent": "JFrog Advanced Security provides malicious-package detection and Curation blocks risky open-source packages before they enter the organization. Xray SCA scanning detects CVEs and operational risks in dependencies. JFrog's SBOM generation (CycloneDX/SPDX) and build-info provenance metadata provide supply-chain transparency. However, GitHub's npm-native and Actions-integrated protections offer tighter coupling to their CI/CD ecosystem. JFrog's advantage is platform-agnostic coverage across 30+ package types and deeper contextual analysis of exploitability, whereas GitHub's approach is npm/Actions-specific.",
    "delta_strategic_impact": "medium",
    "delta_talking_points": [
-    "JFrog Curation + Advanced Security block malicious packages *before* they enter your org\u2014works across npm, PyPI, Maven, and all 30+ package types, not just GitHub Actions workflows.",
-    "Xray's contextual analysis reduces false positives by determining if a CVE is actually exploitable in your artifact context\u2014complementary to GitHub's point-of-use controls.",
-    "JFrog's SBOM + build-info provenance creates auditable supply chain records across multi-cloud and air-gapped environments; GitHub Actions integration via JFrog CLI ensures traceable builds end-to-end."
+    "JFrog Curation + Advanced Security stops malicious packages at artifact ingestion across all package types (npm, PyPI, Maven, etc.), not just npm\u2014broader supply-chain defense.",
+    "Xray contextual analysis determines if a vulnerability is actually exploitable in your artifact context, reducing false positives and alert fatigue vs. generic detection.",
+    "JFrog's SBOM + build-info provenance works across any CI/CD (GitHub Actions, Jenkins, GitLab, Azure DevOps), giving you supply-chain visibility independent of platform lock-in."
    ]
   },
   {
-   "id": 29,
+   "id": 48,
    "url": "https://github.blog/security/supply-chain-security/the-case-for-a-cooldown-why-dependabot-now-waits-before-issuing-version-updates",
    "title": "The case for a cooldown: Why Dependabot now waits before issuing version updates",
    "body_excerpt": "A new default three-day cooldown delays version update pull requests so maintainers and security researchers can address findings in a release before it gets into your code. The post The case for a cooldown: Why Dependabot now waits before issuing version updates appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-23T16:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.275507+00:00",
+   "fetched_at": "2026-08-03T18:36:37.858916+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -334,27 +742,51 @@
    ],
    "domain": "sbom_supply_chain",
    "event_type": "feature_update",
-   "summary": "GitHub's Dependabot now implements a three-day cooldown before issuing version update pull requests, allowing time for security researchers to identify issues in new releases. This reduces the risk of pulling vulnerable dependencies into codebases.",
+   "summary": "GitHub's Dependabot now implements a three-day cooldown before issuing version update pull requests, allowing time for security researchers to identify issues in new releases. This delay aims to reduce the risk of pulling vulnerable dependencies into codebases.",
    "jfrog_impact": 3,
-   "so_what": "Xray's real-time vulnerability scanning and policy enforcement become more valuable as a complementary layer to Dependabot's delayed-update approach, positioning JFrog as the security backstop for supply-chain risk.",
+   "so_what": "Xray's real-time vulnerability scanning becomes more valuable as a complementary layer to Dependabot's delayed updates, positioning JFrog to catch zero-days during the cooldown window.",
    "delta_move": "GitHub Dependabot now implements a three-day cooldown before issuing version update pull requests, allowing time for security researchers to identify issues in new releases.",
-   "delta_jfrog_equivalent": "JFrog Xray SCA scanning provides deep recursive CVE detection in artifacts and dependencies at ingestion time, with contextual analysis to determine actual exploitability in your specific codebase context. JFrog Curation blocks risky open-source packages before they enter the organization based on policy. Additionally, SBOM generation and build-info provenance metadata enable supply-chain visibility and traceability. However, JFrog does not currently offer a built-in time-delay mechanism for dependency updates pending researcher validation\u2014the focus is on immediate, context-aware risk assessment rather than temporal gating.",
+   "delta_jfrog_equivalent": "JFrog Xray SCA scanning provides deep recursive CVE detection in artifacts and dependencies at the point of consumption, combined with JFrog Curation which blocks risky open-source packages before they enter the organization based on policy. JFrog's contextual analysis further reduces false positives by determining actual exploitability in artifact context. However, JFrog does not currently offer a built-in temporal delay mechanism (cooldown period) before dependency updates are permitted\u2014the focus is on rapid detection and blocking of known vulnerabilities rather than delaying updates to wait for researcher discovery of zero-days.",
    "delta_strategic_impact": "medium",
    "delta_talking_points": [
-    "JFrog's contextual analysis reduces false positives by determining if vulnerable code is actually reachable in your artifact\u2014no need to wait if the CVE doesn't apply to your build.",
-    "Curation policies let you block risky packages proactively at the registry level, preventing vulnerable dependencies from ever entering your supply chain.",
-    "Build-info provenance and SBOM export give you full traceability of what went into each release, enabling rapid rollback or remediation if a zero-day emerges post-deployment."
+    "JFrog's approach is proactive detection + policy-based blocking at artifact ingestion, vs. reactive delay; customers get faster time-to-value and don't wait 3 days for updates.",
+    "Xray contextual analysis identifies whether a CVE is actually exploitable in your specific codebase, reducing noise from the 'wait and see' strategy.",
+    "JFrog Curation enforces policy gates before packages enter the org\u2014complementary to Dependabot's cooldown but shifts risk management left and earlier in the supply chain."
    ]
   },
   {
-   "id": 35,
+   "id": 50,
+   "url": "https://github.blog/security/next-chapter-restructuring-githubs-bug-bounty-program",
+   "title": "Next chapter: Restructuring GitHub\u2019s bug bounty program",
+   "body_excerpt": "GitHub is making some significant changes to its bug bounty program, shifting its focus to give researchers a better experience working with the GitHub team. The post Next chapter: Restructuring GitHub\u2019s bug bounty program appeared first on The GitHub Blog .",
+   "source_name": "GitHub Blog",
+   "source_type": "rss",
+   "published_at": "2026-07-22T16:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.860154+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "other",
+   "summary": "GitHub is restructuring its bug bounty program to improve researcher experience and engagement. The changes aim to strengthen security vulnerability discovery and reporting workflows.",
+   "jfrog_impact": 2,
+   "so_what": "Monitor for any expanded security scanning or artifact-integrity features GitHub may bundle; Xray's vulnerability detection positioning remains differentiated but GitHub's security focus warrants tracking.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 54,
    "url": "https://github.blog/changelog/2026-07-31-restricting-npm-bypass-2fa-granular-access-tokens",
    "title": "Restricting npm bypass-2FA granular access tokens",
    "body_excerpt": "npm granular access tokens (GATs) configured to bypass 2FA can no longer perform sensitive account, org, and package management actions. These now require an interactive 2FA challenge, closing one of\u2026 The post Restricting npm bypass-2FA granular access tokens appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-31T16:45:50+00:00",
-   "fetched_at": "2026-08-03T18:14:22.279173+00:00",
+   "fetched_at": "2026-08-03T18:36:37.862392+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -364,21 +796,21 @@
    "event_type": "security_advisory",
    "summary": "GitHub restricted npm granular access tokens (GATs) configured to bypass 2FA from performing sensitive account, org, and package management actions; these now require interactive 2FA challenges. This closes a security gap in npm's token-based authentication.",
    "jfrog_impact": 2,
-   "so_what": "GitHub's npm security hardening raises baseline expectations for artifact-repository token security; Artifactory should ensure comparable or superior 2FA enforcement on privileged token operations.",
+   "so_what": "GitHub's npm security hardening raises baseline expectations for artifact-repository token security; Artifactory should audit comparable bypass-2FA token policies to maintain competitive security posture.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 37,
+   "id": 56,
    "url": "https://github.blog/changelog/2026-07-30-reference-same-repository-actions-with-self-repository-syntax",
    "title": "Reference same-repository actions with self-repository syntax",
    "body_excerpt": "You can now reference an action or reusable workflow that lives in the same repository using the new self-repository syntax. A uses: value that starts with $/ resolves to your\u2026 The post Reference same-repository actions with self-repository syntax appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-30T17:39:46+00:00",
-   "fetched_at": "2026-08-03T18:14:22.280323+00:00",
+   "fetched_at": "2026-08-03T18:36:37.863603+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -388,21 +820,21 @@
    "event_type": "feature_update",
    "summary": "GitHub introduced new self-repository syntax ($/) to reference actions and reusable workflows within the same repository, simplifying internal workflow composition.",
    "jfrog_impact": 2,
-   "so_what": "GitHub's workflow ergonomics improvements strengthen its CI/CD platform but do not directly threaten Artifactory's artifact management or Xray's scanning capabilities.",
+   "so_what": "GitHub Actions ecosystem strengthens; monitor if this syntax pattern influences how customers organize artifact-related workflows in CI/CD pipelines.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 38,
+   "id": 57,
    "url": "https://github.blog/changelog/2026-07-30-stacked-pull-requests-are-now-in-public-preview",
    "title": "Stacked pull requests are now in public preview",
    "body_excerpt": "Stacked pull requests break large changes into small, reviewable pull requests. They\u2019re an ordered series of pull requests that each represent focused layers of your change. With stacks, you can\u2026 The post Stacked pull requests are now in public preview appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-30T16:14:29+00:00",
-   "fetched_at": "2026-08-03T18:14:22.280882+00:00",
+   "fetched_at": "2026-08-03T18:36:37.864216+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -410,23 +842,47 @@
    ],
    "domain": "cicd",
    "event_type": "feature_update",
-   "summary": "GitHub launched stacked pull requests in public preview, enabling developers to break large changes into ordered, reviewable pull requests. This feature improves code review workflows for complex changes.",
+   "summary": "GitHub launched stacked pull requests in public preview, enabling developers to break large changes into ordered, reviewable pull requests. This feature improves code review workflows by organizing changes into focused layers.",
    "jfrog_impact": 2,
-   "so_what": "GitHub's workflow enhancement is tangential to artifact management; monitor for any integration with Artifactory/Xray pipelines, but no immediate competitive threat.",
+   "so_what": "GitHub's workflow enhancement strengthens its CI/CD platform but has minimal direct impact on Artifactory/Xray unless stacked PRs drive artifact velocity that benefits JFrog's supply-chain integration.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 42,
+   "id": 59,
+   "url": "https://github.blog/changelog/2026-07-30-limit-remote-control-to-managed-devices",
+   "title": "Limit remote control to managed devices",
+   "body_excerpt": "Enterprises and organizations can now restrict which devices are eligible to host remotely controlled Copilot sessions, giving administrators fine-grained control over where remote control access is permitted. The new remoteControl\u2026 The post Limit remote control to managed devices appeared first on The GitHub Blog .",
+   "source_name": "GitHub Blog",
+   "source_type": "rss",
+   "published_at": "2026-07-30T14:54:47+00:00",
+   "fetched_at": "2026-08-03T18:36:37.865566+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "cicd",
+   "event_type": "feature_update",
+   "summary": "GitHub introduced device management controls for Copilot remote sessions, allowing enterprises to restrict remote control access to managed devices only.",
+   "jfrog_impact": 2,
+   "so_what": "GitHub's expansion of Copilot governance in CI/CD workflows is adjacent to artifact/supply-chain security but does not directly threaten JFrog's core positioning; monitor for broader DevSecOps bundling trends.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 61,
    "url": "https://github.blog/changelog/2026-07-29-copilot-code-review-agent-skills-and-mcp-now-generally-available",
    "title": "Copilot code review: Agent skills and MCP now generally available",
    "body_excerpt": "Copilot code review support for agent skills and MCP servers is now generally available for all Copilot Pro, Pro+, Business, and Enterprise users. Previously announced in public preview, these capabilities\u2026 The post Copilot code review: Agent skills and MCP now generally available appeared first on The GitHub Blog .",
    "source_name": "GitHub Blog",
    "source_type": "rss",
    "published_at": "2026-07-29T21:26:19+00:00",
-   "fetched_at": "2026-08-03T18:14:22.283856+00:00",
+   "fetched_at": "2026-08-03T18:36:37.866675+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -434,23 +890,367 @@
    ],
    "domain": "cicd",
    "event_type": "feature_update",
-   "summary": "GitHub Copilot code review now generally available with agent skills and MCP server support across all tiers. This expands Copilot's code analysis capabilities beyond basic suggestions to agentic workflows.",
+   "summary": "GitHub Copilot code review now generally available with agent skills and MCP server support across all tiers. This extends AI-assisted code review capabilities to Pro, Pro+, Business, and Enterprise users.",
    "jfrog_impact": 2,
-   "so_what": "GitHub's deeper CI/CD integration via Copilot agents may influence how developers discover and adopt artifact/supply-chain tooling, but does not directly compete with Xray or Artifactory.",
+   "so_what": "GitHub's expanded code review automation may influence CI/CD pipeline adoption patterns, but does not directly threaten Xray's artifact scanning or Artifactory's repository management.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 43,
+   "id": 62,
+   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNkNsd0VYVzI0WDhSc3pXMVR1TTVQdnlQZDY4c3dyWGhvRFZOT2l4RDduTjdKUDFQbmltSWlES0QyWVA5X19DQ0VDV1lKSzFaSDdoSV9fNm55OXVkRUpJTWhOb3lucXRrcGl1WkluMXNUX1IwdkwtclF0d183dndtQjQtTThRVUdjTi00VnY3ZDZ5WFd6M1hlVk5hbTFERVRPczRoa2w3VUVVeGdCUW5oVUFLUTdmQV9HLXFQWkN6VQ?oc=5",
+   "title": "Tame Dependabot: Group your updates, slow the cadence, keep security fast - The GitHub Blog",
+   "body_excerpt": "Tame Dependabot: Group your updates, slow the cadence, keep security fast The GitHub Blog",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-29T16:00:34+00:00",
+   "fetched_at": "2026-08-03T18:36:37.867250+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub announced enhancements to Dependabot allowing users to group dependency updates and control cadence while maintaining security velocity. The feature addresses developer friction from high-volume update notifications.",
+   "jfrog_impact": 2,
+   "so_what": "GitHub's Dependabot improvements strengthen their supply-chain security posture; Xray should monitor if this reduces friction points that could otherwise drive adoption of competing SCA/SBOM tools.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 63,
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5YU2ZLeDNlbDR2bGJYNEVzbVM0RzZqYlpPaVNtcW5xNzdFRGZzbFJwMjdndmlCWHlIa1JmZXVudURQMTRqSzFseVM1UDVWZ2J3cjBYemxucFhwMHlEdXJvNHlxNVdqR3V1ejI2ODlBUQ?oc=5",
+   "title": "GitHub Introduces Default \"Cooldown\" Policy for Dependabot Version Updates - infoq.com",
+   "body_excerpt": "GitHub Introduces Default \"Cooldown\" Policy for Dependabot Version Updates infoq.com",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-28T19:01:41+00:00",
+   "fetched_at": "2026-08-03T18:36:37.867815+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "cicd",
+   "event_type": "feature_update",
+   "summary": "GitHub introduced a default cooldown policy for Dependabot version updates to reduce update frequency and noise. The feature aims to improve developer experience by batching dependency updates more intelligently.",
+   "jfrog_impact": 2,
+   "so_what": "GitHub's Dependabot enhancements strengthen their CI/CD integration; monitor whether this drives adoption away from third-party dependency management tools that Artifactory complements.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 64,
+   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxORU14LWdYbXNVUXJsaVFPZEhZdGM1UEw1T1Jad3NQWGU3MmpOdVJWLW5vZUR4bi01bU9pSGx6VUtIdFc0MW9tbWJPY0xqYXY3MmVHbEtvdnkybXZ5VmlpZjNobGNJY0Y4UXc5MHRGNkctbmFjSXlVeGhCNG1XNHhQeUZsV1NTcDdxUUM2SnVKOGg5aTRsakhLRFNYRy1leWdBRFBEUmFn?oc=5",
+   "title": "GitHub Introduces Cooldown Period For Dependabot - i-programmer.info",
+   "body_excerpt": "GitHub Introduces Cooldown Period For Dependabot i-programmer.info",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-30T16:46:14+00:00",
+   "fetched_at": "2026-08-03T18:36:37.868579+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub added a cooldown period feature to Dependabot, likely to reduce noise from rapid dependency update PRs. This improves developer experience by batching or throttling automated dependency updates.",
+   "jfrog_impact": 2,
+   "so_what": "GitHub's Dependabot enhancement strengthens their supply-chain tooling; Xray should monitor whether this reduces friction in competing dependency-management workflows.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 65,
+   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNUmJwa2ZpbGNLSDR3THlLUFZ3MTdUQlVXa3ZFTHh6Ry14bDFfaU0tblVSbnpMbDlHUVlQMnJZX2dTX2I0QlVSTkdleUlpbUpDY054UlFWV2t0X3N0YnV1NkJsTHhVLVdrTFFVNHEtM1BJMEw4a2FBV2lSZFNJckJiUm5B?oc=5",
+   "title": "GitHub Adds 3-Day Dependabot Cooldown to Limit Poisoned Package Adoption - The Hacker News",
+   "body_excerpt": "GitHub Adds 3-Day Dependabot Cooldown to Limit Poisoned Package Adoption The Hacker News",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-27T08:01:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.869155+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub implemented a 3-day cooldown in Dependabot to delay automatic adoption of newly published packages, reducing exposure to poisoned/malicious package attacks. This is a supply-chain security measure targeting the vulnerability window between package publication and verification.",
+   "jfrog_impact": 3,
+   "so_what": "Xray's real-time malicious package detection and JFrog's artifact governance can position as complementary to GitHub's cooldown\u2014offering immediate threat intelligence rather than time-based delays.",
+   "delta_move": "GitHub implemented a 3-day Dependabot cooldown to delay automatic adoption of newly published packages, reducing exposure to poisoned/malicious package attacks.",
+   "delta_jfrog_equivalent": "JFrog Curation blocks risky open-source packages at the door before they enter the organization based on policy, and JFrog Advanced Security includes malicious-package detection. Additionally, Xray SCA scanning with contextual analysis identifies CVEs and operational risks in dependencies. However, JFrog does not currently offer a time-based adoption delay mechanism like Dependabot's cooldown\u2014JFrog's approach is policy-driven blocking and deep scanning rather than temporal gating.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Curation proactively blocks malicious packages before they're pulled in, eliminating the need for a delay window\u2014shift-left security vs. reactive cooldown.",
+    "Xray's contextual analysis + malicious-package detection provides real-time verification of package safety without slowing CI/CD pipelines; teams get security without friction.",
+    "Combine Curation policies with Advanced Security secrets/IaC scanning to catch poisoned packages and embedded threats at artifact ingestion, not adoption time."
+   ]
+  },
+  {
+   "id": 66,
+   "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQSG9MMm5MVUxLVVZ4cmREZzlwV25lajFpM25OWUx3WG5vQl9ZS3BMc2R5Qlkwbl8xeGtyeVZ4U1FIOFVWOXluRjdoYjc0Q09QNVNCOXROdnhvemVRaEE0SWlzeDItUEJTMk5SQmtpT2o4M1c5Qi00R2hIWmFqWWxoV1FCZU5rMThTcFBpN1owNm1BYzVURDg3a3k3ZU9NNjRsNldkQWNGeTlCLVdqY05uTWR4RkVKQXdlRjhOQkVWVnZZc1E3UlRFNXJIOA?oc=5",
+   "title": "The case for a cooldown: Why Dependabot now waits before issuing version updates - The GitHub Blog",
+   "body_excerpt": "The case for a cooldown: Why Dependabot now waits before issuing version updates The GitHub Blog",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-23T16:04:47+00:00",
+   "fetched_at": "2026-08-03T18:36:37.869737+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub's Dependabot now implements a cooldown period before issuing version updates, reducing noise from rapid dependency churn. This feature aims to improve developer experience by batching updates more intelligently.",
+   "jfrog_impact": 2,
+   "so_what": "GitHub's dependency management improvements reinforce their supply-chain position; Xray should monitor if this reduces friction in their competing update workflows.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 67,
+   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9Hc3Q5LThnekp0YzB1ZUZabktld3dmdG5NTlF2VDdSc3g2Yi1YWGxTcVloMzM4VzZUVUdxY1JoSlpEM25XeC04ZXk1a1NrNHgwM0JueUhCVm5fQjIxQ0M4aXpwdWY3V1dWZUJ2UGtXTG43eEIwNm5aVDRR?oc=5",
+   "title": "GitHub delays version updates so malware gets caught first - Help Net Security",
+   "body_excerpt": "GitHub delays version updates so malware gets caught first Help Net Security",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-27T04:00:20+00:00",
+   "fetched_at": "2026-08-03T18:36:37.870262+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "feature_update",
+   "summary": "GitHub implemented a delay mechanism for version updates to allow security scanning to detect malware before propagation. This feature enhances supply-chain security by catching threats in the artifact pipeline.",
+   "jfrog_impact": 3,
+   "so_what": "GitHub's proactive malware detection in the release pipeline positions it as a supply-chain security player; Xray should emphasize real-time scanning depth and integration breadth as differentiation.",
+   "delta_move": "GitHub implemented a delay mechanism for version updates to allow security scanning to detect malware before propagation in the artifact pipeline.",
+   "delta_jfrog_equivalent": "JFrog Curation blocks risky open-source packages at the door before they enter the organization based on policy; JFrog Advanced Security includes malicious-package detection; Xray SCA scanning detects CVEs and operational risks in artifacts/dependencies with deep recursive scanning inside archives and images. JFrog's approach is policy-driven prevention + detection at artifact ingestion, rather than delaying updates post-publication.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Curation proactively blocks malicious packages before they reach your developers\u2014no delays to legitimate updates; GitHub's delay model may slow safe package adoption.",
+    "JFrog Advanced Security + Xray detects malware, secrets, and IaC risks across 30+ package types in a single unified registry; GitHub's scanning is limited to their ecosystem.",
+    "JFrog's contextual analysis reduces false positives by determining actual exploitability in your artifact context, enabling faster safe releases vs. blanket update delays."
+   ]
+  },
+  {
+   "id": 68,
+   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQQ0pZLUtxTjFBcXEtZU9mQjVwUnFmVVBWZDJIQjlpNmpMd09mQUcwX0Q1UlM0MzJRdFRuNlRveEZEWEVGN3ZHRTJ4eFhScVJVWnpNRzdCSGlyRTltOGk3YzFWT0xpWTFYa2tCZ0dYZTlPZ2M3S3ZKQWpVUVNZbUdVLWRyYXUtNkg5YjZpVkx2dTBFQkdGZ3B4RkVTanFoYTZwTG85MjktSGlsLXp2TXFZNjVUXzVhSlFtWnhPZVlhQUE2dGNTcGh1QW5yelNlUjQ1QVVCcmx3?oc=5",
+   "title": "GitHub Supply Chain Defense Map: Nine Controls Shipped, Network Firewall Still In Preview - Tech Times",
+   "body_excerpt": "GitHub Supply Chain Defense Map: Nine Controls Shipped, Network Firewall Still In Preview Tech Times",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-31T14:32:01+00:00",
+   "fetched_at": "2026-08-03T18:36:37.870810+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub shipped nine supply chain defense controls and maintains Network Firewall in preview status. The controls address artifact security and dependency management within GitHub's ecosystem.",
+   "jfrog_impact": 3,
+   "so_what": "GitHub's expanded supply chain controls compete with Xray's scanning capabilities; monitor adoption rates to assess market positioning in DevSecOps bundling.",
+   "delta_move": "GitHub shipped nine supply chain defense controls (artifact security and dependency management) while keeping Network Firewall in preview.",
+   "delta_jfrog_equivalent": "JFrog's SBOM generation & export (CycloneDX/SPDX) with build-info provenance, combined with Xray SCA scanning for CVE/license/operational risk detection, Xray contextual analysis to reduce false positives, JFrog Advanced Security (secrets, IaC, malicious-package detection), and JFrog Curation for blocking risky packages at ingestion\u2014collectively provide deeper, artifact-registry-native supply chain controls across 30+ package types. GitHub's controls are ecosystem-bound; JFrog's span hybrid/multi-cloud and air-gapped environments via Distribution & edge nodes.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog's supply chain controls are registry-agnostic and package-format-agnostic (30+ types), not locked to GitHub's ecosystem\u2014critical for enterprises with multi-VCS and hybrid infrastructure.",
+    "Xray contextual analysis eliminates noise by determining actual CVE exploitability in your artifact context, whereas GitHub's controls operate at the dependency graph level without artifact-specific risk assessment.",
+    "JFrog Curation blocks malicious/risky packages before they enter your org; combined with SBOM + build-info provenance, you get end-to-end supply chain integrity from source to edge, not just within GitHub."
+   ]
+  },
+  {
+   "id": 69,
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNdmxsRkVWWVA0bTZtcEVtX2hYSlg3T09ZWndRY3NTcGFOUU5HZzRodGNRMzdwUzhmb0VxNzJqM01xbWFoU3VJYnRLMUx0WkR5MVZoTElFMU1iZ3JSVU5QTWVUNVVKUW4zVXNxUTUyWXhtaGZjY29KdnBIdDItNERlV1hFNjBvOXpGYnczVXBKdlNnQ1ZFM1I0ZURyMjAyWGZ3T2FFeTNGYw?oc=5",
+   "title": "Dependabot alerts on malicious packages across more ecosystems - The GitHub Blog",
+   "body_excerpt": "Dependabot alerts on malicious packages across more ecosystems The GitHub Blog",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-28T14:55:31+00:00",
+   "fetched_at": "2026-08-03T18:36:37.871355+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "feature_update",
+   "summary": "GitHub expanded Dependabot's malicious package detection to cover additional package ecosystems. This enhances GitHub's supply-chain security capabilities across more development environments.",
+   "jfrog_impact": 3,
+   "so_what": "GitHub's expanded malicious-package detection competes with Xray's vulnerability and malware scanning; JFrog should monitor ecosystem coverage parity and emphasize Xray's multi-format artifact scanning beyond packages.",
+   "delta_move": "GitHub expanded Dependabot's malicious package detection to cover additional package ecosystems, enhancing supply-chain security across more development environments.",
+   "delta_jfrog_equivalent": "JFrog Advanced Security includes malicious-package detection as part of its comprehensive supply-chain security suite. JFrog Curation blocks risky open-source packages at the repository gate before they enter the organization, across 30+ package types (Maven, npm, PyPI, Docker/OCI, Go, NuGet, Helm, Conan, etc.). Additionally, Xray SCA scanning provides deep recursive vulnerability and license analysis across all artifact types. The key difference: JFrog operates at the artifact repository layer (preventing malicious packages from ever being used), while Dependabot operates at the dependency-alert layer (notifying after detection in CI/dependency graphs).",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Curation blocks malicious packages *before* they enter your supply chain\u2014not just alerts after they're already in your dependency tree.",
+    "JFrog's malicious-package detection works across 30+ package ecosystems in a single unified repository, eliminating ecosystem-specific blind spots.",
+    "Combine Advanced Security malicious detection with Xray contextual analysis to determine actual exploitability, reducing alert fatigue vs. raw detection alerts."
+   ]
+  },
+  {
+   "id": 71,
+   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNSV9JbmNqU3NjNHpvajZocFhTSzJYb1JUQ3kzbUF5ek9ONTNZVTVFOTlESzlvaFd4dTU4RDMzTlNUNWZwOFFzVmlfakVEdEhXeXR0SDYzS2pyMG1xb21VWGdjMk1OTVJjV2dFeHVrdzYxRnQzUzBfZTRyRWlHZjlfUU9JR0NOV0Nxa0xGcjAzYmlLVGZ3MllSSHRoNThCMWkzVUs5QXc2ZUZWUE93OG85THNn0gG3AUFVX3lxTFBMWmM2NUdwc3BvYVFINWhTTmNsUXFNcUswVG50RENHVG1QUWl1VVlJbVBPV0JhTm9ueHUzaUFZUC0xQnpUVGdCcGktc2M3R0J4TEg1N0ZHS2lFaGNoTmViQXJNUTFPdUxaeGdDbWZ6VGZsY09vV0NIaDZhSGtwTkIxMGc1QUVZMkwzWVZBZVZDeFE1bkF5aEdYTF9DUXhXVG00YW9aN2NQNFZPV1F0djVGUFg2a2NhUQ?oc=5",
+   "title": "GitHub, PyPI add time-based defenses against supply chain attacks - BleepingComputer",
+   "body_excerpt": "GitHub, PyPI add time-based defenses against supply chain attacks BleepingComputer",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-26T14:13:39+00:00",
+   "fetched_at": "2026-08-03T18:36:37.872479+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub and PyPI implemented time-based defenses to mitigate supply chain attacks, likely including delayed package availability or staged rollouts. This addresses a critical vulnerability vector in software distribution.",
+   "jfrog_impact": 3,
+   "so_what": "Xray's real-time threat detection and artifact governance can complement these upstream defenses, positioning JFrog as a downstream security layer for organizations consuming PyPI and GitHub artifacts.",
+   "delta_move": "GitHub and PyPI implemented time-based defenses against supply chain attacks, including delayed package availability or staged rollouts to mitigate malicious package injection.",
+   "delta_jfrog_equivalent": "JFrog Curation blocks risky open-source packages at the door before they enter the organization based on policy rules. JFrog Advanced Security includes malicious-package detection. JFrog's SBOM generation & export (CycloneDX/SPDX) with build-info provenance provides full supply chain visibility and traceability. However, JFrog does not currently offer time-based staged rollout or delayed-availability defenses as a native feature\u2014this represents a gap in temporal supply chain controls.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Curation + Advanced Security stops malicious packages proactively at ingestion; combine with SBOM + build-info for end-to-end provenance and auditability across your supply chain.",
+    "Time-based defenses are complementary to JFrog's risk-blocking approach\u2014customers can layer staged promotion policies in Artifactory virtual repos to control package availability by environment/team.",
+    "Gap opportunity: JFrog could enhance Curation with temporal release-hold policies and staged availability windows to match GitHub/PyPI's time-based defense posture."
+   ]
+  },
+  {
+   "id": 72,
+   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4zb0ltZ0pKRFVJSHprRi1NUWhMcEZEQ3ZWMkxROUxrSWRLWFpHVUxCVjU5WTdVemw2YWEyanh0aTdISWw4cXdicGtlbWlabklCaW9kNmZ1ZDdCQ1NBQW9LQXlrcE4xRm5MU0ZobHZITm9RMHPSAXNBVV95cUxOM29JbWdKSkRVSUh6a0YtTVFoTHBGREN2VjJMUTlMa0lkS1haR1VMQlY1OVk3VXpsNmFhMmp4dGk3SElsOHF3YnBrZW1pWm5JQmlvZDZmdWQ3QkNTQUFvS0F5a3BOMUZuTFNGaGx2SE5vUTBz?oc=5",
+   "title": "GitHub Adds Three-Day Dependabot Cooldown to Block Supply Chain Attacks - cyberpress.org",
+   "body_excerpt": "GitHub Adds Three-Day Dependabot Cooldown to Block Supply Chain Attacks cyberpress.org",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-27T10:32:21+00:00",
+   "fetched_at": "2026-08-03T18:36:37.872982+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub implemented a three-day cooldown period in Dependabot to mitigate supply chain attack vectors. The feature delays automated dependency updates to allow time for security validation.",
+   "jfrog_impact": 3,
+   "so_what": "GitHub's supply-chain defense strengthens its DevSecOps positioning; Xray's real-time scanning and policy enforcement remain complementary but face increased competitive pressure on native GitHub workflows.",
+   "delta_move": "GitHub implemented a three-day cooldown period in Dependabot to delay automated dependency updates and allow time for security validation before applying patches.",
+   "delta_jfrog_equivalent": "JFrog Curation blocks risky open-source packages at the door based on policy before they enter the organization, combined with Xray SCA scanning and contextual analysis to determine actual CVE exploitability in artifact context. JFrog's approach is policy-driven prevention rather than time-delay mitigation; it validates package integrity and risk posture upfront rather than delaying updates. SBOM generation & export (CycloneDX/SPDX) provides supply chain transparency for audit and compliance.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Curation prevents risky packages proactively at ingestion\u2014no delay needed; contextual analysis eliminates false-positive CVE noise so teams apply real fixes faster.",
+    "Xray's deep recursive scanning inside archives and images catches hidden supply chain risks GitHub's cooldown cannot; combined with build-info provenance, you have end-to-end supply chain integrity.",
+    "JFrog's policy-driven governance works across 30+ package types and hybrid/multi-cloud topologies\u2014GitHub's Dependabot is limited to code dependencies; JFrog secures the entire artifact supply chain."
+   ]
+  },
+  {
+   "id": 73,
+   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPbmlIU0NCUVBfdC0tUXFHRWlNYTJkNWFNeVIxU0ZtZEhhYXZIWm42Sy1zc05YZ2FMVTcxbXZneFJkRDRKeVJMbFpUS3BCaHI4S25XekxZSGpQTmdadVBZZlg1eTg4ODNEeE00S3NFTkl3Z1dsVUNTZUt4LWxCeUZUd29PaE1Jbm92SEdLU3pWaDN4Q1N5TnpFa29ndWtzR2JOdEpqTHNLUmdRSV9obmlOcHgxYUM2UdIBtgFBVV95cUxPbmlIU0NCUVBfdC0tUXFHRWlNYTJkNWFNeVIxU0ZtZEhhYXZIWm42Sy1zc05YZ2FMVTcxbXZneFJkRDRKeVJMbFpUS3BCaHI4S25XekxZSGpQTmdadVBZZlg1eTg4ODNEeE00S3NFTkl3Z1dsVUNTZUt4LWxCeUZUd29PaE1Jbm92SEdLU3pWaDN4Q1N5TnpFa29ndWtzR2JOdEpqTHNLUmdRSV9obmlOcHgxYUM2UQ?oc=5",
+   "title": "GitHub Dependabot Adds 3-Day Cooldown for Dependency Updates - TechGig",
+   "body_excerpt": "GitHub Dependabot Adds 3-Day Cooldown for Dependency Updates TechGig",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-29T04:35:36+00:00",
+   "fetched_at": "2026-08-03T18:36:37.873519+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "cicd",
+   "event_type": "feature_update",
+   "summary": "GitHub Dependabot introduced a 3-day cooldown period for dependency updates to reduce update frequency and noise. This feature aims to batch updates and improve developer workflow efficiency.",
+   "jfrog_impact": 2,
+   "so_what": "GitHub's dependency management improvements may reduce friction in their supply-chain workflow, but Xray's deeper security scanning and artifact governance remain differentiated.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 74,
+   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9xOFRHcng2dW1Fem1qZjUzSXlqakE3YmFzWERnOTBUN2dDeVdYUEF4S3JJWWxDSXptd2VtQjJuY21Lcjd4NU1yQ21MdHpCSjRibDRfYzFHX3hvOWIwSkJSOS16THDSAWpBVV95cUxNWnlLYTlfclh6SGNjV0ZORy1qb0Z0dlVQR0NlM0hzRVAxbHRhSEo1dU5odVcxU0VveEcxdWF6Mm1nTDRRS0U5NkxwN3BUVEhidnlPYVNLa2NEWTM0RGxxajd1NnNCXzJrNjBB?oc=5",
+   "title": "GitHub Adds Dependabot Cooldown to Stop Poisoned Dependencies - gbhackers.com",
+   "body_excerpt": "GitHub Adds Dependabot Cooldown to Stop Poisoned Dependencies gbhackers.com",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-27T10:37:10+00:00",
+   "fetched_at": "2026-08-03T18:36:37.874019+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub added a cooldown feature to Dependabot to prevent automatic updates of poisoned or malicious dependencies. This addresses supply-chain attack vectors by introducing a delay mechanism for dependency updates.",
+   "jfrog_impact": 3,
+   "so_what": "Xray's malicious package detection and policy enforcement now competes directly with GitHub's native Dependabot controls; JFrog should emphasize cross-platform coverage and earlier detection in the supply chain.",
+   "delta_move": "GitHub added a cooldown feature to Dependabot that delays automatic dependency updates to prevent poisoned/malicious packages from being auto-merged into codebases.",
+   "delta_jfrog_equivalent": "JFrog Curation proactively blocks risky open-source packages at the repository gate before they enter the organization, preventing malicious dependencies from ever reaching developers. Additionally, JFrog Advanced Security detects malicious packages and exposed secrets, while Xray SCA scanning identifies CVEs and operational risks in dependencies. Unlike a reactive cooldown, JFrog's approach is preventive\u2014stopping bad packages upstream rather than delaying their adoption.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Curation stops poisoned packages before they enter your org\u2014no delay, no risk of accidental merge. GitHub's cooldown is reactive; JFrog is preventive.",
+    "Combine Curation + Advanced Security + Xray for defense-in-depth: block risky packages, detect malicious code/secrets, and scan for CVEs in one platform.",
+    "Build-info provenance in JFrog tracks exactly which dependencies made it into each release, giving you full supply-chain visibility beyond just blocking updates."
+   ]
+  },
+  {
+   "id": 75,
+   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBtSTlrVW83dmJyOGd5TVBrV2tpV1huVjd3ZU9EeTAwNTF2VkR1aWVRc25FaDA0V1Z3NDZqYWZlS2NQNnBBellBZHBRWnZaMHpaMUNwSEdUZUQzc3Bpa0p6b2x6LWNLWnNlWkxxZFc5TWRFOEM2djV30gF8QVVfeXFMUHhheUgzUF9PcVZybExXSVY5eW92V0ExenJpaEZ2M3ItUmNXTlhRMlM3NTFmSnIwN0doN0tkNHVocm9mTEhBMllpSEpiVk42eHVlbm9NaFFkOXN2TzdoNm9qOVIwcWpFbmFGcXFTUDlhV0lXX2MxWTU1QjJPLQ?oc=5",
+   "title": "GitHub Adds 3-Day Dependabot Cooldown to Block Malicious Package Updates - CyberSecurityNews",
+   "body_excerpt": "GitHub Adds 3-Day Dependabot Cooldown to Block Malicious Package Updates CyberSecurityNews",
+   "source_name": "GitHub News",
+   "source_type": "rss",
+   "published_at": "2026-07-27T15:25:08+00:00",
+   "fetched_at": "2026-08-03T18:36:37.874573+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "github"
+   ],
+   "domain": "sbom_supply_chain",
+   "event_type": "feature_update",
+   "summary": "GitHub introduced a 3-day cooldown period in Dependabot to delay automatic package updates and allow time for malicious packages to be detected and removed. This security feature aims to reduce the window of exposure for supply-chain attacks.",
+   "jfrog_impact": 3,
+   "so_what": "GitHub's supply-chain security hardening reinforces the market demand for artifact scanning and validation; Xray's real-time malicious-package detection complements rather than competes with this approach, positioning JFrog as a deeper scanning layer.",
+   "delta_move": "GitHub introduced a 3-day cooldown period in Dependabot to delay automatic package updates, allowing time for malicious packages to be detected and removed before widespread adoption.",
+   "delta_jfrog_equivalent": "JFrog Curation proactively blocks risky open-source packages at the repository door before they enter the organization, preventing malicious packages from being pulled in the first place. JFrog Advanced Security adds malicious-package detection. Together, these eliminate the need for reactive cooldown delays by stopping threats upstream. Additionally, JFrog's SBOM generation and build-info provenance provide full supply-chain visibility and traceability of what was consumed and when.",
+   "delta_strategic_impact": "medium",
+   "delta_talking_points": [
+    "JFrog Curation stops malicious packages before they enter your org\u2014no cooldown delay needed; GitHub's approach is reactive detection after the fact.",
+    "Combine Curation + Advanced Security malicious-package detection with SBOM/build-info for proactive supply-chain defense and complete audit trails.",
+    "JFrog's approach scales across 30+ package types in one policy model; GitHub's Dependabot cooldown is language/ecosystem-specific and doesn't address the root problem of package vetting."
+   ]
+  },
+  {
+   "id": 76,
    "url": "https://www.docker.com/blog/empty-sandboxes-break-developer-experience",
    "title": "Empty sandboxes break developer experience",
    "body_excerpt": "Learn how Docker Sandbox kits turn empty sandboxes into productive development environments with repeatable tooling, credentials, and configuration.",
    "source_name": "Docker Blog",
    "source_type": "rss",
    "published_at": "2026-08-03T13:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.284521+00:00",
+   "fetched_at": "2026-08-03T18:36:37.875167+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -458,23 +1258,23 @@
    ],
    "domain": "cicd",
    "event_type": "feature_update",
-   "summary": "Docker announced Sandbox kits that pre-populate development sandboxes with tooling, credentials, and configuration to improve developer experience. The feature addresses the problem of empty sandboxes breaking productivity in development workflows.",
+   "summary": "Docker announced Sandbox kits that pre-populate development sandboxes with tooling, credentials, and configuration to improve developer experience. The feature addresses the problem of empty sandboxes hindering productivity.",
    "jfrog_impact": 2,
-   "so_what": "Docker's sandbox enhancement targets local dev environments; monitor if it expands to artifact/dependency management workflows where Artifactory operates.",
+   "so_what": "Docker's sandbox tooling is adjacent to artifact management but doesn't directly threaten Artifactory; monitor for integration with artifact repositories or supply-chain workflows.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 44,
+   "id": 77,
    "url": "https://www.docker.com/blog/docker-ai-governance-audit-logs-now-where-your-security-team-already-works",
    "title": "Docker AI Governance: Audit Logs, Now Where Your Security Team Already Works",
    "body_excerpt": "Now in Docker AI Governance: a single searchable record of every policy decision your agents trigger, streamed to the SIEM your security team already runs, so you can show what your agents did and what your policy stopped. Today, Docker AI Governance now streams every policy decision in your organization into the SIEM your security...",
    "source_name": "Docker Blog",
    "source_type": "rss",
    "published_at": "2026-08-03T13:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.285143+00:00",
+   "fetched_at": "2026-08-03T18:36:37.875703+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -482,23 +1282,23 @@
    ],
    "domain": "devsecops_scanning",
    "event_type": "feature_update",
-   "summary": "Docker AI Governance now streams audit logs of all policy decisions to existing SIEMs, enabling centralized security visibility and compliance tracking.",
+   "summary": "Docker AI Governance now streams audit logs of policy decisions to existing SIEMs, providing searchable records of agent actions and policy enforcement. The feature integrates security governance directly into security teams' existing tooling.",
    "jfrog_impact": 2,
-   "so_what": "Docker's SIEM integration strengthens their governance posture; Xray should monitor whether this drives adoption of Docker's policy enforcement over standalone scanning solutions.",
+   "so_what": "Docker's SIEM integration for AI governance audit trails is a monitoring point; Xray's policy enforcement and audit capabilities should be evaluated for similar SIEM streaming to remain competitive in DevSecOps workflows.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 45,
+   "id": 78,
    "url": "https://www.docker.com/blog/docker-oidc-connections-for-github-actions-available-for-docker-orgs",
    "title": "Docker OIDC connections for GitHub Actions available for Docker Orgs",
    "body_excerpt": "Eliminate Stored Credentials in Your CI/CD Pipelines TL;DR: Docker now supports OpenID Connect (OIDC) for GitHub Actions. Your workflows can authenticate with short-lived, per-run tokens instead of stored PATs or OATs. No secrets to rotate, no credentials to leak. GitHub OIDC connections are available to organizations with Docker Team, Docker Business, or Docker Hardened Images...",
    "source_name": "Docker Blog",
    "source_type": "rss",
    "published_at": "2026-07-31T16:30:48+00:00",
-   "fetched_at": "2026-08-03T18:14:22.285723+00:00",
+   "fetched_at": "2026-08-03T18:36:37.876209+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -509,21 +1309,21 @@
    "event_type": "feature_update",
    "summary": "Docker now supports OpenID Connect (OIDC) for GitHub Actions, enabling short-lived per-run tokens instead of stored credentials. The feature is available to Docker Team, Business, and Hardened Images tier organizations.",
    "jfrog_impact": 2,
-   "so_what": "Docker's OIDC-GitHub integration strengthens CI/CD security posture; JFrog should monitor if Artifactory's GitHub Actions integration needs similar OIDC support to remain competitive.",
+   "so_what": "Docker's OIDC integration with GitHub Actions strengthens CI/CD security posture; monitor if this drives adoption of Docker registries over Artifactory for GitHub-native teams, though JFrog's broader artifact-management scope and Xray scanning remain differentiated.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 47,
+   "id": 80,
    "url": "https://www.docker.com/blog/coding-agent-horror-stories-the-29-million-secret-problem",
    "title": "Coding Agent Horror Stories: The 29 Million Secret Problem",
    "body_excerpt": "Learn how AI coding agents can expose credentials in supply chain attacks and how Docker Sandboxes keep secrets out of an agent's reach.",
    "source_name": "Docker Blog",
    "source_type": "rss",
    "published_at": "2026-07-28T13:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.286974+00:00",
+   "fetched_at": "2026-08-03T18:36:37.877584+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -531,27 +1331,23 @@
    ],
    "domain": "sbom_supply_chain",
    "event_type": "feature_update",
-   "summary": "Docker published guidance on AI coding agent security risks, highlighting credential exposure in supply chain attacks and promoting Docker Sandboxes as a mitigation. The post references a 29 million credential exposure problem.",
-   "jfrog_impact": 3,
-   "so_what": "Docker is positioning sandboxing as a supply-chain security control; Xray should monitor whether this becomes a competitive narrative around artifact/dependency scanning and secret detection.",
-   "delta_move": "Docker published guidance on AI coding agent security risks and credential exposure in supply chains, promoting Docker Sandboxes as a mitigation strategy.",
-   "delta_jfrog_equivalent": "JFrog Advanced Security detects exposed secrets and credentials in artifacts, builds, and repositories; JFrog Curation blocks risky packages before they enter the organization; Xray SCA scanning identifies vulnerable dependencies that could be exploited in supply chain attacks. However, JFrog does not offer runtime sandboxing or isolated execution environments for AI coding agents\u2014this is a capability gap where Docker's Sandboxes provide isolated execution that JFrog's artifact governance and scanning do not directly address.",
-   "delta_strategic_impact": "medium",
-   "delta_talking_points": [
-    "JFrog stops malicious/risky packages at the gate (Curation) and detects exposed secrets in artifacts (Advanced Security)\u2014complementary to Docker's runtime isolation, not competitive.",
-    "Xray's contextual analysis determines if a vulnerable dependency is actually exploitable in your build context, reducing false positives in supply chain risk assessment.",
-    "Opportunity: position JFrog + Docker Sandboxes as a layered defense\u2014JFrog governs artifact provenance and detects threats; Docker isolates execution of untrusted code."
-   ]
+   "summary": "Docker published guidance on AI coding agent security risks, highlighting credential exposure in supply chain attacks and promoting Docker Sandboxes as a mitigation. The post references a 29 million credential exposure problem in agent-generated code.",
+   "jfrog_impact": 2,
+   "so_what": "Docker is positioning sandboxing as a supply-chain security feature; Xray should monitor whether this becomes a competitive narrative around artifact/code scanning and secret detection.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
   },
   {
-   "id": 49,
+   "id": 82,
    "url": "https://www.docker.com/blog/runtime-enforcement-not-runtime-advice",
    "title": "Runtime Enforcement, Not Runtime Advice",
    "body_excerpt": "Explore governance at the runtime layer and learn why isolation, policy enforcement, and controlled tool access are becoming foundational for agentic systems.",
    "source_name": "Docker Blog",
    "source_type": "rss",
    "published_at": "2026-07-22T13:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.288360+00:00",
+   "fetched_at": "2026-08-03T18:36:37.878688+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -561,21 +1357,46 @@
    "event_type": "feature_update",
    "summary": "Docker is emphasizing runtime enforcement capabilities for governance, isolation, and policy enforcement in agentic systems. The post positions runtime-layer controls as foundational security mechanisms rather than advisory-only approaches.",
    "jfrog_impact": 2,
-   "so_what": "Docker's runtime enforcement narrative complements but doesn't directly compete with Xray's artifact-scanning focus; monitor if Docker expands into supply-chain policy enforcement that overlaps with JFrog's governance layer.",
+   "so_what": "Docker's runtime enforcement narrative complements but does not directly compete with Xray's artifact-scanning focus; monitor if Docker expands into supply-chain policy enforcement that overlaps with Xray's governance scope.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 50,
+   "id": 84,
+   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNNVlBVkpxY1M3elZYdFJYcEtvbENBbHo5OGlZcVpaZlgyek43WGhvTThWV0p3eThBcFVqclNlVTMxazFYR1ZjRVVJTUwwT1FTRjVUdlY5Wnh6V0hMYTB5Vl92eWpQVF82Mkh6TnNUMkhwYU1DVFpDZndfVEU1Zng4LVBGR2pZZU5CemZaUFVmVldpQ3Nib2IxcWdob0YxTmF6NmJoRU85c1VWQlgzWDZJdEdOUmhnazZyVE1IZFoxN28?oc=5",
+   "title": "Docker Hub OIDC Closes Last Long-Lived Credential Gap in GitHub Actions - Tech Times",
+   "body_excerpt": "Docker Hub OIDC Closes Last Long-Lived Credential Gap in GitHub Actions Tech Times",
+   "source_name": "Docker News",
+   "source_type": "rss",
+   "published_at": "2026-08-01T17:24:42+00:00",
+   "fetched_at": "2026-08-03T18:36:37.879736+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "docker",
+    "github"
+   ],
+   "domain": "cicd",
+   "event_type": "feature_update",
+   "summary": "Docker Hub now supports OIDC (OpenID Connect) for GitHub Actions, eliminating the need for long-lived credentials in CI/CD workflows. This integration allows ephemeral token-based authentication between GitHub Actions and Docker Hub.",
+   "jfrog_impact": 2,
+   "so_what": "Docker's OIDC+GitHub Actions integration strengthens their CI/CD positioning; JFrog should monitor if Artifactory's GitHub Actions integration needs similar OIDC enhancements to remain competitive.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 85,
    "url": "https://snyk.io/blog/announcing-snyk-studio-integration-snowflake-cortex-code",
    "title": "Secure at Inception: Announcing the Snyk Studio Integration for Snowflake Cortex Code",
    "body_excerpt": "Snyk Studio integrates with Snowflake Cortex Code to scan AI-generated code, dependencies, and containers for vulnerabilities during development.",
    "source_name": "Snyk Blog",
    "source_type": "rss",
    "published_at": "2026-07-30T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.288932+00:00",
+   "fetched_at": "2026-08-03T18:36:37.880213+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -585,25 +1406,25 @@
    "event_type": "feature_update",
    "summary": "Snyk Studio now integrates with Snowflake Cortex Code to scan AI-generated code, dependencies, and containers for vulnerabilities during development. This extends Snyk's scanning capabilities into the AI code generation workflow.",
    "jfrog_impact": 3,
-   "so_what": "Snyk is expanding into AI-assisted development scanning; Xray should monitor whether this partnership signals Snyk's pivot toward broader DevSecOps platforms that could compete with JFrog's integrated artifact + scanning strategy.",
+   "so_what": "Snyk is expanding into AI-assisted development scanning; Xray should monitor whether this partnership signals broader Snowflake ecosystem positioning that could compete with JFrog's supply-chain security narrative.",
    "delta_move": "Snyk Studio integrates with Snowflake Cortex Code to scan AI-generated code, dependencies, and containers for vulnerabilities during development.",
-   "delta_jfrog_equivalent": "JFrog Advanced Security provides secrets detection, IaC scanning, and malicious-package detection across artifacts and dependencies. JFrog Xray performs deep SCA scanning on dependencies and container images with contextual analysis to reduce false positives. However, JFrog does not currently offer native integration with AI code generation platforms (like Snowflake Cortex Code) or specialized scanning for AI-generated code artifacts in the development workflow. The gap is in real-time IDE/AI-tool integration for scanning generated code before artifact creation.",
+   "delta_jfrog_equivalent": "JFrog Advanced Security (secrets detection, IaC scanning, exposed-services analysis) + Xray SCA scanning (CVEs, licenses, operational risk in artifacts/dependencies) cover vulnerability and supply-chain risk detection in artifacts and builds. However, JFrog does not currently offer real-time scanning of AI-generated code within code generation IDEs/platforms like Snowflake Cortex Code. JFrog's scanning is artifact/registry-centric and CI/CD-integrated, not IDE/AI-generation-workflow-embedded.",
    "delta_strategic_impact": "medium",
    "delta_talking_points": [
-    "JFrog's strength is post-generation artifact governance\u2014scan dependencies and containers comprehensively at the registry layer with contextual CVE analysis, catching risks before deployment.",
-    "Opportunity: Extend JFrog Advanced Security and Xray to integrate with popular AI code generation tools (GitHub Copilot, Claude, etc.) to shift scanning left into the AI workflow, complementing Snyk's point solution.",
-    "JFrog's universal repository and build-info provenance provide end-to-end traceability of AI-assisted code through CI/CD\u2014Snyk's integration is scanning-only; JFrog can offer governance + scanning + distribution."
+    "JFrog secures the artifact supply chain end-to-end (build \u2192 registry \u2192 distribution); Snyk's move targets the code-generation phase upstream\u2014complementary rather than directly competitive, but signals market shift toward AI-native DevSecOps.",
+    "JFrog's Xray contextual analysis reduces false positives by determining exploitability in artifact context; extending similar intelligence to AI-generated code (where hallucinations and synthetic patterns differ from human code) is a product opportunity.",
+    "JFrog can strengthen positioning by integrating Advanced Security scanning into CI/CD pipelines that consume AI-generated code artifacts, ensuring AI outputs are governed like any other dependency before registry ingestion."
    ]
   },
   {
-   "id": 51,
+   "id": 86,
    "url": "https://snyk.io/blog/attacker-never-sleeps-neither-can-testing",
    "title": "The Attacker Never Sleeps, Neither Can Your Testing",
    "body_excerpt": "AI is accelerating software development and giving attackers machine-speed capabilities. Security teams must continuously test AI-built code, govern agents, and independently validate every finding.",
    "source_name": "Snyk Blog",
    "source_type": "rss",
    "published_at": "2026-07-30T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.289553+00:00",
+   "fetched_at": "2026-08-03T18:36:37.880687+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -613,21 +1434,21 @@
    "event_type": "other",
    "summary": "Snyk published guidance on continuous testing and validation of AI-generated code, emphasizing the need for security teams to govern AI agents and independently validate findings.",
    "jfrog_impact": 2,
-   "so_what": "Snyk is positioning continuous validation and AI-code scanning as core security practices; Xray should monitor whether this messaging drives demand for integrated artifact + code scanning workflows.",
+   "so_what": "Snyk is positioning continuous validation as a core security capability; Xray should monitor whether this messaging drives demand for independent artifact/code scanning in AI-heavy workflows.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 53,
+   "id": 88,
    "url": "https://snyk.io/blog/openai-hugging-face-incident",
    "title": "The Generator Can't Be the Validator: What OpenAI's Hugging Face Incident Proves About AI Security",
    "body_excerpt": "OpenAI\u2019s Hugging Face incident is a wake-up call: AI systems can escape their own test harnesses, and vendors can\u2019t be the only ones validating safety.",
    "source_name": "Snyk Blog",
    "source_type": "rss",
    "published_at": "2026-07-28T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.291063+00:00",
+   "fetched_at": "2026-08-03T18:36:37.881767+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -635,23 +1456,23 @@
    ],
    "domain": "devsecops_scanning",
    "event_type": "other",
-   "summary": "Snyk publishes analysis of OpenAI's Hugging Face security incident, arguing that vendors cannot be sole validators of AI system safety and that independent security validation is critical.",
+   "summary": "Snyk publishes analysis of OpenAI's Hugging Face incident, arguing that vendors cannot solely validate AI system safety and that independent security validation is critical.",
    "jfrog_impact": 2,
-   "so_what": "Reinforces Snyk's positioning on third-party security validation; Xray's independent scanning approach aligns with this narrative for artifact/dependency security.",
+   "so_what": "Snyk is positioning itself as an independent validator in the AI supply-chain security space; JFrog should monitor whether Xray needs AI-model scanning capabilities or partnerships to remain competitive in DevSecOps.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 54,
+   "id": 89,
    "url": "https://snyk.io/blog/what-is-ai-pentesting",
    "title": "What Is AI Pentesting and How Does It Work?",
    "body_excerpt": "AI pentesting uses reasoning-capable models to continuously find and validate the flaws scanners miss, especially broken authorization and business-logic abuse.",
    "source_name": "Snyk Blog",
    "source_type": "rss",
    "published_at": "2026-07-27T00:00:00+00:00",
-   "fetched_at": "2026-08-03T18:14:22.291791+00:00",
+   "fetched_at": "2026-08-03T18:36:37.882274+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -661,25 +1482,71 @@
    "event_type": "feature_update",
    "summary": "Snyk is promoting AI-driven pentesting capabilities that use reasoning models to identify authorization flaws and business-logic vulnerabilities beyond traditional scanner detection.",
    "jfrog_impact": 3,
-   "so_what": "Xray should evaluate AI-assisted vulnerability reasoning to remain competitive in advanced threat detection, particularly for logic-layer vulnerabilities that static scanning misses.",
+   "so_what": "Xray should monitor Snyk's AI pentesting positioning; if it gains traction, Xray may need to enhance behavioral/logic-flaw detection or partner with AI-native security vendors.",
    "delta_move": "Snyk is promoting AI-driven pentesting capabilities using reasoning models to identify authorization flaws and business-logic vulnerabilities beyond traditional scanner detection.",
-   "delta_jfrog_equivalent": "JFrog Advanced Security provides secrets detection, IaC scanning, exposed-services analysis, and malicious-package detection within the artifact and build context. JFrog Xray performs deep recursive SCA scanning with contextual analysis to determine CVE exploitability. However, JFrog does not currently offer AI-powered reasoning-based pentesting or business-logic vulnerability detection at the application code level\u2014this is a gap outside the artifact governance and supply-chain security domains where JFrog operates.",
+   "delta_jfrog_equivalent": "JFrog Advanced Security provides secrets detection, IaC scanning, exposed-services analysis, and malicious-package detection within the artifact and build context. JFrog Xray performs deep recursive SCA scanning with contextual analysis to determine CVE exploitability. However, JFrog does not currently offer AI-powered pentesting or business-logic vulnerability reasoning\u2014this is a gap. JFrog's strength is artifact-centric security (dependencies, provenance, supply-chain integrity); Snyk is expanding into application-layer reasoning and authorization testing.",
    "delta_strategic_impact": "medium",
    "delta_talking_points": [
-    "JFrog's strength is artifact and dependency security at scale; Snyk's AI pentesting targets application-layer logic flaws\u2014complementary, not overlapping, use cases.",
-    "JFrog's contextual SCA analysis reduces false positives by determining actual CVE exploitability in your artifact context; AI pentesting requires different threat modeling and code-reasoning capabilities.",
-    "Opportunity: position JFrog + Snyk integration as a defense-in-depth strategy\u2014JFrog secures the supply chain and dependencies; Snyk handles application logic testing."
+    "JFrog secures the artifact supply chain and build provenance end-to-end; Snyk's AI pentesting targets application logic\u2014complementary, not overlapping domains.",
+    "JFrog's contextual SCA analysis reduces false positives by determining if vulnerable code is reachable; AI pentesting is a different threat model (authorization/logic flaws vs. known CVEs).",
+    "Opportunity: JFrog could explore AI-assisted reasoning for build-time policy enforcement and anomaly detection in artifact metadata/provenance to close the gap."
    ]
   },
   {
-   "id": 76,
+   "id": 91,
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNY3Y3WGo5Wmdtd0FHNmlHS3JjMVZCN1c4R002bTBLYVZJazlrWkZFZnBELTNUR0hiV3JpenVhS2tTT1BvcDZGLUpBYjlnWTVJcnY0OVpxWEotbThhZGNCU080d1ByN21kZEkwOWFDelN0N2k0Tkd4QnVjVUFYTEs3UDVON1pKVHp4azF2WDhWdU9vZVVBRFFIN3BFZFVfNDB0SkloU3o2aHp4MlhVeUg3YlNhR3ZfeHJ4WEVv?oc=5",
+   "title": "Enterprises Are Blind to Two-Thirds of Their Own AI Attack Surface. The Blind Spot Is Growing Fast. - 01net",
+   "body_excerpt": "Enterprises Are Blind to Two-Thirds of Their Own AI Attack Surface. The Blind Spot Is Growing Fast. 01net",
+   "source_name": "Snyk News",
+   "source_type": "rss",
+   "published_at": "2026-08-03T15:00:00+00:00",
+   "fetched_at": "2026-08-03T18:36:37.883311+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [
+    "snyk"
+   ],
+   "domain": "devsecops_scanning",
+   "event_type": "other",
+   "summary": "Snyk published research indicating enterprises lack visibility into two-thirds of their AI attack surface, with the gap expanding. The finding highlights growing security blind spots in AI deployments.",
+   "jfrog_impact": 2,
+   "so_what": "Snyk is positioning AI security visibility as a market gap; Xray should monitor whether this drives demand for artifact/dependency scanning in AI/ML pipelines.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 101,
+   "url": "https://arxiv.org/abs/2607.21888",
+   "title": "No Snake Oil: Verifying Python Package Builds",
+   "body_excerpt": "",
+   "source_name": "Hacker News",
+   "source_type": "hackernews",
+   "published_at": "2026-07-27T21:55:28+00:00",
+   "fetched_at": "2026-08-03T18:36:37.888915+00:00",
+   "status": "enriched",
+   "relevant": true,
+   "competitors": [],
+   "domain": "sbom_supply_chain",
+   "event_type": "other",
+   "summary": "Article discusses verification mechanisms for Python package builds to prevent supply-chain tampering and malicious artifacts. Addresses artifact integrity and provenance in the Python ecosystem.",
+   "jfrog_impact": 2,
+   "so_what": "Reinforces market demand for artifact verification and supply-chain security\u2014core to Xray's value proposition and potential expansion into Python ecosystem scanning.",
+   "delta_move": null,
+   "delta_jfrog_equivalent": null,
+   "delta_strategic_impact": null,
+   "delta_talking_points": null
+  },
+  {
+   "id": 114,
    "url": "https://www.cncf.io/blog/2026/07/30/runtime-supply-chain-verification-using-the-node-resource-interface-nri",
    "title": "Runtime Supply Chain Verification using the Node Resource Interface (NRI)",
    "body_excerpt": "The widely used container supply chain verification tools today operate at the Kubernetes API layer as admission webhooks (such as Kyverno, OPA Gatekeeper, and Sigstore Policy Controller). They intercept pod creation, check signatures and attestations, and...",
    "source_name": "CNCF Blog",
    "source_type": "rss",
    "published_at": "2026-07-30T11:09:11+00:00",
-   "fetched_at": "2026-08-03T18:14:22.304215+00:00",
+   "fetched_at": "2026-08-03T18:36:37.896022+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [],
@@ -687,21 +1554,21 @@
    "event_type": "feature_update",
    "summary": "CNCF blog discusses runtime supply chain verification using Node Resource Interface (NRI), covering container signature and attestation checking at the Kubernetes layer via admission webhooks and policy controllers.",
    "jfrog_impact": 2,
-   "so_what": "Xray's supply chain verification capabilities should monitor NRI-based runtime verification approaches as an emerging alternative verification layer, though webhook-based admission control remains the dominant pattern.",
+   "so_what": "Xray's supply chain security positioning benefits from industry standardization around attestation verification, though this focuses on runtime enforcement rather than artifact scanning.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 113,
+   "id": 151,
    "url": "https://devops.com/github-brings-stacked-pull-requests-out-of-the-shadows",
    "title": "GitHub Brings Stacked Pull Requests Out of the Shadows",
    "body_excerpt": "GitHub introduces native stacked pull requests, helping development teams break large changes into smaller, dependency-ordered PRs that are faster and easier to review.",
    "source_name": "DevOps.com",
    "source_type": "rss",
    "published_at": "2026-08-03T10:19:27+00:00",
-   "fetched_at": "2026-08-03T18:14:22.328453+00:00",
+   "fetched_at": "2026-08-03T18:36:37.916145+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [
@@ -709,81 +1576,87 @@
    ],
    "domain": "cicd",
    "event_type": "feature_update",
-   "summary": "GitHub introduced native stacked pull requests, enabling developers to break large changes into smaller, dependency-ordered PRs for faster review cycles.",
+   "summary": "GitHub introduced native stacked pull requests, enabling developers to break large changes into smaller, ordered PRs for faster review. This feature improves workflow efficiency in the CI/CD pipeline.",
    "jfrog_impact": 2,
-   "so_what": "GitHub's workflow enhancement strengthens its CI/CD platform but does not directly threaten JFrog's artifact management or Xray scanning capabilities; monitor for potential integration opportunities.",
+   "so_what": "GitHub's stacked PRs enhance developer velocity in CI/CD workflows, but do not directly threaten JFrog's artifact management or security scanning capabilities; monitor for potential integration opportunities.",
    "delta_move": null,
    "delta_jfrog_equivalent": null,
    "delta_strategic_impact": null,
    "delta_talking_points": null
   },
   {
-   "id": 116,
+   "id": 154,
    "url": "https://devops.com/cisas-2026-sbom-guidance-adds-hash-requirements-and-ai-coverage",
    "title": "CISA\u2019s 2026 SBOM Guidance Adds Hash Requirements and AI Coverage",
    "body_excerpt": "CISA\u2019s updated 2026 SBOM minimum elements expand software transparency requirements to AI, SaaS and open source while adding hashes, licenses and stronger validation.",
    "source_name": "DevOps.com",
    "source_type": "rss",
    "published_at": "2026-07-31T07:47:24+00:00",
-   "fetched_at": "2026-08-03T18:14:22.330084+00:00",
+   "fetched_at": "2026-08-03T18:36:37.917764+00:00",
    "status": "enriched",
    "relevant": true,
    "competitors": [],
    "domain": "sbom_supply_chain",
    "event_type": "other",
-   "summary": "CISA updated 2026 SBOM minimum elements to include hash requirements, AI coverage, and stronger validation for software transparency across SaaS and open-source components.",
+   "summary": "CISA updated 2026 SBOM minimum elements to include hash requirements, AI coverage, and stronger validation across software, SaaS, and open-source components. The guidance expands transparency requirements beyond traditional software artifacts.",
    "jfrog_impact": 3,
-   "so_what": "Xray's SBOM generation and artifact scanning capabilities must evolve to meet expanded CISA requirements; opportunity to position Xray as compliance-ready for AI/SaaS artifact governance.",
-   "delta_move": "CISA's 2026 SBOM Guidance adds mandatory hash requirements, AI/ML component coverage, and enhanced validation to SBOM minimum elements for software transparency.",
-   "delta_jfrog_equivalent": "JFrog generates and exports SBOMs in CycloneDX/SPDX formats with artifact hashing and build-info provenance metadata. JFrog ML extends governance to ML models/AI components. However, JFrog's current SBOM generation does not explicitly highlight hash validation or AI-specific coverage as first-class SBOM elements per CISA 2026 spec\u2014this represents a compliance gap requiring product enhancement to meet the new standard.",
+   "so_what": "Xray's SBOM generation and validation capabilities must evolve to meet stricter CISA standards; compliance-driven demand for artifact transparency tools increases market opportunity.",
+   "delta_move": "CISA's 2026 SBOM Guidance adds hash requirements, AI coverage, and stronger validation across software, SaaS, and open-source components, expanding transparency requirements beyond traditional artifacts.",
+   "delta_jfrog_equivalent": "JFrog generates and exports SBOMs in CycloneDX/SPDX formats with build-info provenance metadata for artifacts and releases. Xray SCA scanning provides deep recursive dependency analysis across 30+ package types. However, JFrog's current SBOM capabilities do not explicitly include hash-based artifact validation or AI model component tracking as native SBOM elements\u2014these represent gaps vs. CISA 2026 requirements.",
    "delta_strategic_impact": "high",
    "delta_talking_points": [
-    "JFrog already generates SBOMs with cryptographic hashes and provenance\u2014we need to surface and certify compliance with CISA 2026 hash/validation requirements to help customers meet regulatory mandates.",
-    "JFrog ML enables governance of AI/ML models as first-class artifacts; positioning this as SBOM-integrated AI component tracking closes a gap competitors may exploit in regulated industries.",
-    "Customers managing SaaS and open-source dependencies need SBOM tooling that meets CISA 2026 spec out-of-the-box\u2014this is a product roadmap priority to avoid losing deals to compliance-first vendors."
+    "JFrog's SBOM export and build-info provenance already address core transparency; product roadmap should prioritize hash-based validation and AI model registry integration to meet CISA 2026 compliance.",
+    "Xray's contextual analysis reduces false positives in SBOMs by determining actual CVE exploitability\u2014a compliance advantage competitors lack; position as 'intelligent SBOM' vs. static manifests.",
+    "Curation and Advanced Security (secrets, IaC, malicious-package detection) complement SBOM validation by blocking risky components before they enter supply chains\u2014frame as 'SBOM-ready governance'."
    ]
   }
  ],
  "digests": [
   {
    "date": "2026-08-03",
-   "exec_summary": "The competitive landscape shifted sharply toward AI-driven security and supply-chain governance. Sonatype, Snyk, GitHub, Docker, and GitLab all announced or emphasized AI-threat detection, agentic code scanning, and supply-chain hardening\u2014positioning themselves as authorities on AI-era DevSecOps. CISA's updated SBOM requirements now mandate AI coverage and stronger validation. JFrog faces pressure to differentiate Xray on AI-threat reasoning, post-artifact scanning depth, and compliance-ready governance, while Artifactory must match competitors' token security and OIDC integrations.",
+   "exec_summary": "The competitive landscape intensified around supply-chain security and AI-driven development governance. Sonatype gained thought leadership on AI-driven attacks following the Hugging Face breach, while GitHub and GitLab both expanded automated remediation and malicious-package detection capabilities. GitLab disclosed multiple critical RCE vulnerabilities, reinforcing demand for independent scanning layers. CISA updated SBOM standards to include stricter hash and AI coverage requirements, expanding compliance-driven market opportunity.",
    "sections": {
     "top_developments": [
      {
-      "text": "Sonatype published analysis of the Hugging Face breach as the first cyberattack driven end-to-end by an autonomous AI agent, with OpenAI revealing expanded attack scope. This positions AI-driven supply-chain attacks as a new threat class requiring specialized detection.",
+      "text": "Sonatype published analysis of the Hugging Face breach as the first cyberattack driven end-to-end by an autonomous AI agent, with expanded attack scope details from OpenAI, positioning Sonatype as a security authority on AI-driven threats.",
       "article_ids": [
        4
       ]
      },
      {
-      "text": "CISA updated 2026 SBOM minimum elements to include hash requirements, AI coverage, and stronger validation for software transparency across SaaS and open-source components, raising compliance bar for artifact governance.",
+      "text": "GitLab disclosed multiple critical remote code execution vulnerabilities affecting CI/CD pipeline execution and artifact management, including flaws in the Oj parser component, increasing customer demand for independent supply-chain scanning layers.",
       "article_ids": [
-       116
-      ]
-     },
-     {
-      "text": "Snyk Studio now integrates with Snowflake Cortex Code to scan AI-generated code, dependencies, and containers for vulnerabilities during development, extending scanning into the AI code generation workflow.",
-      "article_ids": [
-       50
-      ]
-     },
-     {
-      "text": "GitHub's Dependabot now implements a three-day cooldown before issuing version update pull requests, allowing time for security researchers to identify issues in new releases and reducing vulnerable dependency risk.",
-      "article_ids": [
+       22,
+       27,
        29
       ]
      },
      {
-      "text": "Snyk is promoting AI-driven pentesting capabilities using reasoning models to identify authorization flaws and business-logic vulnerabilities beyond traditional scanner detection.",
+      "text": "GitHub expanded Dependabot with a 3-day cooldown period before issuing version updates, allowing time for security researchers to identify issues in new releases and reducing exposure to poisoned packages.",
       "article_ids": [
-       54
+       48,
+       65,
+       72,
+       75
       ]
      },
      {
-      "text": "GitLab integrated Anthropic's Claude Opus 5 into GitLab Duo Agent Platform, achieving 93.3% task resolution versus Opus 4.8's 73.0%, strengthening AI-driven CI/CD automation capabilities.",
+      "text": "GitLab 19.2 introduced AI agents capable of automatically resolving vulnerabilities without manual intervention, extending GitLab's DevSecOps capabilities into autonomous remediation and competing with Xray's vulnerability detection.",
       "article_ids": [
-       9
+       23
+      ]
+     },
+     {
+      "text": "CISA updated 2026 SBOM minimum elements to include hash requirements, AI coverage, and stronger validation across software, SaaS, and open-source components, expanding transparency and compliance-driven demand for artifact scanning tools.",
+      "article_ids": [
+       154
+      ]
+     },
+     {
+      "text": "GitHub implemented nine supply chain defense controls and expanded Dependabot's malicious package detection to cover additional package ecosystems, strengthening GitHub's supply-chain security positioning.",
+      "article_ids": [
+       68,
+       69
       ]
      }
     ],
@@ -792,67 +1665,23 @@
       "competitor": "Sonatype",
       "highlights": [
        {
-        "text": "Published analysis of the Hugging Face breach as the first end-to-end autonomous AI agent cyberattack, positioning Sonatype as a security authority on AI-driven supply-chain threats.",
+        "text": "Published analysis of the Hugging Face breach as the first autonomous AI agent-driven cyberattack, establishing thought leadership on AI-driven supply-chain threats.",
         "article_ids": [
          4
         ]
        },
        {
-        "text": "Published analysis on how AI is expanding the software supply chain with new dependencies and governance challenges, positioning itself as a thought leader on AI-era supply chain security.",
+        "text": "Expanded regional presence in India through partnerships with Forrester at the Guru Forum to address AI-era software supply chain risks for emerging markets.",
         "article_ids": [
-         3
+         6,
+         7,
+         9
         ]
        },
        {
-        "text": "Published a blog post on the operational and financial sustainability of public package registries, emphasizing infrastructure costs and security responsibilities as critical infrastructure.",
+        "text": "Expanding Hyderabad office by 100 seats, indicating acceleration in engineering and operations capacity for product development.",
         "article_ids": [
-         2
-        ]
-       }
-      ]
-     },
-     {
-      "competitor": "GitHub",
-      "highlights": [
-       {
-        "text": "Announced security enhancements across npm and GitHub Actions to disrupt supply chain attack techniques and limit their impact, strengthening ecosystem security posture.",
-        "article_ids": [
-         26
-        ]
-       },
-       {
-        "text": "Dependabot now implements a three-day cooldown before issuing version update pull requests, allowing time for security researchers to identify issues in new releases.",
-        "article_ids": [
-         29
-        ]
-       },
-       {
-        "text": "Restricted npm granular access tokens (GATs) configured to bypass 2FA from performing sensitive account, org, and package management actions, closing a security gap in token-based authentication.",
-        "article_ids": [
-         35
-        ]
-       }
-      ]
-     },
-     {
-      "competitor": "Snyk",
-      "highlights": [
-       {
-        "text": "Snyk Studio now integrates with Snowflake Cortex Code to scan AI-generated code, dependencies, and containers for vulnerabilities during development, extending scanning into AI code generation workflows.",
-        "article_ids": [
-         50
-        ]
-       },
-       {
-        "text": "Promoting AI-driven pentesting capabilities that use reasoning models to identify authorization flaws and business-logic vulnerabilities beyond traditional scanner detection.",
-        "article_ids": [
-         54
-        ]
-       },
-       {
-        "text": "Published guidance on continuous testing and validation of AI-generated code, emphasizing the need for security teams to govern AI agents and independently validate findings.",
-        "article_ids": [
-         51
+         8
         ]
        }
       ]
@@ -861,21 +1690,77 @@
       "competitor": "GitLab",
       "highlights": [
        {
-        "text": "Integrated Anthropic's Claude Opus 5 AI model into GitLab Duo Agent Platform, achieving 93.3% task resolution versus Opus 4.8's 73.0%, strengthening AI-driven CI/CD automation.",
+        "text": "Disclosed multiple critical remote code execution vulnerabilities affecting CI/CD pipeline execution, artifact management, and parser components, reinforcing demand for independent scanning layers.",
         "article_ids": [
-         9
+         16,
+         22,
+         27,
+         29
         ]
        },
        {
-        "text": "Published guidance on integrating Claude AI coding assistants with GitLab's security controls to govern agentic coding across the software delivery pipeline, covering five handoff points from code commit to production.",
+        "text": "GitLab 19.2 introduced AI agents for automatic vulnerability remediation and integrated Anthropic's Claude Opus 5 into GitLab Duo Agent Platform, achieving 93.3% task resolution in internal benchmarks.",
         "article_ids": [
-         5
+         23,
+         14
         ]
        },
        {
-        "text": "Published guidance on governing agentic AI and Model Context Protocol (MCP) integrations in CI/CD pipelines, highlighting risks of autonomous agents bypassing human review loops.",
+        "text": "Published guidance on governing agentic AI and Model Context Protocol (MCP) integrations in CI/CD pipelines, positioning governance and auditability as core CI/CD concerns.",
         "article_ids": [
-         6
+         10,
+         11
+        ]
+       }
+      ]
+     },
+     {
+      "competitor": "GitHub",
+      "highlights": [
+       {
+        "text": "Implemented 3-day cooldown period in Dependabot to delay automatic dependency updates and allow time for security validation, reducing exposure to poisoned or malicious packages.",
+        "article_ids": [
+         48,
+         65,
+         72,
+         75
+        ]
+       },
+       {
+        "text": "Expanded Dependabot's malicious package detection to cover additional package ecosystems and announced nine supply chain defense controls with Network Firewall in preview.",
+        "article_ids": [
+         68,
+         69
+        ]
+       },
+       {
+        "text": "Implemented OIDC (OpenID Connect) support for GitHub Actions in Docker Hub, enabling short-lived per-run tokens instead of stored credentials for strengthened CI/CD security.",
+        "article_ids": [
+         78,
+         84
+        ]
+       }
+      ]
+     },
+     {
+      "competitor": "Snyk",
+      "highlights": [
+       {
+        "text": "Snyk Studio now integrates with Snowflake Cortex Code to scan AI-generated code, dependencies, and containers for vulnerabilities during development, extending scanning into AI workflows.",
+        "article_ids": [
+         85
+        ]
+       },
+       {
+        "text": "Promoting AI-driven pentesting capabilities using reasoning models to identify authorization flaws and business-logic vulnerabilities beyond traditional scanner detection.",
+        "article_ids": [
+         89
+        ]
+       },
+       {
+        "text": "Published analysis of the Hugging Face incident arguing that vendors cannot solely validate AI system safety and that independent security validation is critical.",
+        "article_ids": [
+         88
         ]
        }
       ]
@@ -884,21 +1769,22 @@
       "competitor": "Docker",
       "highlights": [
        {
-        "text": "Published guidance on AI coding agent security risks, highlighting credential exposure in supply chain attacks and promoting Docker Sandboxes as a mitigation, referencing a 29 million credential exposure problem.",
+        "text": "Announced Sandbox kits that pre-populate development sandboxes with tooling, credentials, and configuration to improve developer experience and address empty sandbox productivity issues.",
         "article_ids": [
-         47
+         76
         ]
        },
        {
-        "text": "Docker AI Governance now streams audit logs of all policy decisions to existing SIEMs, enabling centralized security visibility and compliance tracking.",
+        "text": "Docker AI Governance now streams audit logs of policy decisions to existing SIEMs, providing searchable records of agent actions and policy enforcement.",
         "article_ids": [
-         44
+         77
         ]
        },
        {
-        "text": "Now supports OpenID Connect (OIDC) for GitHub Actions, enabling short-lived per-run tokens instead of stored credentials for Docker Team, Business, and Hardened Images tier organizations.",
+        "text": "Implemented OIDC support for GitHub Actions, enabling short-lived per-run tokens and strengthening CI/CD security posture for Docker Hub authentication.",
         "article_ids": [
-         45
+         78,
+         84
         ]
        }
       ]
@@ -906,94 +1792,90 @@
     ],
     "threats_opportunities": [
      {
-      "text": "Snyk's expansion into AI-assisted development scanning via Snowflake Cortex Code integration and AI-driven pentesting with reasoning models signals a pivot toward broader DevSecOps platforms that could compete with JFrog's integrated artifact + scanning strategy.",
+      "text": "GitLab's autonomous vulnerability remediation in version 19.2 and GitHub's expanded malicious package detection compete directly with Xray's vulnerability detection and remediation positioning, potentially reducing differentiation in integrated DevSecOps workflows.",
       "article_ids": [
-       50,
-       54
+       23,
+       69
       ],
       "kind": "threat"
      },
      {
-      "text": "GitLab's AI-driven CI/CD automation (Claude Opus 5 integration, agentic workflows) and governance positioning may influence how customers approach dependency management and artifact handling, potentially driving adoption of GitLab's integrated DevSecOps stack.",
+      "text": "GitHub's 3-day Dependabot cooldown and expanded supply chain defense controls strengthen GitHub's native supply-chain security posture, potentially reducing friction in GitHub-native workflows and limiting adoption of standalone Xray scanning.",
       "article_ids": [
-       9,
-       5,
-       6
+       48,
+       68,
+       72,
+       75
       ],
       "kind": "threat"
      },
      {
-      "text": "GitHub's npm security hardening (2FA enforcement on granular access tokens) and supply-chain attack disruption features raise baseline expectations for artifact-repository token security that Artifactory must match or exceed.",
+      "text": "Snyk's expansion into AI-driven pentesting and AI-generated code scanning, combined with integration into Snowflake Cortex Code, positions Snyk as a competitor in AI-native development security workflows where Xray may lack AI-specific capabilities.",
       "article_ids": [
-       35,
-       26
+       85,
+       89
       ],
       "kind": "threat"
      },
      {
-      "text": "Docker's positioning of runtime enforcement and sandboxing as foundational supply-chain security mechanisms, combined with SIEM integration and OIDC support, strengthens Docker's governance narrative and may expand into artifact/dependency scanning workflows.",
+      "text": "GitLab's multiple critical RCE vulnerabilities in CI/CD and artifact management components may drive customers to seek alternative integrated platforms, potentially benefiting competitors with stronger security track records.",
       "article_ids": [
-       47,
-       44,
-       49,
-       45
-      ],
-      "kind": "threat"
-     },
-     {
-      "text": "GitLab performance degradation reported on Hacker News affecting CI/CD workflows creates competitive vulnerability, but also signals that customers may seek faster, more reliable alternatives.",
-      "article_ids": [
-       11
-      ],
-      "kind": "threat"
-     },
-     {
-      "text": "Xray's real-time vulnerability scanning and policy enforcement become more valuable as a complementary layer to GitHub's Dependabot three-day cooldown approach, positioning JFrog as the security backstop for supply-chain risk during the update window.",
-      "article_ids": [
+       16,
+       22,
+       27,
        29
       ],
-      "kind": "opportunity"
+      "kind": "threat"
      },
      {
-      "text": "CISA's updated 2026 SBOM minimum elements now mandate AI coverage and stronger validation; Xray's SBOM generation and artifact scanning capabilities can be positioned as compliance-ready for AI/SaaS artifact governance.",
+      "text": "GitLab's critical RCE vulnerabilities and GitHub's supply-chain defense controls reinforce market demand for independent artifact scanning and supply-chain verification layers, positioning Xray as a complementary security tool for risk-conscious enterprises.",
       "article_ids": [
-       116
+       16,
+       22,
+       27,
+       29,
+       68
       ],
       "kind": "opportunity"
      },
      {
-      "text": "Xray should integrate AI-threat detection and AI-driven vulnerability reasoning to differentiate from competitors and address the emerging threat class of autonomous AI agent-driven supply-chain attacks, as demonstrated by the Hugging Face breach.",
+      "text": "CISA's updated 2026 SBOM minimum elements requiring hash validation, AI coverage, and stronger verification create compliance-driven demand for enhanced artifact transparency and scanning tools, expanding Xray's market opportunity.",
       "article_ids": [
-       4,
-       54
+       154
       ],
       "kind": "opportunity"
      },
      {
-      "text": "Xray's artifact provenance and supply-chain visibility can differentiate JFrog in agentic AI workflows requiring proof-of-action trails and audit mechanisms, complementing GitLab's governance narrative.",
+      "text": "Sonatype's thought leadership on AI-driven supply-chain attacks and autonomous threat detection positions the market for AI-native security capabilities; JFrog can differentiate Xray with autonomous threat detection and artifact-level breach forensics.",
       "article_ids": [
-       6
+       4
       ],
       "kind": "opportunity"
      },
      {
-      "text": "Artifactory should implement OIDC support for GitHub Actions (similar to Docker's recent announcement) to remain competitive in CI/CD security posture and enable short-lived per-run tokens.",
+      "text": "GitHub's Dependabot cooldown delay creates a vulnerability window where Xray's real-time malicious package detection and artifact governance can position as a complementary downstream security layer, offering immediate threat intelligence rather than time-based delays.",
       "article_ids": [
-       45
+       48,
+       65,
+       72,
+       75
       ],
       "kind": "opportunity"
      },
      {
-      "text": "Xray's independent scanning approach aligns with Snyk's positioning on third-party security validation; JFrog can reinforce this narrative for artifact/dependency security as vendors cannot be sole validators of AI system safety.",
+      "text": "GitLab's governance guidance for agentic AI and MCP integrations in CI/CD pipelines aligns with emerging demand for artifact provenance and supply-chain visibility; Xray's audit and traceability capabilities can address this governance gap.",
       "article_ids": [
-       53
+       10,
+       11
       ],
       "kind": "opportunity"
      },
      {
-      "text": "Monitor Spryly as a potential point solution for dependency tracking across multiple repositories and registries; if it gains traction, JFrog could integrate or differentiate Xray's dependency tracking and vulnerability scanning capabilities.",
+      "text": "Sonatype's expansion in India and emerging markets through regional partnerships signals growth in supply-chain security demand; JFrog should monitor and expand Xray positioning in similar regional markets.",
       "article_ids": [
-       13
+       6,
+       7,
+       9
       ],
       "kind": "opportunity"
      }
@@ -1013,15 +1895,29 @@
      ]
     },
     {
-     "text": "Sonatype released a blog post addressing the operational and financial sustainability of public package registries, positioning registry operations as critical infrastructure requiring significant ongoing investment.",
+     "text": "Sonatype released analysis on how AI is expanding the software supply chain with new dependencies and governance challenges, arguing security leaders must adapt their supply-chain security strategies.",
+     "article_ids": [
+      3
+     ]
+    },
+    {
+     "text": "Sonatype partnered with Forrester to address AI-era software supply chain risks for Indian enterprises at the Guru Forum in Chennai, focusing on emerging supply chain vulnerabilities in AI-driven development contexts.",
+     "article_ids": [
+      6,
+      7,
+      9
+     ]
+    },
+    {
+     "text": "Sonatype published a blog post on the operational and financial sustainability of public package registries, emphasizing infrastructure costs and security responsibilities.",
      "article_ids": [
       2
      ]
     },
     {
-     "text": "Sonatype published analysis examining how AI is expanding the software supply chain with new dependencies and governance challenges, arguing that security leaders must adapt their software governance approaches.",
+     "text": "Sonatype is expanding its Hyderabad office by adding 100 seats to increase engineering and operations capacity.",
      "article_ids": [
-      3
+      8
      ]
     }
    ]
@@ -1030,33 +1926,44 @@
    "competitor_slug": "gitlab",
    "recent_moves": [
     {
-     "text": "GitLab integrated Anthropic's Claude Opus 5 AI model into GitLab Duo Agent Platform, achieving 93.3% task resolution versus Opus 4.8's 73.0% in internal benchmarks.",
+     "text": "GitLab has disclosed multiple critical remote code execution vulnerabilities affecting its CI/CD pipeline execution and artifact management capabilities, including flaws in the Oj parser component that allow arbitrary code execution through malicious input.",
      "article_ids": [
-      9
+      22,
+      27,
+      29
      ]
     },
     {
-     "text": "GitLab published guidance on integrating Claude AI coding assistants with GitLab's security controls to govern agentic coding across the software delivery pipeline, covering five handoff points from code commit to production.",
+     "text": "GitLab released Version 19.2 with AI-driven DevSecOps capabilities, including AI agents capable of automatically resolving vulnerabilities without manual intervention and enhanced security scanning automation.",
      "article_ids": [
-      5
+      17,
+      23
      ]
     },
     {
-     "text": "GitLab published guidance on governing agentic AI and Model Context Protocol (MCP) integrations in CI/CD pipelines, highlighting risks of autonomous agents bypassing human review loops and emphasizing audit and control mechanisms.",
+     "text": "GitLab announced preview of auto-remediation capabilities for vulnerable dependencies, enabling automated fixes within the development workflow to address supply chain vulnerability management.",
      "article_ids": [
-      6
+      18
      ]
     },
     {
-     "text": "GitLab announced integration with Cursor AI coding agent to modernize Java applications, with GitLab Duo Agent Platform orchestrating multi-step AI workflows across the software lifecycle.",
+     "text": "GitLab integrated Anthropic's Claude Opus 5 into its Duo Agent Platform, achieving 93.3% task resolution in internal benchmarks, and published guidance on governing agentic AI and Model Context Protocol integrations in CI/CD pipelines.",
      "article_ids": [
-      10
+      10,
+      11,
+      14
      ]
     },
     {
-     "text": "GitLab released patch versions 19.2.1, 19.1.3, and 19.0.5 addressing bug fixes and stability improvements across multiple release lines.",
+     "text": "GitLab integrated with Cursor AI coding agent to modernize Java applications, with the Duo Agent Platform orchestrating multi-step AI workflows across the software lifecycle.",
      "article_ids": [
-      8
+      15
+     ]
+    },
+    {
+     "text": "GitLab patched 13 security vulnerabilities affecting data leakage, pipeline manipulation, and server stability across critical CI/CD infrastructure components.",
+     "article_ids": [
+      21
      ]
     }
    ]
@@ -1065,40 +1972,44 @@
    "competitor_slug": "github",
    "recent_moves": [
     {
-     "text": "GitHub enhanced security across npm and GitHub Actions with new protections designed to disrupt supply chain attack techniques and limit their impact.",
+     "text": "GitHub implemented a three-day cooldown in Dependabot before issuing version update pull requests to allow time for security researchers to identify issues in new releases and reduce exposure to poisoned or malicious packages.",
      "article_ids": [
-      26
+      48,
+      65,
+      72,
+      75
      ]
     },
     {
-     "text": "Dependabot now implements a three-day cooldown before issuing version update pull requests, allowing security researchers time to identify vulnerabilities in new releases before they are pulled into codebases.",
+     "text": "GitHub announced comprehensive security enhancements across npm and GitHub Actions, including nine supply chain defense controls and expanded Dependabot malicious package detection across additional package ecosystems.",
      "article_ids": [
-      29
+      45,
+      68,
+      69
      ]
     },
     {
-     "text": "GitHub restricted npm granular access tokens configured to bypass 2FA, requiring interactive 2FA challenges for sensitive account, organization, and package management actions.",
+     "text": "GitHub partnered with PyPI to implement time-based defenses mitigating supply chain attacks through delayed package availability and staged rollouts.",
      "article_ids": [
-      35
+      71
      ]
     },
     {
-     "text": "GitHub launched stacked pull requests in public preview, enabling developers to break large changes into ordered, reviewable pull requests to improve code review workflows.",
+     "text": "GitHub restricted npm granular access tokens configured to bypass 2FA from performing sensitive account, organization, and package management actions, now requiring interactive 2FA challenges.",
      "article_ids": [
-      38,
-      113
+      54
      ]
     },
     {
-     "text": "GitHub Copilot code review is now generally available with agent skills and MCP server support across all tiers, expanding code analysis capabilities to agentic workflows.",
+     "text": "GitHub introduced stacked sessions and pull requests features in the GitHub Copilot app to enable developers to manage multiple related pull requests in a structured workflow for modernizing codebases.",
      "article_ids": [
-      42
+      43
      ]
     },
     {
-     "text": "GitHub introduced self-repository syntax ($/) to reference actions and reusable workflows within the same repository, simplifying internal workflow composition in GitHub Actions.",
+     "text": "GitHub restructured its bug bounty program to improve researcher experience and engagement, strengthening security vulnerability discovery and reporting workflows.",
      "article_ids": [
-      37
+      50
      ]
     }
    ]
@@ -1107,33 +2018,39 @@
    "competitor_slug": "docker",
    "recent_moves": [
     {
-     "text": "Docker published guidance on AI coding agent security risks, highlighting a 29 million credential exposure problem in supply chain attacks and promoting Docker Sandboxes as a mitigation strategy.",
+     "text": "Docker launched Sandbox kits that pre-populate development sandboxes with tooling, credentials, and configuration to address productivity challenges from empty sandbox environments.",
      "article_ids": [
-      47
+      76
      ]
     },
     {
-     "text": "Docker launched Sandbox kits that pre-populate development sandboxes with tooling, credentials, and configuration to address productivity issues caused by empty sandboxes in development workflows.",
+     "text": "Docker AI Governance now streams audit logs of policy decisions to existing SIEMs, enabling searchable records of agent actions and policy enforcement integrated into security teams' existing tools.",
      "article_ids": [
-      43
+      77
      ]
     },
     {
-     "text": "Docker AI Governance now streams audit logs of all policy decisions to existing SIEMs for centralized security visibility and compliance tracking.",
+     "text": "Docker added OpenID Connect (OIDC) support for GitHub Actions across Team, Business, and Hardened Images tier organizations, enabling short-lived per-run tokens instead of stored credentials.",
      "article_ids": [
-      44
+      78
      ]
     },
     {
-     "text": "Docker added OpenID Connect (OIDC) support for GitHub Actions, enabling short-lived per-run tokens instead of stored credentials for Docker Team, Business, and Hardened Images tier organizations.",
+     "text": "Docker published guidance on AI coding agent security risks, highlighting a 29 million credential exposure problem in agent-generated code and positioning Docker Sandboxes as a mitigation strategy.",
      "article_ids": [
-      45
+      80
      ]
     },
     {
      "text": "Docker is emphasizing runtime enforcement capabilities for governance, isolation, and policy enforcement in agentic systems, positioning runtime-layer controls as foundational security mechanisms.",
      "article_ids": [
-      49
+      82
+     ]
+    },
+    {
+     "text": "Docker Hub integrated OpenID Connect (OIDC) for GitHub Actions, eliminating long-lived credentials and enabling ephemeral token-based authentication in CI/CD workflows.",
+     "article_ids": [
+      84
      ]
     }
    ]
@@ -1144,25 +2061,25 @@
     {
      "text": "Snyk Studio now integrates with Snowflake Cortex Code to scan AI-generated code, dependencies, and containers for vulnerabilities during development, extending scanning capabilities into the AI code generation workflow.",
      "article_ids": [
-      50
+      85
      ]
     },
     {
      "text": "Snyk is promoting AI-driven pentesting capabilities that use reasoning models to identify authorization flaws and business-logic vulnerabilities beyond traditional scanner detection.",
      "article_ids": [
-      54
+      89
      ]
     },
     {
      "text": "Snyk published guidance on continuous testing and validation of AI-generated code, emphasizing the need for security teams to govern AI agents and independently validate findings.",
      "article_ids": [
-      51
+      86
      ]
     },
     {
-     "text": "Snyk published analysis of OpenAI's Hugging Face security incident, arguing that vendors cannot be sole validators of AI system safety and that independent security validation is critical.",
+     "text": "Snyk published research indicating enterprises lack visibility into two-thirds of their AI attack surface, with the gap expanding, highlighting growing security blind spots in AI deployments.",
      "article_ids": [
-      53
+      91
      ]
     }
    ]

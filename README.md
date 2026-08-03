@@ -18,11 +18,11 @@ Open **http://localhost:3000**. With no API keys configured, Ribbit auto-detects
 LLM provider is reachable and boots in **demo mode**, loading a bundled dataset so every
 tab is populated immediately.
 
-That dataset is a **real capture from a live pipeline run** on 2026-08-03: 139 articles
-fetched across a 14-day window, of which the LLM relevance gate kept 30, with 7 receiving
-full JFrog Delta analysis, plus the generated daily digest and all five battlecards. Every
-citation resolves to a real article URL. It is a frozen snapshot, so it does not update
-until you run live mode yourself.
+That dataset is a **real capture from a live pipeline run** on 2026-08-03: 167 articles
+fetched across a 14-day window, of which the LLM relevance gate kept 64 and discarded 103
+as noise, with 20 receiving full JFrog Delta analysis, plus the generated daily digest and
+all five battlecards. Every citation resolves to a real article URL. It is a frozen
+snapshot, so it does not update until you run live mode yourself.
 
 A clean build (no Docker layer cache) took about 30 seconds on the machine this was
 verified on, mostly downloading Python and npm packages — expect it to vary with your

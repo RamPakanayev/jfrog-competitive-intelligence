@@ -15,13 +15,17 @@ from app.pipeline.digest import generate_digest
 from app.pipeline.enrich import enrich_new_articles
 from app.sources.hackernews import fetch_hackernews
 from app.sources.reddit import fetch_reddit
-from app.sources.rss import fetch_rss
+from app.sources.rss import fetch_rss, google_news_url
 from app.sources.tavily import fetch_tavily
 
 log = logging.getLogger("ribbit.pipeline")
 
 REFRESH_STATE: dict = {"running": False, "stage": "idle", "counts": {}, "errors": [],
                        "started_at": None, "finished_at": None}
+
+# Google News search returns ~100 entries per query. Five competitors' worth of that would
+# swamp a run's enrichment budget with one call per article, so cap each news source.
+NEWS_MAX_ITEMS = 25
 
 
 def _tasks_for(client, settings: Settings, appcfg: AppConfig, window: datetime):
@@ -31,6 +35,11 @@ def _tasks_for(client, settings: Settings, appcfg: AppConfig, window: datetime):
         for url in src.get("rss", []):
             tasks.append((f"{comp['name']} RSS",
                           fetch_rss(client, f"{comp['name']} Blog", url, window)))
+        if src.get("news_query"):
+            tasks.append((f"{comp['name']} News",
+                          fetch_rss(client, f"{comp['name']} News",
+                                    google_news_url(src["news_query"]), window,
+                                    max_items=NEWS_MAX_ITEMS)))
         if src.get("hn_query"):
             tasks.append((f"{comp['name']} HackerNews",
                           fetch_hackernews(client, src["hn_query"], window)))

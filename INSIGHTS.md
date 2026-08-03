@@ -92,3 +92,24 @@ Running log of insights, challenges, and learnings gathered while building Ribbi
     keys could never surface in a repr or a log, and the leak came from deliberately
     unwrapping that protection to debug. Redact at the point of debugging, not just in the
     application.
+
+21. **Removing a broken source is only half the fix.** Dropping Reddit left every competitor
+    covered by their own blog plus Hacker News — i.e. mostly vendors talking about
+    themselves, which is precisely the wrong input for competitive intelligence. The
+    replacement (Google News RSS search, keyless) restored the outside perspective and
+    doubled the relevant-article count from 30 to 64, and delta analyses from 7 to 20.
+    Worth noticing that the *shape* of the gap mattered more than the count: what was
+    missing was third-party coverage, not volume.
+
+22. **The boring abstraction paid for itself.** Adding a whole new class of source cost a
+    URL-builder function and one config key, because Google News is just RSS and the RSS
+    adapter never knew or cared where its feed came from. Every hour spent keeping adapters
+    dumb bought this back.
+
+23. **Sources fail in three different disguises.** Across two live runs: Reddit's JSON
+    endpoint returns a loud `403`; Reddit's RSS endpoint returns a quiet `200` with zero
+    entries; InfoQ returns `200` with real entries whose newest is from 2022; Security
+    Boulevard returns `403` to the app's User-Agent while answering a hand-issued request
+    fine; and Sonatype/Snyk/GitHub legitimately returned nothing because they simply had not
+    published inside the window. Five sources, five different meanings for "no items today"
+    — which is the argument for the per-source health table existing at all.
