@@ -9,10 +9,11 @@ from app.models import Article, utcnow
 
 def enrich_new_articles(session: Session, gateway, appcfg: AppConfig, limit: int = 200) -> int:
     system = ENRICH_SYSTEM.format(slugs=", ".join(appcfg.slugs()))
-    known = set(appcfg.slugs())
+    known = {s.lower(): s for s in appcfg.slugs()}
     done = 0
     articles = session.scalars(
-        select(Article).where(Article.status == "new").order_by(Article.id).limit(limit)).all()
+        select(Article).where(Article.status.in_(("new", "failed")))
+        .order_by(Article.id).limit(limit)).all()
     for a in articles:
         user = ENRICH_USER.format(title=a.title, source_name=a.source_name,
                                   source_type=a.source_type,
@@ -26,7 +27,7 @@ def enrich_new_articles(session: Session, gateway, appcfg: AppConfig, limit: int
         if not enr.relevant:
             a.status = "irrelevant"
         else:
-            a.competitors = [s for s in enr.competitors if s in known]
+            a.competitors = [known[s.lower()] for s in enr.competitors if s.lower() in known]
             a.domain = enr.domain
             a.event_type = enr.event_type
             a.summary = enr.summary

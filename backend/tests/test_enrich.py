@@ -48,3 +48,27 @@ def test_prompt_contains_slugs_and_title(session):
     assert schema_name == "Enrichment"
     assert "sonatype, gitlab, github, docker, snyk" in system
     assert "GitLab ships thing" in user
+
+
+def test_failed_articles_are_retried_on_the_next_run(session):
+    a = make_article(session, url="https://a.example/6", title="Transient outage")
+    assert enrich_new_articles(session, FakeGateway([None]), appcfg()) == 0
+    session.refresh(a)
+    assert a.status == "failed"
+
+    gw = FakeGateway([Enrichment(relevant=True, competitors=["snyk"],
+                                 domain="devsecops_scanning", event_type="pricing_change",
+                                 summary="s", jfrog_impact=3, so_what="w")])
+    assert enrich_new_articles(session, gw, appcfg()) == 1
+    session.refresh(a)
+    assert a.status == "enriched"
+
+
+def test_competitor_matching_is_case_insensitive_but_stores_canonical_slug(session):
+    a = make_article(session, url="https://a.example/7", title="Mixed case")
+    gw = FakeGateway([Enrichment(relevant=True, competitors=["Snyk", "GITLAB", "made_up"],
+                                 domain="devsecops_scanning", event_type="feature_update",
+                                 summary="s", jfrog_impact=2, so_what="w")])
+    enrich_new_articles(session, gw, appcfg())
+    session.refresh(a)
+    assert a.competitors == ["snyk", "gitlab"]
