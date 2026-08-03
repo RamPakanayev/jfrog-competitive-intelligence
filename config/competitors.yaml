@@ -1,0 +1,107 @@
+competitors:
+  - slug: sonatype
+    name: Sonatype
+    color: "#79b62f"
+    sources:
+      rss:
+        - "https://www.sonatype.com/blog/rss.xml"
+      hn_query: 'sonatype OR "nexus repository"'
+      reddit:
+        subreddits: [devops]
+        query: "sonatype OR nexus"
+      tavily_query: "Sonatype Nexus news"
+    battlecard_base:
+      strengths:
+        - "Deep roots in the Java/Maven ecosystem (stewards of Maven Central)"
+        - "Strong open-source intelligence data (OSS Index) feeding policy enforcement"
+      weaknesses:
+        - "Narrower package-format coverage than Artifactory's universal approach"
+        - "Fragmented product line (Repository vs Lifecycle vs Firewall) complicates adoption"
+      how_jfrog_wins:
+        - "Universal 30+ package types in one platform vs Java-centric heritage"
+        - "Xray contextual analysis reduces false-positive noise vs raw policy alerts"
+  - slug: gitlab
+    name: GitLab
+    color: "#fc6d26"
+    sources:
+      rss:
+        - "https://about.gitlab.com/atom.xml"
+      hn_query: "gitlab"
+      reddit:
+        subreddits: [devops, gitlab]
+        query: "gitlab package OR registry OR security"
+      tavily_query: "GitLab DevSecOps release news"
+    battlecard_base:
+      strengths:
+        - "Single-application DevSecOps story: repo, CI, registry, scanning in one UI"
+        - "Strong momentum with platform-engineering buyers"
+      weaknesses:
+        - "Package/container registry is a checkbox feature - shallow vs dedicated artifact platforms"
+        - "Security scanning depth trails specialist tools"
+      how_jfrog_wins:
+        - "Artifactory is CI-agnostic: works with GitLab CI, Jenkins, GitHub Actions alike"
+        - "Enterprise binary management (replication, edge nodes) GitLab lacks"
+  - slug: github
+    name: GitHub
+    color: "#8b5cf6"
+    sources:
+      rss:
+        - "https://github.blog/feed/"
+        - "https://github.blog/changelog/feed/"
+      hn_query: '"github packages" OR "github advanced security" OR dependabot'
+      reddit:
+        subreddits: [devops]
+        query: "github packages OR dependabot"
+      tavily_query: "GitHub Packages Advanced Security news"
+    battlecard_base:
+      strengths:
+        - "Default home of developers; Packages and Actions are zero-friction add-ons"
+        - "Microsoft backing and Copilot-led AI momentum"
+      weaknesses:
+        - "GitHub Packages has limited format support and weak enterprise artifact governance"
+        - "Advanced Security is repo-centric, not artifact/binary-centric"
+      how_jfrog_wins:
+        - "Binary-focused lifecycle (promotion, distribution, air-gapped) beyond source hosting"
+        - "Multi-cloud/hybrid neutrality vs Azure gravity"
+  - slug: docker
+    name: Docker
+    color: "#2496ed"
+    sources:
+      rss:
+        - "https://www.docker.com/blog/feed/"
+      hn_query: '"docker hub" OR "docker scout"'
+      reddit:
+        subreddits: [docker, devops]
+        query: "docker hub OR docker scout"
+      tavily_query: "Docker Hub Docker Scout news"
+    battlecard_base:
+      strengths:
+        - "Docker Hub is the world's default public container registry"
+        - "Massive developer mindshare and CLI ubiquity"
+      weaknesses:
+        - "Registry is container-only; no universal artifact story"
+        - "Monetization pivots (rate limits, licensing) created enterprise distrust"
+      how_jfrog_wins:
+        - "Artifactory serves containers AND every other package type with one permission model"
+        - "Enterprise-grade private registry with replication vs public-registry heritage"
+  - slug: snyk
+    name: Snyk
+    color: "#4c4a73"
+    sources:
+      rss:
+        - "https://snyk.io/blog/feed/"
+      hn_query: "snyk"
+      reddit:
+        subreddits: [devops, netsec]
+        query: "snyk"
+      tavily_query: "Snyk developer security news"
+    battlecard_base:
+      strengths:
+        - "Developer-first UX for SCA/SAST with strong IDE and PR integration"
+        - "Large vulnerability database with security research brand"
+      weaknesses:
+        - "Scanning-only: no artifact storage, promotion, or distribution"
+        - "Pricing scales steeply with developer count"
+      how_jfrog_wins:
+        - "Xray scans where binaries actually live (the registry), enabling block-at-download"
+        - "Contextual analysis (is the vulnerable function actually reachable?) cuts alert fatigue"

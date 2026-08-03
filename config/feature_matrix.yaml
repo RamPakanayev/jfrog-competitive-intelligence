@@ -1,0 +1,73 @@
+vendors: [jfrog, sonatype, gitlab, github, docker, snyk]
+vendor_labels:
+  jfrog: JFrog
+  sonatype: Sonatype
+  gitlab: GitLab
+  github: GitHub
+  docker: Docker
+  snyk: Snyk
+rows:
+  - capability: Universal artifact management
+    values:
+      jfrog: {level: full, note: "30+ package types"}
+      sonatype: {level: full, note: "Strong Java heritage"}
+      gitlab: {level: partial, note: "Basic registry per project"}
+      github: {level: partial, note: "Limited formats"}
+      docker: {level: none, note: "Containers only"}
+      snyk: {level: none, note: "No storage"}
+  - capability: Container registry
+    values:
+      jfrog: {level: full, note: ""}
+      sonatype: {level: full, note: ""}
+      gitlab: {level: full, note: ""}
+      github: {level: full, note: "ghcr.io"}
+      docker: {level: full, note: "The default public hub"}
+      snyk: {level: none, note: ""}
+  - capability: SCA / vulnerability scanning
+    values:
+      jfrog: {level: full, note: "Xray"}
+      sonatype: {level: full, note: "Lifecycle/Firewall"}
+      gitlab: {level: partial, note: "Ultimate tier"}
+      github: {level: partial, note: "Dependabot/GHAS"}
+      docker: {level: partial, note: "Docker Scout"}
+      snyk: {level: full, note: "Core product"}
+  - capability: Contextual / reachability analysis
+    values:
+      jfrog: {level: full, note: "Applicability scanning"}
+      sonatype: {level: partial, note: ""}
+      gitlab: {level: none, note: ""}
+      github: {level: none, note: ""}
+      docker: {level: none, note: ""}
+      snyk: {level: partial, note: "Reachability beta"}
+  - capability: SBOM generation
+    values:
+      jfrog: {level: full, note: ""}
+      sonatype: {level: full, note: ""}
+      gitlab: {level: partial, note: ""}
+      github: {level: partial, note: ""}
+      docker: {level: partial, note: ""}
+      snyk: {level: partial, note: ""}
+  - capability: Release distribution / air-gap
+    values:
+      jfrog: {level: full, note: "Distribution + edges"}
+      sonatype: {level: partial, note: ""}
+      gitlab: {level: none, note: ""}
+      github: {level: none, note: ""}
+      docker: {level: none, note: ""}
+      snyk: {level: none, note: ""}
+  - capability: CI/CD pipelines
+    values:
+      jfrog: {level: partial, note: "Integrations-first"}
+      sonatype: {level: none, note: ""}
+      gitlab: {level: full, note: "Core strength"}
+      github: {level: full, note: "Actions"}
+      docker: {level: none, note: ""}
+      snyk: {level: none, note: ""}
+  - capability: ML model management
+    values:
+      jfrog: {level: full, note: "JFrog ML"}
+      sonatype: {level: none, note: ""}
+      gitlab: {level: partial, note: ""}
+      github: {level: partial, note: "Models on Hub"}
+      docker: {level: partial, note: "AI catalog"}
+      snyk: {level: none, note: ""}

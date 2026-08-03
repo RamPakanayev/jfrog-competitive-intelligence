@@ -68,3 +68,48 @@ Every significant decision: the options we weighed, what we chose, and why. Newe
 **Options:** single "category" field · domain × event-type dimensions.
 **Chosen:** `domain` (artifact_management, container_registry, devsecops_scanning, cicd, sbom_supply_chain, other) × `event_type` (product_launch, feature_update, security_advisory, pricing_change, funding_ma, partnership, other).
 **Why:** External review (Gemini) flagged generic-news noise as the top quality risk. Two orthogonal dimensions make the relevance gate strict and the feed filterable the way a CI analyst actually thinks ("show me all *pricing* moves in *artifact management*").
+
+## ADR-014 · Test imports resolve via `pythonpath` in pytest.ini
+**Options:** run tests as `python -m pytest` everywhere · add `backend/tests/__init__.py` to make tests a package · set `pythonpath = .` in `backend/pytest.ini`.
+**Chosen:** `pythonpath = .` in `backend/pytest.ini`.
+**Why:** With pytest's default prepend import mode and no `__init__.py` in `tests/`, pytest puts `tests/` (not `backend/`) on `sys.path`, so `import app` fails under the bare `pytest` command. `python -m pytest` masks it by inserting the cwd, but that quietly changes the documented command for every contributor and for CI. `pythonpath = .` fixes the root cause in one line, keeps `pytest` working from `backend/`, and avoids turning the test directory into an importable package (which would invite accidental cross-test imports). Surfaced by the Task-1 implementer during the first TDD cycle.
+
+## ADR-015 · API keys typed as `SecretStr`
+**Options:** plain `str` fields · `pydantic.SecretStr` · a separate secrets loader.
+**Chosen:** `SecretStr` for `anthropic_api_key`, `openai_api_key`, `gemini_api_key`, `tavily_api_key`; `.get_secret_value()` at the two call sites that need the raw value (LLM gateway, Tavily adapter).
+**Why:** The `Settings` object is passed through the pipeline, gateway, and API layers, so any stray `repr()`, debug log, or exception traceback would print live keys in plaintext. `SecretStr` masks them by default and forces an explicit, greppable unwrap where the value is genuinely needed. Caught in code review while the change still cost four lines and zero call sites — a separate secrets loader would be over-engineering for a tool that reads keys from env/`.env`.
+
+## ADR-016 · Datetimes stored via a `UtcDateTime` type decorator
+**Options:** normalize timezone at each call site · `DateTime(timezone=True)` · a `UtcDateTime` `TypeDecorator` · store epoch integers.
+**Chosen:** a `TypeDecorator` that binds aware datetimes as naive UTC and returns every value timezone-aware.
+**Why:** SQLite has no native datetime type and discards tzinfo, so values written as aware UTC read back naive — invisible within a single session because SQLAlchemy's identity map returns the original object. The consequence was not just `TypeError` on comparisons: the API serializes these columns with `.isoformat()`, and an offset-less string is parsed by browsers as *local* time, shifting every timestamp in the UI and moving near-midnight items to the wrong day. `DateTime(timezone=True)` does not help on SQLite (the dialect still drops the offset), and per-call-site normalization is a rule everyone must remember forever. One type, applied to six columns, makes the storage layer honest instead.
+
+## ADR-017 · Ingest commits per item, not per batch
+**Options:** one commit per batch (simplest) · savepoint per item · commit per item with `IntegrityError` tolerance · a global ingest lock.
+**Chosen:** commit per item, catching `IntegrityError` to skip an item another writer already inserted.
+**Why:** Dedupe pre-checks the database, but a check-then-insert is a race: the architecture deliberately allows a manual "Refresh now" to overlap the scheduled daily run. Under one commit per batch, a single lost race raises an unhandled `IntegrityError` and rolls back *the entire batch* — verified in a two-session reproduction, where an unrelated valid article was lost alongside the duplicate. Losing one duplicate is correct; losing the rest of the day's news because of it is not. Per-item commits also mean a crash mid-run keeps the work already done. At this volume (~150 items/day) the extra commits cost nothing measurable, which is why the simpler batch commit isn't worth defending.
+
+## ADR-021 · LLM stages run in a worker thread, not on the event loop
+**Options:** call the synchronous gateway inline from the async pipeline · switch to LiteLLM's async API · run the LLM stages via `asyncio.to_thread`.
+**Chosen:** `asyncio.to_thread`, with the stages sharing one session distinct from the fetch/insert session.
+**Why:** A refresh is triggered as a FastAPI background task, so it shares the event loop with every API request. LiteLLM is synchronous and a full run takes minutes; called inline it freezes the whole API until the run finishes. Measured directly: with a gateway sleeping 0.5s per call, a concurrent 10ms ticker recorded 186 ticks through `to_thread` and **0** when the same work ran inline. Moving to LiteLLM's async API would work too, but it would make every stage function async for no other benefit and complicate the SQLAlchemy usage. Giving the threaded stages their own session also removes the risk of one stage leaving dirty objects on a session another stage later commits.
+
+## ADR-022 · The pipeline refuses overlapping runs
+**Options:** allow concurrent runs · guard at each call site (scheduler and refresh endpoint) · guard inside `run_pipeline` itself.
+**Chosen:** guard inside `run_pipeline`, returning a zeroed report with `skipped: True`.
+**Why:** The scheduled daily run and the manual "Refresh now" button can overlap. Reproduced with two concurrent runs: the second run's `finally` cleared `running` while the first was still working, leaving the observable state at `running: False, stage: "enriching"` — a UI polling that endpoint would announce "complete" mid-run — and the two runs' error lists merged with no way to tell them apart. Guarding at the call sites is the same check-then-act race written twice; guarding inside the function makes the invariant hold for every caller. Returning a report rather than raising keeps the scheduler able to fire blindly.
+
+## ADR-020 · The digest day is a UTC calendar day
+**Options:** bucket by UTC day · bucket by a configured business timezone · bucket by a rolling 24 hours from the run time.
+**Chosen:** UTC calendar day, matching how timestamps are stored (ADR-016).
+**Why:** The partition is clean — every article belongs to exactly one digest, nothing is lost or double-counted — and it keeps bucketing consistent with storage, so a digest date always means the same thing regardless of who is reading. The cost is a visible skew for non-UTC readers: for a team in UTC+3, the "3 August" digest actually spans 03:00 on the 3rd to 02:59 on the 4th local time, so a late-evening story files under the previous local day. A configurable business timezone would fix that and is the right answer once the tool has users in a known timezone, but it adds a config axis and a class of off-by-one bugs that buy nothing for a once-daily brief read the following morning. Recorded rather than left silent, because "which day is this item in" is exactly the question a reviewer will ask.
+
+## ADR-019 · The executive summary is labelled synthesis, not a cited claim
+**Options:** give `exec_summary` its own `article_ids` and enforce them · drop the field · constrain it by prompt and label it in the UI.
+**Chosen:** constrain by prompt (it may only synthesize facts already stated in the cited sections, introducing no new company, product, number, date or event) and mark it `AI SYNTHESIS` in the dashboard.
+**Why:** Adversarial testing of the citation firewall found that `exec_summary` is bare prose with no `article_ids` field, so no code path can validate it — a summary reading "Snyk raised $500M and JFrog is doomed" survives untouched even when zero articles have been ingested. That is the most-read line on the dashboard, so leaving the gap silent would have undermined the whole "every claim traces to a source" story. Attaching citations to a summary-of-summaries is the wrong shape (its job is prioritization across claims, not asserting new facts), and dropping it would cost the feature executives actually read. Constraining it and being visibly honest about what it is holds the line the enforcement code cannot.
+
+## ADR-018 · Dedupe matches on canonical URL OR content hash
+**Options:** URL only · content hash only · both, ANDed · both, ORed.
+**Chosen:** OR — an item is a duplicate if either its canonicalized URL or its content hash (title + excerpt) already exists.
+**Why:** The same story genuinely arrives by several routes: a vendor's own feed, Hacker News linking the same URL with tracking parameters attached, and a syndicated copy on a different domain entirely. URL canonicalization catches the first two; only the content hash catches the third, since the syndicated copy shares no URL. Requiring both to match (AND) would let every syndicated copy through, which is the common case for the wire-service items these feeds carry. Measured coverage of the URL half: trailing slashes, fragments, empty queries and tracking parameters all collapse correctly; scheme drift (`http`/`https`), `www` vs apex, and reordered query parameters do not — those are left to the content hash on purpose, because normalizing scheme or parameter order can merge genuinely different pages.

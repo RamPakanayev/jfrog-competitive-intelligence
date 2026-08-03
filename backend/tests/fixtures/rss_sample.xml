@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Vendor Blog</title>
+<item>
+  <title>Nexus Repository 3.99 adds SBOM export</title>
+  <link>https://vendor.example/blog/nexus-399?utm_source=rss</link>
+  <description><![CDATA[<p>Sonatype today announced <b>SBOM export</b> for all formats.</p>]]></description>
+  <pubDate>Mon, 03 Aug 2026 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Old post outside window</title>
+  <link>https://vendor.example/blog/old</link>
+  <description>ancient</description>
+  <pubDate>Wed, 01 Jan 2020 08:00:00 GMT</pubDate>
+</item>
+</channel></rss>

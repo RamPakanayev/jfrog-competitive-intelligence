@@ -1,0 +1,51 @@
+{
+  "articles": [
+    {"id": 1, "url": "https://www.sonatype.com/blog", "title": "[Sample] Sonatype adds SBOM export to Nexus Repository",
+     "body_excerpt": "Sample item for keyless demo mode.", "source_name": "Sonatype Blog (sample)",
+     "source_type": "demo", "published_at": "2026-08-02T08:00:00+00:00",
+     "fetched_at": "2026-08-03T07:00:00+00:00", "status": "enriched", "relevant": true,
+     "competitors": ["sonatype"], "domain": "sbom_supply_chain", "event_type": "feature_update",
+     "summary": "Sonatype announced SBOM export for repository artifacts.",
+     "jfrog_impact": 4, "so_what": "Closes a gap vs JFrog's SBOM story; sharpen differentiation on distribution.",
+     "delta_move": "Sonatype shipped SBOM export.",
+     "delta_jfrog_equivalent": "SBOM generation & export (CycloneDX/SPDX) already ships with build-info provenance.",
+     "delta_strategic_impact": "medium",
+     "delta_talking_points": ["JFrog SBOMs are tied to build provenance", "Distribution signs release bundles end-to-end"]},
+    {"id": 2, "url": "https://about.gitlab.com/releases", "title": "[Sample] GitLab 18.3 improves container registry cleanup policies",
+     "body_excerpt": "Sample item for keyless demo mode.", "source_name": "GitLab Releases (sample)",
+     "source_type": "demo", "published_at": "2026-08-02T10:00:00+00:00",
+     "fetched_at": "2026-08-03T07:00:00+00:00", "status": "enriched", "relevant": true,
+     "competitors": ["gitlab"], "domain": "container_registry", "event_type": "feature_update",
+     "summary": "GitLab improved registry storage cleanup automation.",
+     "jfrog_impact": 2, "so_what": "Registry parity marketing; no strategic shift."},
+    {"id": 3, "url": "https://snyk.io/blog", "title": "[Sample] Snyk announces enterprise pricing changes",
+     "body_excerpt": "Sample item for keyless demo mode.", "source_name": "Snyk Blog (sample)",
+     "source_type": "demo", "published_at": "2026-08-03T06:00:00+00:00",
+     "fetched_at": "2026-08-03T07:00:00+00:00", "status": "enriched", "relevant": true,
+     "competitors": ["snyk"], "domain": "devsecops_scanning", "event_type": "pricing_change",
+     "summary": "Snyk restructured enterprise tier pricing.",
+     "jfrog_impact": 4, "so_what": "Renewal displacement window for Xray bundles.",
+     "delta_move": "Snyk changed enterprise pricing.",
+     "delta_jfrog_equivalent": "Xray SCA scanning bundled with Artifactory subscriptions.",
+     "delta_strategic_impact": "high",
+     "delta_talking_points": ["Bundle economics beat per-dev pricing at scale"]}
+  ],
+  "digests": [
+    {"date": "2026-08-03", "exec_summary": "[Sample] Quiet-but-notable day: Sonatype closes an SBOM gap while Snyk's pricing shift opens a displacement window.",
+     "sections": {
+       "top_developments": [
+         {"text": "Sonatype ships SBOM export, narrowing a differentiation gap.", "article_ids": [1]},
+         {"text": "Snyk enterprise pricing restructure creates renewal-displacement opportunity.", "article_ids": [3]}],
+       "by_competitor": [
+         {"competitor": "sonatype", "highlights": [{"text": "SBOM export shipped.", "article_ids": [1]}]},
+         {"competitor": "snyk", "highlights": [{"text": "Enterprise pricing changed.", "article_ids": [3]}]}],
+       "threats_opportunities": [
+         {"kind": "threat", "text": "Sonatype SBOM parity messaging.", "article_ids": [1]},
+         {"kind": "opportunity", "text": "Snyk pricing turbulence at renewal time.", "article_ids": [3]}]},
+     "model_used": "demo-seed"}
+  ],
+  "battlecards": [
+    {"competitor_slug": "sonatype", "recent_moves": [{"text": "Shipped SBOM export.", "article_ids": [1]}]},
+    {"competitor_slug": "snyk", "recent_moves": [{"text": "Restructured enterprise pricing.", "article_ids": [3]}]}
+  ]
+}

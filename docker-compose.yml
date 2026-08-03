@@ -1,0 +1,26 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - DATABASE_URL=sqlite:////data/ribbit.db
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    volumes:
+      - ribbit-data:/data
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  web:
+    build:
+      context: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+volumes:
+  ribbit-data:

@@ -104,6 +104,7 @@ Expected: FAIL — `ModuleNotFoundError: No module named 'app'` (or ImportError 
 ```python
 from pathlib import Path
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -115,12 +116,12 @@ class Settings(BaseSettings):
     llm_provider: str = "anthropic"  # anthropic | openai | gemini | ollama
     llm_model: str = "claude-haiku-4-5"
     ollama_model: str = "llama3.1:8b"
-    anthropic_api_key: str = ""
-    openai_api_key: str = ""
-    gemini_api_key: str = ""
+    anthropic_api_key: SecretStr = SecretStr("")
+    openai_api_key: SecretStr = SecretStr("")
+    gemini_api_key: SecretStr = SecretStr("")
     ollama_base_url: str = "http://localhost:11434"
     llm_fallback_provider: str = ""  # empty = no fallback
-    tavily_api_key: str = ""
+    tavily_api_key: SecretStr = SecretStr("")
     refresh_hour: int = 7
     demo_mode: str = "auto"  # auto | on | off
     enable_scheduler: bool = True
@@ -1127,10 +1128,14 @@ class LLMGateway:
     def __init__(self, settings: Settings):
         self.s = settings
 
+    def _key_for(self, provider: str) -> str:
+        secret = {"anthropic": self.s.anthropic_api_key,
+                  "openai": self.s.openai_api_key,
+                  "gemini": self.s.gemini_api_key}.get(provider)
+        return secret.get_secret_value() if secret else ""
+
     def _has_key(self, provider: str) -> bool:
-        return bool({"anthropic": self.s.anthropic_api_key,
-                     "openai": self.s.openai_api_key,
-                     "gemini": self.s.gemini_api_key}.get(provider, ""))
+        return bool(self._key_for(provider))
 
     def _ollama_up(self) -> bool:
         try:
@@ -1154,9 +1159,8 @@ class LLMGateway:
         if provider == "ollama":
             return f"ollama/{self.s.ollama_model}", {"api_base": self.s.ollama_base_url}
         if provider == "gemini":
-            return f"gemini/{self.s.llm_model}", {"api_key": self.s.gemini_api_key}
-        key = self.s.anthropic_api_key if provider == "anthropic" else self.s.openai_api_key
-        return f"{provider}/{self.s.llm_model}", {"api_key": key}
+            return f"gemini/{self.s.llm_model}", {"api_key": self._key_for("gemini")}
+        return f"{provider}/{self.s.llm_model}", {"api_key": self._key_for(provider)}
 
     def complete_json(self, system: str, user: str, schema: type[T],
                       temperature: float = 0.2) -> T | None:
@@ -1242,7 +1246,11 @@ CITATION RULE: every claim object MUST include article_ids drawn ONLY from the p
 Claims without a valid id will be deleted by the system. Do not use outside knowledge.
 
 Fields:
-- exec_summary: 2-4 sentences, the day in brief for an executive.
+- exec_summary: 2-4 sentences, the day in brief for an executive. This field carries no
+  article_ids and is therefore NOT citation-checked by the system, so it is held to a stricter
+  rule instead: it may ONLY synthesize and prioritize what you state in the cited sections
+  below. It must introduce no company, product, number, date, or event that does not appear in
+  a cited claim. If the cited sections are empty, say the day was quiet — do not fill space.
 - top_developments: 3-6 most important items (text + article_ids).
 - by_competitor: per competitor with news today: 1-3 highlight claims each.
 - threats_opportunities: kind=threat or opportunity, the strategic reads of the day."""
@@ -2200,13 +2208,30 @@ def _tasks_for(client, settings: Settings, appcfg: AppConfig, window: datetime):
             tasks.append((f"{comp['name']} Reddit",
                           fetch_reddit(client, src["reddit"].get("subreddits", []),
                                        src["reddit"].get("query", comp["name"]), window)))
-        if settings.tavily_api_key and src.get("tavily_query"):
+        tavily_key = settings.tavily_api_key.get_secret_value()
+        if tavily_key and src.get("tavily_query"):
             tasks.append((f"{comp['name']} Tavily",
-                          fetch_tavily(client, settings.tavily_api_key,
-                                       src["tavily_query"], window)))
+                          fetch_tavily(client, tavily_key, src["tavily_query"], window)))
     for feed in appcfg.industry_feeds:
         tasks.append((feed["name"], fetch_rss(client, feed["name"], feed["url"], window)))
     return tasks
+
+
+def _llm_stages(session_factory, settings: Settings, appcfg: AppConfig, gateway) -> dict:
+    """Run the four LLM stages on their own session. Called via asyncio.to_thread."""
+    out = {}
+    with session_factory() as s:
+        REFRESH_STATE["stage"] = "enriching"
+        out["enriched"] = enrich_new_articles(s, gateway, appcfg)
+        REFRESH_STATE["stage"] = "delta"
+        out["deltas"] = run_delta_analysis(s, gateway, appcfg)
+        REFRESH_STATE["stage"] = "digest"
+        today = datetime.now(timezone.utc).date().isoformat()
+        generate_digest(s, gateway, today,
+                        model_label=f"{settings.llm_provider}/{settings.llm_model}")
+        REFRESH_STATE["stage"] = "battlecards"
+        out["battlecards"] = refresh_battlecards(s, gateway, appcfg)
+    return out
 
 
 async def run_pipeline(session_factory, settings: Settings, appcfg: AppConfig, gateway,
@@ -2234,20 +2259,15 @@ async def run_pipeline(session_factory, settings: Settings, appcfg: AppConfig, g
             report["inserted"] = insert_new_items(s, items)
             REFRESH_STATE["counts"]["inserted"] = report["inserted"]
 
-            if not gateway.available():
-                REFRESH_STATE["errors"].append("LLM unavailable - enrichment skipped")
-            else:
-                REFRESH_STATE["stage"] = "enriching"
-                report["enriched"] = enrich_new_articles(s, gateway, appcfg)
-                REFRESH_STATE["stage"] = "delta"
-                report["deltas"] = run_delta_analysis(s, gateway, appcfg)
-                REFRESH_STATE["stage"] = "digest"
-                today = datetime.now(timezone.utc).date().isoformat()
-                generate_digest(s, gateway, today,
-                                model_label=f"{settings.llm_provider}/{settings.llm_model}")
-                REFRESH_STATE["stage"] = "battlecards"
-                report["battlecards"] = refresh_battlecards(s, gateway, appcfg)
-            REFRESH_STATE["counts"].update(report)
+        if not gateway.available():
+            REFRESH_STATE["errors"].append("LLM unavailable - enrichment skipped")
+        else:
+            # LiteLLM is synchronous and a full run costs minutes. Running it inline would
+            # block the event loop and freeze the API for the whole refresh, so the LLM
+            # stages run in a worker thread with their own session (ADR-021).
+            report.update(await asyncio.to_thread(
+                _llm_stages, session_factory, settings, appcfg, gateway))
+        REFRESH_STATE["counts"].update(report)
         REFRESH_STATE["stage"] = "done"
     except Exception as e:  # belt-and-braces: never leave state stuck on running
         log.exception("pipeline crashed")
@@ -3408,7 +3428,13 @@ export default function Today() {
       </div>
 
       <Card>
-        <h2 className="mb-1 text-sm font-semibold text-slate-300">Executive summary</h2>
+        <h2 className="mb-1 text-sm font-semibold text-slate-300">
+          Executive summary
+          <span className="ml-2 rounded bg-slate-800 px-1.5 py-0.5 text-[10px] font-normal text-slate-400"
+                title="Synthesis of the cited claims below. Unlike those claims, this paragraph carries no per-source citations.">
+            AI SYNTHESIS
+          </span>
+        </h2>
         <p className="text-slate-100">{d.exec_summary}</p>
         <p className="mt-2 text-xs text-slate-500">generated {new Date(d.generated_at).toLocaleString()} · {d.model_used}</p>
       </Card>

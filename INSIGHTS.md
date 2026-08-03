@@ -17,3 +17,43 @@ Running log of insights, challenges, and learnings gathered while building Ribbi
 5. **A second AI reviewer is a cheap red team.** Running the design past another model surfaced the domain-precision gap and the "dynamic vs static comparison" gap (which became Delta analysis) before any code was written.
 
 6. **Config-as-code keeps the tool alive after the demo.** Competitors, sources, matrix, and capability sheet live in YAML: adding competitor #6 is a pull request, not a feature request.
+
+## 2026-08-03 — Implementation phase
+
+7. **A green test suite can still be lying.** Two guards added to the config tests only counted once we deliberately broke the YAML (renamed `notes:` → `note:`, dropped a vendor from the matrix) and watched them fail. Mutation-testing a new assertion takes a minute and is the difference between a test that guards something and a test that decorates the file.
+
+8. **SQLite silently drops timezones, and the damage surfaces in the browser.** Datetimes written as aware UTC read back naive from a fresh session — invisible inside one session because SQLAlchemy's identity map hands back the original Python object. The real damage was downstream: the API serializes with `.isoformat()`, and an offset-less string like `2026-08-03T08:39:41` is parsed by JavaScript as *local* time, shifting every timestamp in the UI and pushing near-midnight items onto the wrong day. Fixed once in a `UtcDateTime` `TypeDecorator` rather than at a dozen call sites. Found only because the task explicitly asked "check what comes back in a fresh session" — the three passing tests never touched a fresh read.
+
+9. **"Fails loudly" has to be checked, not assumed.** The source adapters were designed to raise on failure so the orchestrator could mark a feed unhealthy. They did — for HTTP errors. A feed returning `200 OK` with truncated XML parsed to zero entries and returned quietly, which the health panel would have shown as a healthy source having a slow news day. The fix distinguishes "unparseable and empty" from the very common case of a slightly malformed feed that still yields entries; over-correcting there would have silently dropped working sources.
+
+10. **Silent duplicate-collapse is the nastiest failure mode in an ingest pipeline.** Two separate instances: Reddit posts missing a `permalink` all resolved to the bare domain, and once one such row existed every future permalink-less post matched it forever; and whitespace-only URLs all canonicalized to the same `https:///` sentinel. In both cases the pipeline reported success while quietly discarding real stories. Nothing crashes, nothing logs, and the only symptom is a digest that feels thin.
+
+11. **`.replace(tzinfo=utc)` is not a conversion.** Applied to an already-aware timestamp it relabels the instant rather than converting it, so a `10:00+02:00` publication was stored as `10:00Z` — off by the offset, silently, forever. The correct form branches: convert when aware, assume UTC only when naive.
+
+12. **The most valuable review findings were about what wasn't there.** Spec review confirms the code matches the plan; the findings that actually improved the system came from asking what the code fails to do — untested grounding text, two config files with nothing tying them together, secrets typed as plain strings. Verification catches deviation; adversarial questions catch design gaps.
+
+## 2026-08-03 — Delivery pass (Task 24)
+
+13. **Scope note, stated plainly:** this pass did not run the pipeline against a real
+    Anthropic key (Task 24 Steps 1-2 — live refresh + `capture_seed.py`) because no key
+    was available to the implementer. `data/demo/seed.json` is unchanged: the original 3
+    hand-written sample articles, not a live capture. The README says exactly that rather
+    than implying otherwise — the honest version of this log is worth more than a tidier
+    one.
+14. **The keyless reviewer path was verified for real, not assumed.** `docker compose up
+    --build -d` with no `.env` file present, then a true `--no-cache` rebuild (no shared
+    Docker layer cache) timed at ~30s on the verifying machine. All four tabs — Today,
+    Feed, Competitors (list + a battlecard detail page), Compare — loaded populated data
+    with zero browser console errors and nothing but `200 OK` in the API container log.
+    The four README screenshots are real captures from that running stack, not mockups.
+15. **Diagrams rot exactly where the plan and the shipped code part ways, and nobody
+    notices until someone compares them side by side.** ARCHITECTURE.md had drifted from
+    the implementation in three places by delivery time, none of them caught until this
+    pass: the system-context diagram listed a "Chat" tab and a dedicated FTS5-retrieval
+    component that Task 25 (stretch) never actually shipped; the pipeline sequence
+    diagram didn't show that the four LLM stages run inside a worker thread
+    (`asyncio.to_thread`, ADR-021) rather than inline on the API's event loop; and that
+    same diagram recorded `source_runs` health rows as the *last* step of a refresh, when
+    the code actually writes them right after fetching, before dedupe. All three are
+    fixed now. None would have been caught by re-reading the diagram in isolation — only
+    by re-deriving it from the code that was actually shipped.
