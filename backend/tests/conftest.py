@@ -4,7 +4,24 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
+from app.config import Settings
 from app.models import Article, init_db
+
+_SECRET_ENV_VARS = ("ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY", "TAVILY_API_KEY")
+
+
+@pytest.fixture(autouse=True)
+def _isolate_settings_from_real_credentials(monkeypatch):
+    """Keep the suite from ever seeing a developer's real API keys.
+
+    `Settings(_env_file=None)` does NOT reliably disable dotenv loading, so tests were
+    picking up the real key from the repo-root `.env`. That made results depend on whether
+    a developer happened to have credentials configured, and put the suite one careless
+    line away from issuing live, billed API calls.
+    """
+    monkeypatch.setattr(Settings, "model_config", {**Settings.model_config, "env_file": None})
+    for var in _SECRET_ENV_VARS:
+        monkeypatch.delenv(var, raising=False)
 
 
 @pytest.fixture()

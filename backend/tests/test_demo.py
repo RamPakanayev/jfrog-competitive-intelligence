@@ -9,6 +9,16 @@ class DeadGateway(FakeGateway):
         return False
 
 
+def _claim_ids(node) -> list[int]:
+    """Collect every article_id inside a nested digest section structure."""
+    if isinstance(node, dict):
+        ids = [i for i in node.get("article_ids", []) if isinstance(i, int)]
+        return ids + [i for v in node.values() for i in _claim_ids(v)]
+    if isinstance(node, list):
+        return [i for v in node for i in _claim_ids(v)]
+    return []
+
+
 def test_load_seed_inserts_everything(session_factory):
     settings = Settings(_env_file=None)
     n = load_seed(session_factory, settings.demo_seed_path)
@@ -16,8 +26,19 @@ def test_load_seed_inserts_everything(session_factory):
         assert s.query(Article).count() == n["articles"] >= 3
         assert s.query(Digest).count() >= 1
         assert s.query(Battlecard).count() >= 2
-        a = s.get(Article, 1)
-        assert a.source_type == "demo" and a.delta_strategic_impact == "medium"
+        # Assert the shape the UI depends on, not the contents of one particular seed —
+        # the shipped seed is a real pipeline capture and is expected to be re-captured.
+        articles = s.query(Article).all()
+        assert all(a.status == "enriched" and a.relevant for a in articles)
+        assert all(a.summary and a.so_what and a.jfrog_impact for a in articles)
+        assert any(a.delta_move and a.delta_strategic_impact for a in articles), \
+            "seed should include at least one delta analysis so the Feed tab shows one"
+        # every citation in the digest must resolve to a seeded article (the demo must not
+        # ship the very dangling-citation state the citation firewall exists to prevent)
+        ids = {a.id for a in articles}
+        digest = s.query(Digest).first()
+        cited = {i for section in digest.sections.values() for i in _claim_ids(section)}
+        assert cited and cited <= ids, f"digest cites unseeded articles: {cited - ids}"
 
 
 def test_load_seed_idempotent(session_factory):

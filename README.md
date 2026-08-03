@@ -15,10 +15,14 @@ Intelligence (CI) team.
     docker compose up --build
 
 Open **http://localhost:3000**. With no API keys configured, Ribbit auto-detects that no
-LLM provider is reachable and boots in **demo mode**, loading a small bundled sample
-dataset — 3 hand-written articles covering Sonatype, GitLab, and Snyk — so every tab is
-populated immediately. It's illustrative sample data, not a capture from a real pipeline
-run (see [Live mode](#live-mode-real-daily-intelligence) below for that).
+LLM provider is reachable and boots in **demo mode**, loading a bundled dataset so every
+tab is populated immediately.
+
+That dataset is a **real capture from a live pipeline run** on 2026-08-03: 139 articles
+fetched across a 14-day window, of which the LLM relevance gate kept 30, with 7 receiving
+full JFrog Delta analysis, plus the generated daily digest and all five battlecards. Every
+citation resolves to a real article URL. It is a frozen snapshot, so it does not update
+until you run live mode yourself.
 
 A clean build (no Docker layer cache) took about 30 seconds on the machine this was
 verified on, mostly downloading Python and npm packages — expect it to vary with your
@@ -26,10 +30,8 @@ network. Rebuilds after the first one reuse cached layers and finish in seconds.
 
 ## Live mode (real daily intelligence)
 
-> **You need your own API key to see live data.** The screenshots and demo-mode dashboard
-> in this README run on the small bundled sample dataset above, which exists only so the
-> keyless demo isn't an empty screen — it is static and does not reflect real news. To
-> fetch and analyze real competitor news, supply your own key below.
+> **You need your own API key to fetch *fresh* news.** The bundled dataset above is real
+> but frozen at 2026-08-03. Supply a key to run the pipeline yourself against today's news.
 
     cp .env.example .env    # add ANTHROPIC_API_KEY (or switch LLM_PROVIDER; see below)
     docker compose up --build
@@ -44,8 +46,8 @@ network. Rebuilds after the first one reuse cached layers and finish in seconds.
 
 ## Screenshots
 
-Captured against the keyless demo above — hence the `[Sample]` prefixes; live mode shows
-the same views populated with real, unprefixed news.
+Captured from the running app on the real dataset described above — real competitor news,
+real LLM analysis, real citations.
 
 | | |
 |---|---|

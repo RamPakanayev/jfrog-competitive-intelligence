@@ -6,7 +6,11 @@ from app.llm.prompts import DELTA_SYSTEM, DELTA_USER
 from app.llm.schemas import Delta
 from app.models import Article
 
-DELTA_THRESHOLD = 4
+# Calibrated against a real 14-day run (2026-08-03): of 30 relevant articles, the highest
+# score awarded was 3 and nothing reached 4, so a threshold of 4 meant delta analysis never
+# fired at all. Vendor blogs publish incremental feature news; "significant threat" is rare.
+# 3 ("notable") is the level at which an analyst actually wants JFrog's counter-position.
+DELTA_THRESHOLD = 3
 
 
 def run_delta_analysis(session: Session, gateway, appcfg: AppConfig, limit: int = 25) -> int:

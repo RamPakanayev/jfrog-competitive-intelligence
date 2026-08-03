@@ -18,7 +18,7 @@ def enriched(session, url, impact, **kw):
 
 def test_delta_only_for_high_impact(session):
     high = enriched(session, "https://d.example/1", 4)
-    enriched(session, "https://d.example/2", 3)
+    enriched(session, "https://d.example/2", 2)  # below DELTA_THRESHOLD (3)
     gw = FakeGateway([Delta(competitor_move="m", jfrog_equivalent="Xray contextual analysis",
                             strategic_impact="high", talking_points=["a", "b"])])
     n = run_delta_analysis(session, gw, appcfg())

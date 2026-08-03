@@ -1,3 +1,10 @@
+# Tracked competitors and where to watch them. Adding competitor #6 is an edit here,
+# not a code change (ADR-009).
+#
+# Reddit sources were removed on 2026-08-03 after a live run: reddit.com/r/*/search.json
+# now answers 403 Blocked for unauthenticated clients, so all five Reddit sources failed
+# every run. The adapter and its tests are kept (backend/app/sources/reddit.py) — re-enable
+# by adding a `reddit:` block back once OAuth credentials are wired up.
 competitors:
   - slug: sonatype
     name: Sonatype
@@ -6,9 +13,6 @@ competitors:
       rss:
         - "https://www.sonatype.com/blog/rss.xml"
       hn_query: 'sonatype OR "nexus repository"'
-      reddit:
-        subreddits: [devops]
-        query: "sonatype OR nexus"
       tavily_query: "Sonatype Nexus news"
     battlecard_base:
       strengths:
@@ -27,9 +31,6 @@ competitors:
       rss:
         - "https://about.gitlab.com/atom.xml"
       hn_query: "gitlab"
-      reddit:
-        subreddits: [devops, gitlab]
-        query: "gitlab package OR registry OR security"
       tavily_query: "GitLab DevSecOps release news"
     battlecard_base:
       strengths:
@@ -49,9 +50,6 @@ competitors:
         - "https://github.blog/feed/"
         - "https://github.blog/changelog/feed/"
       hn_query: '"github packages" OR "github advanced security" OR dependabot'
-      reddit:
-        subreddits: [devops]
-        query: "github packages OR dependabot"
       tavily_query: "GitHub Packages Advanced Security news"
     battlecard_base:
       strengths:
@@ -70,9 +68,6 @@ competitors:
       rss:
         - "https://www.docker.com/blog/feed/"
       hn_query: '"docker hub" OR "docker scout"'
-      reddit:
-        subreddits: [docker, devops]
-        query: "docker hub OR docker scout"
       tavily_query: "Docker Hub Docker Scout news"
     battlecard_base:
       strengths:
@@ -91,9 +86,6 @@ competitors:
       rss:
         - "https://snyk.io/blog/feed/"
       hn_query: "snyk"
-      reddit:
-        subreddits: [devops, netsec]
-        query: "snyk"
       tavily_query: "Snyk developer security news"
     battlecard_base:
       strengths:

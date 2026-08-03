@@ -89,6 +89,21 @@ Every significant decision: the options we weighed, what we chose, and why. Newe
 **Chosen:** commit per item, catching `IntegrityError` to skip an item another writer already inserted.
 **Why:** Dedupe pre-checks the database, but a check-then-insert is a race: the architecture deliberately allows a manual "Refresh now" to overlap the scheduled daily run. Under one commit per batch, a single lost race raises an unhandled `IntegrityError` and rolls back *the entire batch* — verified in a two-session reproduction, where an unrelated valid article was lost alongside the duplicate. Losing one duplicate is correct; losing the rest of the day's news because of it is not. Per-item commits also mean a crash mid-run keeps the work already done. At this volume (~150 items/day) the extra commits cost nothing measurable, which is why the simpler batch commit isn't worth defending.
 
+## ADR-025 · Tests are isolated from real credentials
+**Options:** rely on `Settings(_env_file=None)` · point tests at a fixture `.env` · an autouse fixture that strips the dotenv path and secret env vars.
+**Chosen:** an autouse fixture in `conftest.py` that clears `env_file` from `Settings.model_config` and deletes the four secret environment variables.
+**Why:** `Settings(_env_file=None)` does **not** reliably disable dotenv loading — discovered when a gateway test began failing the moment a real `.env` existed, because the suite was reading the developer's live Anthropic key. Two problems: results depended on whether a developer happened to have credentials configured, and the suite sat one careless line away from issuing real, billed API calls from a test. Tests must be hermetic with respect to the environment they run in.
+
+## ADR-024 · Reddit dropped as a source; the adapter is kept
+**Options:** keep the failing source and let the health panel show it red · implement Reddit OAuth · remove the source, keep the adapter.
+**Chosen:** removed all five Reddit sources from `competitors.yaml`; `sources/reddit.py` and its tests remain.
+**Why:** A live run returned `403 Blocked` on every Reddit request — `reddit.com/r/*/search.json` now refuses unauthenticated clients regardless of User-Agent. Shipping a source that fails 100% of the time would be dishonest in a demo whose whole point is showing source health. OAuth is real work for a source that is secondary to vendor blogs and Hacker News, so it goes on the roadmap. The adapter stays because it is correct, tested, and re-enabling it is a config edit once credentials exist.
+
+## ADR-023 · The delta threshold is 3, calibrated on real data
+**Options:** keep the threshold at 4 (the pre-implementation guess) · lower it to 3 · re-engineer the impact prompt to spread scores.
+**Chosen:** lower `DELTA_THRESHOLD` from 4 to 3.
+**Why:** The first live run scored 30 relevant articles and awarded a maximum impact of 3 — **nothing reached 4**, so the Delta analysis feature produced zero output on real news. The threshold of 4 was a guess made before any real data existed. Vendor blogs mostly publish incremental feature news; "significant threat" is genuinely rare, and waiting for it means the feature never fires. At 3 ("notable") the same run produced 7 delta analyses, which is the level at which an analyst actually wants JFrog's counter-position. Re-engineering the prompt to inflate scores would have been the dishonest fix — moving the trigger is the honest one.
+
 ## ADR-021 · LLM stages run in a worker thread, not on the event loop
 **Options:** call the synchronous gateway inline from the async pipeline · switch to LiteLLM's async API · run the LLM stages via `asyncio.to_thread`.
 **Chosen:** `asyncio.to_thread`, with the stages sharing one session distinct from the fetch/insert session.

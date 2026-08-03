@@ -17,8 +17,6 @@ def make_transport():
     def handler(request: httpx.Request) -> httpx.Response:
         host = request.url.host
         if host == "hn.algolia.com":
-            return httpx.Response(200, json={"hits": []})
-        if host == "www.reddit.com":
             return httpx.Response(500)  # one failing source must not kill the run
         return httpx.Response(200, content=RSS,
                               headers={"content-type": "application/rss+xml"})
@@ -51,7 +49,7 @@ async def test_pipeline_end_to_end_with_isolation(session_factory):
     with session_factory() as s:
         assert s.query(Article).count() == 1
         runs = s.query(SourceRun).all()
-        assert any(not r.ok and "reddit" in r.source_name.lower() for r in runs)
+        assert any(not r.ok and "hackernews" in r.source_name.lower() for r in runs)
         assert any(r.ok and r.items_found == 1 for r in runs)
 
 

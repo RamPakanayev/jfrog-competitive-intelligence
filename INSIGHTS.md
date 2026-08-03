@@ -57,3 +57,38 @@ Running log of insights, challenges, and learnings gathered while building Ribbi
     the code actually writes them right after fetching, before dedupe. All three are
     fixed now. None would have been caught by re-reading the diagram in isolation — only
     by re-deriving it from the code that was actually shipped.
+
+## 2026-08-03 — First live run against a real LLM
+
+16. **Nothing that mattered was found by the test suite.** 72 tests passed before the first
+    live run, and the run still surfaced four real problems within minutes: Reddit blocking
+    every request, a dead feed, a feature that never fired, and a test suite reading a real
+    API key. Tests prove the code does what you told it to; only real data tells you whether
+    what you told it was right.
+
+17. **The relevance gate is the product.** 139 articles fetched, 109 discarded as noise — 78%.
+    The discarded set was exactly right: HN "Show HN" posts, a DevOps jobs listicle, generic
+    Copilot news. Getting that wrong in either direction ruins the tool: too loose and it's a
+    spam feed, too strict and it misses the move that mattered.
+
+18. **A threshold guessed before seeing data was wrong, and silently so.** Delta analysis
+    was gated at impact ≥ 4. On real news the maximum score awarded was 3, so the feature
+    produced nothing at all — no error, no warning, just an empty section that looked like
+    "quiet day". Vendor blogs publish incremental news; "significant threat" is rare.
+    Recalibrating to 3 turned zero deltas into seven (ADR-023). The lesson is not the number
+    — it is that a magic constant chosen in a planning document deserves to be re-derived
+    from the first real dataset.
+
+19. **Sources rot in more than one way.** Reddit returns 403 to unauthenticated clients now,
+    which is loud and easy to spot. InfoQ's DevOps feed returns a cheerful `200 OK` whose
+    newest entry is from 2022 — silent, and indistinguishable from "quiet week" unless you
+    look at the dates. Meanwhile Sonatype, Snyk and GitHub returned zero items for a
+    completely legitimate reason: nothing published inside the 2-day window. Three
+    identical-looking symptoms, three different causes.
+
+20. **Debugging can leak what you are protecting.** Chasing the credential-isolation bug, I
+    printed `get_secret_value()` to a terminal and exposed a live API key that then had to be
+    rotated. The irony is instructive: the codebase already used `SecretStr` specifically so
+    keys could never surface in a repr or a log, and the leak came from deliberately
+    unwrapping that protection to debug. Redact at the point of debugging, not just in the
+    application.
