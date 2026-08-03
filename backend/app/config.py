@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -11,12 +12,12 @@ class Settings(BaseSettings):
     llm_provider: str = "anthropic"  # anthropic | openai | gemini | ollama
     llm_model: str = "claude-haiku-4-5"
     ollama_model: str = "llama3.1:8b"
-    anthropic_api_key: str = ""
-    openai_api_key: str = ""
-    gemini_api_key: str = ""
+    anthropic_api_key: SecretStr = SecretStr("")
+    openai_api_key: SecretStr = SecretStr("")
+    gemini_api_key: SecretStr = SecretStr("")
     ollama_base_url: str = "http://localhost:11434"
     llm_fallback_provider: str = ""  # empty = no fallback
-    tavily_api_key: str = ""
+    tavily_api_key: SecretStr = SecretStr("")
     refresh_hour: int = 7
     demo_mode: str = "auto"  # auto | on | off
     enable_scheduler: bool = True

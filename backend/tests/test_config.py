@@ -20,6 +20,14 @@ def test_env_overrides(monkeypatch):
     assert s.refresh_hour == 5
 
 
-def test_config_dir_exists():
+def test_config_dir_is_path():
     s = Settings(_env_file=None)
     assert isinstance(s.config_dir, Path)
+
+
+def test_api_keys_are_masked_in_repr(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-super-secret-value")
+    s = Settings(_env_file=None)
+    assert s.anthropic_api_key.get_secret_value() == "sk-super-secret-value"
+    assert "sk-super-secret-value" not in repr(s)
+    assert "sk-super-secret-value" not in str(s.anthropic_api_key)
