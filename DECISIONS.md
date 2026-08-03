@@ -68,3 +68,8 @@ Every significant decision: the options we weighed, what we chose, and why. Newe
 **Options:** single "category" field · domain × event-type dimensions.
 **Chosen:** `domain` (artifact_management, container_registry, devsecops_scanning, cicd, sbom_supply_chain, other) × `event_type` (product_launch, feature_update, security_advisory, pricing_change, funding_ma, partnership, other).
 **Why:** External review (Gemini) flagged generic-news noise as the top quality risk. Two orthogonal dimensions make the relevance gate strict and the feed filterable the way a CI analyst actually thinks ("show me all *pricing* moves in *artifact management*").
+
+## ADR-014 · Test imports resolve via `pythonpath` in pytest.ini
+**Options:** run tests as `python -m pytest` everywhere · add `backend/tests/__init__.py` to make tests a package · set `pythonpath = .` in `backend/pytest.ini`.
+**Chosen:** `pythonpath = .` in `backend/pytest.ini`.
+**Why:** With pytest's default prepend import mode and no `__init__.py` in `tests/`, pytest puts `tests/` (not `backend/`) on `sys.path`, so `import app` fails under the bare `pytest` command. `python -m pytest` masks it by inserting the cwd, but that quietly changes the documented command for every contributor and for CI. `pythonpath = .` fixes the root cause in one line, keeps `pytest` working from `backend/`, and avoids turning the test directory into an importable package (which would invite accidental cross-test imports). Surfaced by the Task-1 implementer during the first TDD cycle.
