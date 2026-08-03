@@ -77,7 +77,8 @@ class LLMGateway:
     def complete_json(self, system: str, user: str, schema: type[T],
                       temperature: float = 0.2) -> T | None:
         schema_hint = json.dumps(schema.model_json_schema())
-        sys_msg = f"{system}\n\nRespond with ONLY a raw JSON object matching this JSON Schema:\n{schema_hint}"
+        sys_msg = (f"{system}\n\nRespond with ONLY a raw JSON object matching this "
+                   f"JSON Schema:\n{schema_hint}")
         for provider in self._providers():
             user_msg = user
             for attempt in (1, 2):

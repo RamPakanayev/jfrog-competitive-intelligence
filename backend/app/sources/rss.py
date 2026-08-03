@@ -1,6 +1,6 @@
 import html
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import feedparser
 import httpx
@@ -16,7 +16,7 @@ def strip_html(s: str) -> str:
 
 def _entry_date(e) -> datetime | None:
     t = e.get("published_parsed") or e.get("updated_parsed")
-    return datetime(*t[:6], tzinfo=timezone.utc) if t else None
+    return datetime(*t[:6], tzinfo=UTC) if t else None
 
 
 async def fetch_rss(client: httpx.AsyncClient, name: str, url: str,

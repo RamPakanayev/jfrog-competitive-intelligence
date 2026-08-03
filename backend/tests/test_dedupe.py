@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from pydantic import ValidationError
@@ -12,7 +12,7 @@ from app.sources.base import RawItem
 
 def item(url: str, title: str = "Snyk raises prices") -> RawItem:
     return RawItem(title=title, url=url, body_excerpt="body", source_name="Feed",
-                   source_type="rss", published_at=datetime(2026, 8, 3, tzinfo=timezone.utc))
+                   source_type="rss", published_at=datetime(2026, 8, 3, tzinfo=UTC))
 
 
 def test_canonical_url_strips_tracking_and_normalizes():

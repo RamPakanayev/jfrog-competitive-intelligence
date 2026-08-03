@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import JSON, DateTime, Text, TypeDecorator
 from sqlalchemy.ext.mutable import MutableDict, MutableList
@@ -6,7 +6,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 def utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class UtcDateTime(TypeDecorator):
@@ -25,12 +25,12 @@ class UtcDateTime(TypeDecorator):
             return None
         if value.tzinfo is None:
             return value
-        return value.astimezone(timezone.utc).replace(tzinfo=None)
+        return value.astimezone(UTC).replace(tzinfo=None)
 
     def process_result_value(self, value, dialect):
         if value is None:
             return None
-        return value.replace(tzinfo=timezone.utc) if value.tzinfo is None else value
+        return value.replace(tzinfo=UTC) if value.tzinfo is None else value
 
 
 class Base(DeclarativeBase):
@@ -107,13 +107,15 @@ FTS_STATEMENTS = [
     END""",
     """CREATE TRIGGER IF NOT EXISTS articles_au AFTER UPDATE ON articles BEGIN
         INSERT INTO articles_fts(articles_fts, rowid, title, body_excerpt, summary)
-        VALUES('delete', old.id, old.title, coalesce(old.body_excerpt,''), coalesce(old.summary,''));
+        VALUES('delete', old.id, old.title, coalesce(old.body_excerpt,''), """
+    """coalesce(old.summary,''));
         INSERT INTO articles_fts(rowid, title, body_excerpt, summary)
         VALUES (new.id, new.title, coalesce(new.body_excerpt,''), coalesce(new.summary,''));
     END""",
     """CREATE TRIGGER IF NOT EXISTS articles_ad AFTER DELETE ON articles BEGIN
         INSERT INTO articles_fts(articles_fts, rowid, title, body_excerpt, summary)
-        VALUES('delete', old.id, old.title, coalesce(old.body_excerpt,''), coalesce(old.summary,''));
+        VALUES('delete', old.id, old.title, coalesce(old.body_excerpt,''), """
+    """coalesce(old.summary,''));
     END""",
 ]
 

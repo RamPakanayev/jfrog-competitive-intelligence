@@ -68,9 +68,11 @@ def _clean_claims(claims: list, valid_ids: set[int]) -> list:
 def enforce_digest_citations(d: DigestSchema, valid_ids: set[int]) -> DigestSchema:
     return d.model_copy(update={
         "top_developments": _clean_claims(d.top_developments, valid_ids),
-        "by_competitor": [s.model_copy(update={"highlights": _clean_claims(s.highlights, valid_ids)})
-                          for s in d.by_competitor
-                          if _clean_claims(s.highlights, valid_ids)],
+        "by_competitor": [
+            s.model_copy(update={"highlights": _clean_claims(s.highlights, valid_ids)})
+            for s in d.by_competitor
+            if _clean_claims(s.highlights, valid_ids)
+        ],
         "threats_opportunities": _clean_claims(d.threats_opportunities, valid_ids),
     })
 

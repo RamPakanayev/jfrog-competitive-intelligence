@@ -1,5 +1,5 @@
+from datetime import UTC, datetime, time
 from datetime import date as date_cls
-from datetime import datetime, time, timezone
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -11,8 +11,8 @@ from app.models import Article, Digest, utcnow
 
 def _items_for(session: Session, date: str) -> list[Article]:
     day = date_cls.fromisoformat(date)
-    start = datetime.combine(day, time.min, tzinfo=timezone.utc)
-    end = datetime.combine(day, time.max, tzinfo=timezone.utc)
+    start = datetime.combine(day, time.min, tzinfo=UTC)
+    end = datetime.combine(day, time.max, tzinfo=UTC)
     return list(session.scalars(select(Article).where(
         Article.status == "enriched", Article.relevant.is_(True),
         Article.fetched_at >= start, Article.fetched_at <= end)

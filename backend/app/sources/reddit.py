@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import httpx
 
@@ -6,7 +6,7 @@ from app.sources.base import USER_AGENT, RawItem
 
 
 def _time_filter(window_start: datetime) -> str:
-    days = (datetime.now(timezone.utc) - window_start).days
+    days = (datetime.now(UTC) - window_start).days
     if days <= 1:
         return "day"
     if days <= 7:
@@ -32,7 +32,7 @@ async def fetch_reddit(client: httpx.AsyncClient, subreddits: list[str], query: 
             permalink = (d.get("permalink") or "").rstrip("/")
             if not permalink:
                 continue
-            published = datetime.fromtimestamp(d.get("created_utc", 0), tz=timezone.utc)
+            published = datetime.fromtimestamp(d.get("created_utc", 0), tz=UTC)
             if published < window_start:
                 continue
             items.append(RawItem(

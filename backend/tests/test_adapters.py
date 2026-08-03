@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import httpx
@@ -11,7 +11,7 @@ from app.sources.rss import fetch_rss
 from app.sources.tavily import fetch_tavily
 
 FIX = Path(__file__).parent / "fixtures"
-WINDOW = datetime(2026, 8, 1, tzinfo=timezone.utc)
+WINDOW = datetime(2026, 8, 1, tzinfo=UTC)
 
 
 def client_returning(content: bytes, content_type: str) -> httpx.AsyncClient:
@@ -107,7 +107,7 @@ async def test_tavily_converts_offset_dates_instead_of_relabelling():
              "published_date": "2026-08-02T10:00:00+02:00"}]})
     client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
     items = await fetch_tavily(client, "k", "q", WINDOW)
-    assert items[0].published_at == datetime(2026, 8, 2, 8, 0, tzinfo=timezone.utc)
+    assert items[0].published_at == datetime(2026, 8, 2, 8, 0, tzinfo=UTC)
 
 
 async def test_reddit_time_filter_follows_the_window():
@@ -116,7 +116,7 @@ async def test_reddit_time_filter_follows_the_window():
         captured.update(dict(request.url.params))
         return httpx.Response(200, json={"data": {"children": []}})
     client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
-    await fetch_reddit(client, ["devops"], "q", datetime.now(timezone.utc) - timedelta(days=30))
+    await fetch_reddit(client, ["devops"], "q", datetime.now(UTC) - timedelta(days=30))
     assert captured["t"] == "month"
 
 

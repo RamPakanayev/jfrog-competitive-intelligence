@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import httpx
 
@@ -29,7 +29,8 @@ def _tasks_for(client, settings: Settings, appcfg: AppConfig, window: datetime):
     for comp in appcfg.competitors:
         src = comp["sources"]
         for url in src.get("rss", []):
-            tasks.append((f"{comp['name']} RSS", fetch_rss(client, f"{comp['name']} Blog", url, window)))
+            tasks.append((f"{comp['name']} RSS",
+                          fetch_rss(client, f"{comp['name']} Blog", url, window)))
         if src.get("hn_query"):
             tasks.append((f"{comp['name']} HackerNews",
                           fetch_hackernews(client, src["hn_query"], window)))
@@ -55,7 +56,7 @@ def _llm_stages(session_factory, settings: Settings, appcfg: AppConfig, gateway)
         REFRESH_STATE["stage"] = "delta"
         out["deltas"] = run_delta_analysis(s, gateway, appcfg)
         REFRESH_STATE["stage"] = "digest"
-        today = datetime.now(timezone.utc).date().isoformat()
+        today = datetime.now(UTC).date().isoformat()
         generate_digest(s, gateway, today,
                         model_label=f"{settings.llm_provider}/{settings.llm_model}")
         REFRESH_STATE["stage"] = "battlecards"
@@ -71,7 +72,7 @@ async def run_pipeline(session_factory, settings: Settings, appcfg: AppConfig, g
     run_id = uuid.uuid4().hex[:8]
     REFRESH_STATE.update(running=True, stage="fetching", counts={}, errors=[],
                          started_at=utcnow().isoformat(), finished_at=None)
-    window = datetime.now(timezone.utc) - timedelta(days=settings.fetch_window_days)
+    window = datetime.now(UTC) - timedelta(days=settings.fetch_window_days)
     report = {"inserted": 0, "enriched": 0, "deltas": 0, "battlecards": 0}
     try:
         async with httpx.AsyncClient(transport=transport, follow_redirects=True) as client:

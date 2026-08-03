@@ -4,6 +4,11 @@ target-version = "py312"
 [lint]
 select = ["E", "F", "I", "UP"]
 
+[lint.per-file-ignores]
+# Prompt text is data, not code. Re-wrapping these lines would change what the
+# model actually receives, so line length is not enforced here.
+"app/llm/prompts.py" = ["E501"]
+
 [lint.flake8-bugbear]
 # FastAPI's dependency-injection pattern calls Depends(...) as a parameter default by
 # design (FastAPI resolves it per-request, not once at def time). Ruff's bugbear check

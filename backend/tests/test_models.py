@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import text
 
@@ -48,7 +48,7 @@ def test_datetimes_round_trip_timezone_aware(session_factory):
         assert loaded.fetched_at.tzinfo is not None
         assert loaded.fetched_at.utcoffset() == timedelta(0)
         # the comparison that would raise TypeError with naive datetimes
-        assert loaded.fetched_at <= datetime.now(timezone.utc)
+        assert loaded.fetched_at <= datetime.now(UTC)
         assert loaded.fetched_at.isoformat().endswith("+00:00")
 
 

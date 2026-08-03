@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import httpx
 
@@ -24,5 +24,5 @@ async def fetch_hackernews(client: httpx.AsyncClient, query: str,
         items.append(RawItem(
             title=(h.get("title") or "").strip(), url=url,
             body_excerpt="", source_name="Hacker News", source_type="hackernews",
-            published_at=datetime.fromtimestamp(created, tz=timezone.utc)))
+            published_at=datetime.fromtimestamp(created, tz=UTC)))
     return items

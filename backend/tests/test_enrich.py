@@ -23,7 +23,9 @@ def test_enrich_applies_fields_and_statuses(session):
     n = enrich_new_articles(session, gw, appcfg())
     assert n == 2  # two successfully classified (one relevant, one irrelevant)
 
-    session.refresh(a1); session.refresh(a2); session.refresh(a3)
+    session.refresh(a1)
+    session.refresh(a2)
+    session.refresh(a3)
     assert a1.status == "enriched" and a1.relevant is True
     assert a1.competitors == ["snyk"]           # unknown slug filtered out
     assert a1.jfrog_impact == 4 and a1.enriched_at is not None

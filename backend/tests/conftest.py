@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from sqlalchemy import create_engine
@@ -29,7 +29,7 @@ def make_article(session: Session, *, url: str, title: str, status: str = "new",
     a = Article(url=url, content_hash=kw.pop("content_hash", f"hash-{url}"), title=title,
                 source_name=kw.pop("source_name", "Test Feed"),
                 source_type=kw.pop("source_type", "rss"),
-                published_at=kw.pop("published_at", datetime(2026, 8, 3, 9, tzinfo=timezone.utc)),
+                published_at=kw.pop("published_at", datetime(2026, 8, 3, 9, tzinfo=UTC)),
                 status=status, **kw)
     session.add(a)
     session.commit()

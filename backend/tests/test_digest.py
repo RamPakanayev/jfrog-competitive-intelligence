@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from app.llm.schemas import Claim, CompetitorSection, DigestSchema, TypedClaim
 from app.models import Digest
@@ -18,7 +18,7 @@ def test_digest_enforces_citations_and_upserts(session):
     a = make_article(session, url="https://g.example/1", title="A", status="enriched",
                      relevant=True, competitors=["snyk"], jfrog_impact=4, summary="s",
                      domain="devsecops_scanning", event_type="product_launch", so_what="w",
-                     fetched_at=datetime(2026, 8, 3, 10, tzinfo=timezone.utc))
+                     fetched_at=datetime(2026, 8, 3, 10, tzinfo=UTC))
     raw = DigestSchema(
         exec_summary="Busy day.",
         top_developments=[Claim(text="real", article_ids=[a.id]),
@@ -45,7 +45,7 @@ def test_llm_failure_keeps_old_digest(session):
     make_article(session, url="https://g.example/2", title="B", status="enriched",
                  relevant=True, competitors=["gitlab"], jfrog_impact=3, summary="s",
                  domain="cicd", event_type="feature_update", so_what="w",
-                 fetched_at=datetime(2026, 8, 3, 11, tzinfo=timezone.utc))
+                 fetched_at=datetime(2026, 8, 3, 11, tzinfo=UTC))
     gw = FakeGateway([None])
     d = generate_digest(session, gw, date="2026-08-03")
     assert d is None  # failed, nothing written
