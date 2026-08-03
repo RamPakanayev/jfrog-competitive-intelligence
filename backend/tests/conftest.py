@@ -34,3 +34,18 @@ def make_article(session: Session, *, url: str, title: str, status: str = "new",
     session.add(a)
     session.commit()
     return a
+
+
+class FakeGateway:
+    """Queue of canned responses; records every call. None = simulated LLM failure."""
+
+    def __init__(self, responses: list | None = None):
+        self.responses = list(responses or [])
+        self.calls: list[tuple[str, str, str]] = []  # (schema_name, system, user)
+
+    def complete_json(self, system: str, user: str, schema, temperature: float = 0.2):
+        self.calls.append((schema.__name__, system, user))
+        return self.responses.pop(0) if self.responses else None
+
+    def available(self) -> bool:
+        return True
