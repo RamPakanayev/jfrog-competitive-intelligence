@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel
 
@@ -10,5 +11,5 @@ class RawItem(BaseModel):
     url: str
     body_excerpt: str = ""
     source_name: str
-    source_type: str  # rss | hackernews | reddit | tavily
+    source_type: Literal["rss", "hackernews", "reddit", "tavily"]
     published_at: datetime | None = None

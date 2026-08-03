@@ -29,11 +29,17 @@ def content_hash(title: str, excerpt: str) -> str:
 
 
 def insert_new_items(session: Session, items: list[RawItem]) -> int:
+    """Insert items that aren't already present, matching on canonical URL or content hash.
+
+    Commits per item so one lost race can't discard the batch (ADR-017). This commits the
+    session it is given, including anything the caller staged beforehand — pass a session
+    with no unrelated pending work.
+    """
     inserted = 0
     seen_urls: set[str] = set()
     seen_hashes: set[str] = set()
     for it in items:
-        if not it.url or not it.title:
+        if not it.url.strip() or not it.title.strip():
             continue
         url = canonical_url(it.url)
         h = content_hash(it.title, it.body_excerpt)

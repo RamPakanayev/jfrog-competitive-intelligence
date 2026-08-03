@@ -1,5 +1,7 @@
 from datetime import datetime, timezone
 
+import pytest
+from pydantic import ValidationError
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
@@ -56,3 +58,19 @@ def test_failed_commit_does_not_abort_remaining_items(session, monkeypatch):
 
     assert inserted == 1
     assert {a.title for a in session.scalars(select(Article))} == {"Second story"}
+
+
+def test_blank_and_whitespace_items_are_skipped(session):
+    items = [
+        item("https://snyk.io/blog/ok", title="Real story"),
+        item("https://snyk.io/blog/blank", title="   "),
+        item("   ", title="Missing url"),
+        item("\t\n ", title="Also missing url"),
+    ]
+    assert insert_new_items(session, items) == 1
+    assert {a.title for a in session.scalars(select(Article))} == {"Real story"}
+
+
+def test_raw_item_rejects_unknown_source_type():
+    with pytest.raises(ValidationError):
+        RawItem(title="t", url="https://x.example/1", source_name="s", source_type="carrier-pigeon")
