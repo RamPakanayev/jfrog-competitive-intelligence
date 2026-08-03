@@ -5,12 +5,24 @@ import httpx
 from app.sources.base import USER_AGENT, RawItem
 
 
+def _time_filter(window_start: datetime) -> str:
+    days = (datetime.now(timezone.utc) - window_start).days
+    if days <= 1:
+        return "day"
+    if days <= 7:
+        return "week"
+    if days <= 31:
+        return "month"
+    return "year" if days <= 365 else "all"
+
+
 async def fetch_reddit(client: httpx.AsyncClient, subreddits: list[str], query: str,
                        window_start: datetime) -> list[RawItem]:
     items: list[RawItem] = []
     for sub in subreddits:
         url = f"https://www.reddit.com/r/{sub}/search.json"
-        params = {"q": query, "sort": "new", "t": "week", "limit": 25, "restrict_sr": 1}
+        params = {"q": query, "sort": "new", "t": _time_filter(window_start),
+                  "limit": 25, "restrict_sr": 1}
         r = await client.get(url, params=params, timeout=20, headers=USER_AGENT)
         r.raise_for_status()
         for child in r.json().get("data", {}).get("children", []):

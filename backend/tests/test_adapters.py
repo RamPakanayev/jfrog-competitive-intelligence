@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import httpx
@@ -108,3 +108,25 @@ async def test_tavily_converts_offset_dates_instead_of_relabelling():
     client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
     items = await fetch_tavily(client, "k", "q", WINDOW)
     assert items[0].published_at == datetime(2026, 8, 2, 8, 0, tzinfo=timezone.utc)
+
+
+async def test_reddit_time_filter_follows_the_window():
+    captured = {}
+    def handler(request: httpx.Request) -> httpx.Response:
+        captured.update(dict(request.url.params))
+        return httpx.Response(200, json={"data": {"children": []}})
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    await fetch_reddit(client, ["devops"], "q", datetime.now(timezone.utc) - timedelta(days=30))
+    assert captured["t"] == "month"
+
+
+async def test_hackernews_skips_malformed_hits_without_losing_the_batch():
+    payload = json.dumps({"hits": [
+        {"title": "Good", "url": "https://n.example/g", "objectID": "1",
+         "created_at_i": 1785744000},
+        {"title": "No timestamp", "url": "https://n.example/b", "objectID": "2"},
+        {"title": "Self post, no id", "url": None, "created_at_i": 1785744000},
+    ]}).encode()
+    client = client_returning(payload, "application/json")
+    items = await fetch_hackernews(client, "q", WINDOW)
+    assert [i.title for i in items] == ["Good"]

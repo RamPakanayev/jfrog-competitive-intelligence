@@ -35,6 +35,7 @@ def _extract_json(text: str) -> str:
 class LLMGateway:
     def __init__(self, settings: Settings):
         self.s = settings
+        self._ollama_probe: bool | None = None
 
     def _key_for(self, provider: str) -> str:
         secret = {"anthropic": self.s.anthropic_api_key,
@@ -46,10 +47,13 @@ class LLMGateway:
         return bool(self._key_for(provider))
 
     def _ollama_up(self) -> bool:
-        try:
-            return httpx.get(f"{self.s.ollama_base_url}/api/tags", timeout=1.5).status_code == 200
-        except Exception:  # noqa: BLE001 - liveness probe must never raise
-            return False
+        if self._ollama_probe is None:
+            try:
+                self._ollama_probe = (
+                    httpx.get(f"{self.s.ollama_base_url}/api/tags", timeout=1.5).status_code == 200)
+            except Exception:  # noqa: BLE001 - liveness probe must never raise
+                self._ollama_probe = False
+        return self._ollama_probe
 
     def _provider_usable(self, provider: str) -> bool:
         return self._ollama_up() if provider == "ollama" else self._has_key(provider)

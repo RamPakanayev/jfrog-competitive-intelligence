@@ -67,3 +67,15 @@ def test_available_by_key():
     assert LLMGateway(settings()).available() is True
     s = Settings(_env_file=None)  # no keys
     assert LLMGateway(s)._has_key("anthropic") is False
+
+
+def test_ollama_probe_is_cached(monkeypatch):
+    calls = {"n": 0}
+    def fake_get(*args, **kwargs):
+        calls["n"] += 1
+        raise RuntimeError("no ollama here")
+    monkeypatch.setattr("app.llm.gateway.httpx.get", fake_get)
+    gw = LLMGateway(Settings(_env_file=None, llm_provider="ollama"))
+    assert gw.available() is False
+    assert gw.available() is False
+    assert calls["n"] == 1, "probe should run once per gateway instance"

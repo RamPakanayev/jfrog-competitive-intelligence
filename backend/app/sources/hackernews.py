@@ -16,9 +16,13 @@ async def fetch_hackernews(client: httpx.AsyncClient, query: str,
     r.raise_for_status()
     items = []
     for h in r.json().get("hits", []):
-        url = h.get("url") or f"https://news.ycombinator.com/item?id={h['objectID']}"
+        created = h.get("created_at_i")
+        object_id = h.get("objectID")
+        if created is None or not (h.get("url") or object_id):
+            continue
+        url = h.get("url") or f"https://news.ycombinator.com/item?id={object_id}"
         items.append(RawItem(
             title=(h.get("title") or "").strip(), url=url,
             body_excerpt="", source_name="Hacker News", source_type="hackernews",
-            published_at=datetime.fromtimestamp(h["created_at_i"], tz=timezone.utc)))
+            published_at=datetime.fromtimestamp(created, tz=timezone.utc)))
     return items
