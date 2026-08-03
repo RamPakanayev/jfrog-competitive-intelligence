@@ -14,14 +14,14 @@ MAX_ITEMS = 15
 
 def refresh_battlecards(session: Session, gateway, appcfg: AppConfig) -> int:
     since = utcnow() - timedelta(days=LOOKBACK_DAYS)
+    recent = list(session.scalars(select(Article).where(
+        Article.status == "enriched", Article.relevant.is_(True),
+        Article.fetched_at >= since)
+        .order_by(Article.jfrog_impact.desc())))
     updated = 0
     for comp in appcfg.competitors:
         slug, name = comp["slug"], comp["name"]
-        items = list(session.scalars(select(Article).where(
-            Article.status == "enriched", Article.relevant.is_(True),
-            Article.fetched_at >= since)
-            .order_by(Article.jfrog_impact.desc()).limit(200)))
-        items = [a for a in items if slug in (a.competitors or [])][:MAX_ITEMS]
+        items = [a for a in recent if slug in (a.competitors or [])][:MAX_ITEMS]
         if not items:
             continue
         lines = [f"[{a.id}] ({a.event_type}, impact {a.jfrog_impact}) {a.summary}" for a in items]

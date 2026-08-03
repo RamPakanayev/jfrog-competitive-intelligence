@@ -35,3 +35,21 @@ def test_refresh_upserts_and_failsoft(session):
     assert n == 0
     card = session.query(Battlecard).filter_by(competitor_slug="gitlab").one()
     assert card.recent_moves[0]["text"] == "old"  # untouched on failure
+
+
+def test_noisy_competitor_does_not_starve_others(session):
+    for i in range(30):
+        make_article(session, url=f"https://b.example/noise{i}", title=f"Snyk {i}",
+                     status="enriched", relevant=True, competitors=["snyk"], jfrog_impact=5,
+                     summary="s", domain="devsecops_scanning", event_type="feature_update",
+                     so_what="w")
+    make_article(session, url="https://b.example/quiet", title="GitLab quiet news",
+                 status="enriched", relevant=True, competitors=["gitlab"], jfrog_impact=1,
+                 summary="s", domain="cicd", event_type="feature_update", so_what="w")
+
+    gw = FakeGateway([BattlecardGen(recent_moves=[Claim(text="m", article_ids=[1])]),
+                      BattlecardGen(recent_moves=[Claim(text="m", article_ids=[31])])])
+    refresh_battlecards(session, gw, appcfg())
+
+    refreshed = {c.competitor_slug for c in session.query(Battlecard)}
+    assert "gitlab" in refreshed, "low-impact competitor starved by a noisy one"
