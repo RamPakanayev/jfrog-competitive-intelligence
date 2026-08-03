@@ -73,3 +73,8 @@ Every significant decision: the options we weighed, what we chose, and why. Newe
 **Options:** run tests as `python -m pytest` everywhere · add `backend/tests/__init__.py` to make tests a package · set `pythonpath = .` in `backend/pytest.ini`.
 **Chosen:** `pythonpath = .` in `backend/pytest.ini`.
 **Why:** With pytest's default prepend import mode and no `__init__.py` in `tests/`, pytest puts `tests/` (not `backend/`) on `sys.path`, so `import app` fails under the bare `pytest` command. `python -m pytest` masks it by inserting the cwd, but that quietly changes the documented command for every contributor and for CI. `pythonpath = .` fixes the root cause in one line, keeps `pytest` working from `backend/`, and avoids turning the test directory into an importable package (which would invite accidental cross-test imports). Surfaced by the Task-1 implementer during the first TDD cycle.
+
+## ADR-015 · API keys typed as `SecretStr`
+**Options:** plain `str` fields · `pydantic.SecretStr` · a separate secrets loader.
+**Chosen:** `SecretStr` for `anthropic_api_key`, `openai_api_key`, `gemini_api_key`, `tavily_api_key`; `.get_secret_value()` at the two call sites that need the raw value (LLM gateway, Tavily adapter).
+**Why:** The `Settings` object is passed through the pipeline, gateway, and API layers, so any stray `repr()`, debug log, or exception traceback would print live keys in plaintext. `SecretStr` masks them by default and forces an explicit, greppable unwrap where the value is genuinely needed. Caught in code review while the change still cost four lines and zero call sites — a separate secrets loader would be over-engineering for a tool that reads keys from env/`.env`.
