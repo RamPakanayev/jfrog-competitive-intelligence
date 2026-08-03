@@ -1,3 +1,9 @@
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "I", "UP"]
+
 [lint.flake8-bugbear]
 # FastAPI's dependency-injection pattern calls Depends(...) as a parameter default by
 # design (FastAPI resolves it per-request, not once at def time). Ruff's bugbear check
