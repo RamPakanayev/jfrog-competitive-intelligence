@@ -104,6 +104,7 @@ Expected: FAIL — `ModuleNotFoundError: No module named 'app'` (or ImportError 
 ```python
 from pathlib import Path
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -115,12 +116,12 @@ class Settings(BaseSettings):
     llm_provider: str = "anthropic"  # anthropic | openai | gemini | ollama
     llm_model: str = "claude-haiku-4-5"
     ollama_model: str = "llama3.1:8b"
-    anthropic_api_key: str = ""
-    openai_api_key: str = ""
-    gemini_api_key: str = ""
+    anthropic_api_key: SecretStr = SecretStr("")
+    openai_api_key: SecretStr = SecretStr("")
+    gemini_api_key: SecretStr = SecretStr("")
     ollama_base_url: str = "http://localhost:11434"
     llm_fallback_provider: str = ""  # empty = no fallback
-    tavily_api_key: str = ""
+    tavily_api_key: SecretStr = SecretStr("")
     refresh_hour: int = 7
     demo_mode: str = "auto"  # auto | on | off
     enable_scheduler: bool = True
@@ -1127,10 +1128,14 @@ class LLMGateway:
     def __init__(self, settings: Settings):
         self.s = settings
 
+    def _key_for(self, provider: str) -> str:
+        secret = {"anthropic": self.s.anthropic_api_key,
+                  "openai": self.s.openai_api_key,
+                  "gemini": self.s.gemini_api_key}.get(provider)
+        return secret.get_secret_value() if secret else ""
+
     def _has_key(self, provider: str) -> bool:
-        return bool({"anthropic": self.s.anthropic_api_key,
-                     "openai": self.s.openai_api_key,
-                     "gemini": self.s.gemini_api_key}.get(provider, ""))
+        return bool(self._key_for(provider))
 
     def _ollama_up(self) -> bool:
         try:
@@ -1154,9 +1159,8 @@ class LLMGateway:
         if provider == "ollama":
             return f"ollama/{self.s.ollama_model}", {"api_base": self.s.ollama_base_url}
         if provider == "gemini":
-            return f"gemini/{self.s.llm_model}", {"api_key": self.s.gemini_api_key}
-        key = self.s.anthropic_api_key if provider == "anthropic" else self.s.openai_api_key
-        return f"{provider}/{self.s.llm_model}", {"api_key": key}
+            return f"gemini/{self.s.llm_model}", {"api_key": self._key_for("gemini")}
+        return f"{provider}/{self.s.llm_model}", {"api_key": self._key_for(provider)}
 
     def complete_json(self, system: str, user: str, schema: type[T],
                       temperature: float = 0.2) -> T | None:
@@ -2200,10 +2204,10 @@ def _tasks_for(client, settings: Settings, appcfg: AppConfig, window: datetime):
             tasks.append((f"{comp['name']} Reddit",
                           fetch_reddit(client, src["reddit"].get("subreddits", []),
                                        src["reddit"].get("query", comp["name"]), window)))
-        if settings.tavily_api_key and src.get("tavily_query"):
+        tavily_key = settings.tavily_api_key.get_secret_value()
+        if tavily_key and src.get("tavily_query"):
             tasks.append((f"{comp['name']} Tavily",
-                          fetch_tavily(client, settings.tavily_api_key,
-                                       src["tavily_query"], window)))
+                          fetch_tavily(client, tavily_key, src["tavily_query"], window)))
     for feed in appcfg.industry_feeds:
         tasks.append((feed["name"], fetch_rss(client, feed["name"], feed["url"], window)))
     return tasks
