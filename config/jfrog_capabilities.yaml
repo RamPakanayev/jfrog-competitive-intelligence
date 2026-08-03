@@ -1,0 +1,21 @@
+capabilities:
+  - name: Artifactory universal repository
+    notes: "30+ package types (Maven, npm, PyPI, Docker/OCI, Go, NuGet, Helm, Conan...) with one metadata/permission model; local, remote-proxy and virtual repos."
+  - name: Xray SCA scanning
+    notes: "Scans artifacts/dependencies in the registry for CVEs, licenses, operational risk; deep recursive scanning inside archives and images."
+  - name: Xray contextual analysis
+    notes: "Determines whether a CVE is actually applicable/exploitable in the specific artifact context (is the vulnerable code reachable/configured), reducing false positives."
+  - name: JFrog Advanced Security
+    notes: "Secrets detection, IaC scanning, exposed-services analysis, malicious-package detection."
+  - name: JFrog Curation
+    notes: "Blocks risky open-source packages at the door (before they enter the org) based on policy."
+  - name: SBOM generation & export
+    notes: "SBOM (CycloneDX/SPDX) for builds and releases; build-info provenance metadata."
+  - name: Distribution & edge nodes
+    notes: "Signed release bundles distributed to edges/air-gapped environments."
+  - name: Replication & multi-site
+    notes: "Push/pull replication across regions and hybrid/multi-cloud topologies."
+  - name: CI/CD integration & Build Info
+    notes: "JFrog CLI + native plugins (GitHub Actions, Jenkins, Azure DevOps) publish traceable build metadata."
+  - name: JFrog ML (MLOps)
+    notes: "Model registry/management extending artifact governance to ML models."

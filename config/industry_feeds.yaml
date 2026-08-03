@@ -1,0 +1,9 @@
+feeds:
+  - name: CNCF Blog
+    url: "https://www.cncf.io/feed/"
+  - name: The New Stack
+    url: "https://thenewstack.io/feed/"
+  - name: InfoQ DevOps
+    url: "https://feed.infoq.com/devops/"
+  - name: DevOps.com
+    url: "https://devops.com/feed/"
