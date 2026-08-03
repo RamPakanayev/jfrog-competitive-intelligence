@@ -17,12 +17,15 @@ async def fetch_reddit(client: httpx.AsyncClient, subreddits: list[str], query: 
             d = child.get("data", {})
             if d.get("over_18"):
                 continue
+            permalink = (d.get("permalink") or "").rstrip("/")
+            if not permalink:
+                continue
             published = datetime.fromtimestamp(d.get("created_utc", 0), tz=timezone.utc)
             if published < window_start:
                 continue
             items.append(RawItem(
                 title=(d.get("title") or "").strip(),
-                url=f"https://www.reddit.com{d.get('permalink', '').rstrip('/')}",
+                url=f"https://www.reddit.com{permalink}",
                 body_excerpt=(d.get("selftext") or "")[:1000],
                 source_name=f"Reddit r/{sub}", source_type="reddit", published_at=published))
     return items

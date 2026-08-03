@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import httpx
+import pytest
 
 from app.sources.hackernews import fetch_hackernews
 from app.sources.reddit import fetch_reddit
@@ -68,3 +69,42 @@ async def test_adapter_error_propagates():
     except httpx.HTTPStatusError:
         raised = True
     assert raised  # orchestrator is responsible for isolation
+
+
+async def test_rss_raises_on_unparseable_feed():
+    client = client_returning(b"<rss><channel><item><title>trunc", "application/rss+xml")
+    with pytest.raises(ValueError, match="unparseable feed"):
+        await fetch_rss(client, "Broken", "https://broken.example/rss", WINDOW)
+
+
+async def test_rss_tolerates_bozo_feed_that_still_parses():
+    # Unescaped ampersand: feedparser sets bozo=1 but still yields the entry.
+    body = (b'<?xml version="1.0"?><rss version="2.0"><channel><title>T</title><item>'
+            b'<title>Docker & friends ship registry</title>'
+            b'<link>https://vendor.example/amp</link><description>d</description>'
+            b'<pubDate>Mon, 03 Aug 2026 08:00:00 GMT</pubDate></item></channel></rss>')
+    client = client_returning(body, "application/rss+xml")
+    items = await fetch_rss(client, "Amp", "https://vendor.example/rss", WINDOW)
+    assert len(items) == 1
+
+
+async def test_reddit_skips_items_without_permalink():
+    payload = json.dumps({"data": {"children": [
+        {"data": {"title": "No permalink", "selftext": "x",
+                  "created_utc": 1785744000, "over_18": False}},
+        {"data": {"title": "Has permalink", "permalink": "/r/devops/comments/x2/ok/",
+                  "selftext": "y", "created_utc": 1785744000, "over_18": False}},
+    ]}}).encode()
+    client = client_returning(payload, "application/json")
+    items = await fetch_reddit(client, ["devops"], "q", WINDOW)
+    assert [i.title for i in items] == ["Has permalink"]
+
+
+async def test_tavily_converts_offset_dates_instead_of_relabelling():
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json={"results": [
+            {"title": "Offset date", "url": "https://t.example/o", "content": "c",
+             "published_date": "2026-08-02T10:00:00+02:00"}]})
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    items = await fetch_tavily(client, "k", "q", WINDOW)
+    assert items[0].published_at == datetime(2026, 8, 2, 8, 0, tzinfo=timezone.utc)

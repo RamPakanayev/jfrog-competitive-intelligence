@@ -24,6 +24,8 @@ async def fetch_rss(client: httpx.AsyncClient, name: str, url: str,
     r = await client.get(url, timeout=20, headers=USER_AGENT, follow_redirects=True)
     r.raise_for_status()
     feed = feedparser.parse(r.content)
+    if feed.bozo and not any(feed.entries):
+        raise ValueError(f"unparseable feed from {url}: {feed.bozo_exception}")
     items: list[RawItem] = []
     for e in feed.entries:
         published = _entry_date(e)

@@ -18,7 +18,9 @@ async def fetch_tavily(client: httpx.AsyncClient, api_key: str, query: str,
         published = None
         if res.get("published_date"):
             try:
-                published = datetime.fromisoformat(res["published_date"]).replace(tzinfo=timezone.utc)
+                parsed = datetime.fromisoformat(res["published_date"])
+                published = (parsed.astimezone(timezone.utc) if parsed.tzinfo
+                             else parsed.replace(tzinfo=timezone.utc))
             except ValueError:
                 pass
         items.append(RawItem(title=(res.get("title") or "").strip(), url=res.get("url") or "",
