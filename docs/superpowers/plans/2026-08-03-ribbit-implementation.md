@@ -2217,6 +2217,23 @@ def _tasks_for(client, settings: Settings, appcfg: AppConfig, window: datetime):
     return tasks
 
 
+def _llm_stages(session_factory, settings: Settings, appcfg: AppConfig, gateway) -> dict:
+    """Run the four LLM stages on their own session. Called via asyncio.to_thread."""
+    out = {}
+    with session_factory() as s:
+        REFRESH_STATE["stage"] = "enriching"
+        out["enriched"] = enrich_new_articles(s, gateway, appcfg)
+        REFRESH_STATE["stage"] = "delta"
+        out["deltas"] = run_delta_analysis(s, gateway, appcfg)
+        REFRESH_STATE["stage"] = "digest"
+        today = datetime.now(timezone.utc).date().isoformat()
+        generate_digest(s, gateway, today,
+                        model_label=f"{settings.llm_provider}/{settings.llm_model}")
+        REFRESH_STATE["stage"] = "battlecards"
+        out["battlecards"] = refresh_battlecards(s, gateway, appcfg)
+    return out
+
+
 async def run_pipeline(session_factory, settings: Settings, appcfg: AppConfig, gateway,
                        transport: httpx.BaseTransport | None = None) -> dict:
     run_id = uuid.uuid4().hex[:8]
@@ -2242,20 +2259,15 @@ async def run_pipeline(session_factory, settings: Settings, appcfg: AppConfig, g
             report["inserted"] = insert_new_items(s, items)
             REFRESH_STATE["counts"]["inserted"] = report["inserted"]
 
-            if not gateway.available():
-                REFRESH_STATE["errors"].append("LLM unavailable - enrichment skipped")
-            else:
-                REFRESH_STATE["stage"] = "enriching"
-                report["enriched"] = enrich_new_articles(s, gateway, appcfg)
-                REFRESH_STATE["stage"] = "delta"
-                report["deltas"] = run_delta_analysis(s, gateway, appcfg)
-                REFRESH_STATE["stage"] = "digest"
-                today = datetime.now(timezone.utc).date().isoformat()
-                generate_digest(s, gateway, today,
-                                model_label=f"{settings.llm_provider}/{settings.llm_model}")
-                REFRESH_STATE["stage"] = "battlecards"
-                report["battlecards"] = refresh_battlecards(s, gateway, appcfg)
-            REFRESH_STATE["counts"].update(report)
+        if not gateway.available():
+            REFRESH_STATE["errors"].append("LLM unavailable - enrichment skipped")
+        else:
+            # LiteLLM is synchronous and a full run costs minutes. Running it inline would
+            # block the event loop and freeze the API for the whole refresh, so the LLM
+            # stages run in a worker thread with their own session (ADR-021).
+            report.update(await asyncio.to_thread(
+                _llm_stages, session_factory, settings, appcfg, gateway))
+        REFRESH_STATE["counts"].update(report)
         REFRESH_STATE["stage"] = "done"
     except Exception as e:  # belt-and-braces: never leave state stuck on running
         log.exception("pipeline crashed")

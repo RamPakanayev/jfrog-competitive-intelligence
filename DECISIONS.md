@@ -89,6 +89,21 @@ Every significant decision: the options we weighed, what we chose, and why. Newe
 **Chosen:** commit per item, catching `IntegrityError` to skip an item another writer already inserted.
 **Why:** Dedupe pre-checks the database, but a check-then-insert is a race: the architecture deliberately allows a manual "Refresh now" to overlap the scheduled daily run. Under one commit per batch, a single lost race raises an unhandled `IntegrityError` and rolls back *the entire batch* — verified in a two-session reproduction, where an unrelated valid article was lost alongside the duplicate. Losing one duplicate is correct; losing the rest of the day's news because of it is not. Per-item commits also mean a crash mid-run keeps the work already done. At this volume (~150 items/day) the extra commits cost nothing measurable, which is why the simpler batch commit isn't worth defending.
 
+## ADR-021 · LLM stages run in a worker thread, not on the event loop
+**Options:** call the synchronous gateway inline from the async pipeline · switch to LiteLLM's async API · run the LLM stages via `asyncio.to_thread`.
+**Chosen:** `asyncio.to_thread`, with the stages sharing one session distinct from the fetch/insert session.
+**Why:** A refresh is triggered as a FastAPI background task, so it shares the event loop with every API request. LiteLLM is synchronous and a full run takes minutes; called inline it freezes the whole API until the run finishes. Measured directly: with a gateway sleeping 0.5s per call, a concurrent 10ms ticker recorded 186 ticks through `to_thread` and **0** when the same work ran inline. Moving to LiteLLM's async API would work too, but it would make every stage function async for no other benefit and complicate the SQLAlchemy usage. Giving the threaded stages their own session also removes the risk of one stage leaving dirty objects on a session another stage later commits.
+
+## ADR-022 · The pipeline refuses overlapping runs
+**Options:** allow concurrent runs · guard at each call site (scheduler and refresh endpoint) · guard inside `run_pipeline` itself.
+**Chosen:** guard inside `run_pipeline`, returning a zeroed report with `skipped: True`.
+**Why:** The scheduled daily run and the manual "Refresh now" button can overlap. Reproduced with two concurrent runs: the second run's `finally` cleared `running` while the first was still working, leaving the observable state at `running: False, stage: "enriching"` — a UI polling that endpoint would announce "complete" mid-run — and the two runs' error lists merged with no way to tell them apart. Guarding at the call sites is the same check-then-act race written twice; guarding inside the function makes the invariant hold for every caller. Returning a report rather than raising keeps the scheduler able to fire blindly.
+
+## ADR-020 · The digest day is a UTC calendar day
+**Options:** bucket by UTC day · bucket by a configured business timezone · bucket by a rolling 24 hours from the run time.
+**Chosen:** UTC calendar day, matching how timestamps are stored (ADR-016).
+**Why:** The partition is clean — every article belongs to exactly one digest, nothing is lost or double-counted — and it keeps bucketing consistent with storage, so a digest date always means the same thing regardless of who is reading. The cost is a visible skew for non-UTC readers: for a team in UTC+3, the "3 August" digest actually spans 03:00 on the 3rd to 02:59 on the 4th local time, so a late-evening story files under the previous local day. A configurable business timezone would fix that and is the right answer once the tool has users in a known timezone, but it adds a config axis and a class of off-by-one bugs that buy nothing for a once-daily brief read the following morning. Recorded rather than left silent, because "which day is this item in" is exactly the question a reviewer will ask.
+
 ## ADR-019 · The executive summary is labelled synthesis, not a cited claim
 **Options:** give `exec_summary` its own `article_ids` and enforce them · drop the field · constrain it by prompt and label it in the UI.
 **Chosen:** constrain by prompt (it may only synthesize facts already stated in the cited sections, introducing no new company, product, number, date or event) and mark it `AI SYNTHESIS` in the dashboard.
