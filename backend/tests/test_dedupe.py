@@ -1,5 +1,9 @@
 from datetime import datetime, timezone
 
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
+
+from app.models import Article
 from app.pipeline.dedupe import canonical_url, content_hash, insert_new_items
 from app.sources.base import RawItem
 
@@ -30,3 +34,25 @@ def test_insert_new_items_dedupes(session):
     assert inserted == 1
     inserted_again = insert_new_items(session, items)
     assert inserted_again == 0
+
+
+def test_failed_commit_does_not_abort_remaining_items(session, monkeypatch):
+    """A lost race (IntegrityError on commit) must cost one item, not the batch."""
+    first = item("https://snyk.io/blog/one", title="First story")
+    second = item("https://snyk.io/blog/two", title="Second story")
+
+    real_commit = session.commit
+    calls = {"n": 0}
+
+    def flaky_commit():
+        calls["n"] += 1
+        if calls["n"] == 1:                      # simulate another writer winning
+            raise IntegrityError("INSERT INTO articles", {}, Exception("UNIQUE constraint failed"))
+        return real_commit()
+
+    monkeypatch.setattr(session, "commit", flaky_commit)
+    inserted = insert_new_items(session, [first, second])
+    monkeypatch.undo()
+
+    assert inserted == 1
+    assert {a.title for a in session.scalars(select(Article))} == {"Second story"}

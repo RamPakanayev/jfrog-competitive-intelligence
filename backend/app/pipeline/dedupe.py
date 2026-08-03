@@ -2,11 +2,15 @@ import hashlib
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.models import Article
 from app.sources.base import RawItem
 
+# Attribution/tracking params that never select different content on the sources we read
+# (vendor blogs, HN, Reddit, news search). Revisit if a catalog-style source is added,
+# where ?ref=/?source= can genuinely address different pages.
 _DROP_PARAMS = {"fbclid", "gclid", "ref", "mc_cid", "mc_eid", "source"}
 
 
@@ -42,8 +46,14 @@ def insert_new_items(session: Session, items: list[RawItem]) -> int:
         session.add(Article(url=url, content_hash=h, title=it.title.strip(),
                             body_excerpt=it.body_excerpt, source_name=it.source_name,
                             source_type=it.source_type, published_at=it.published_at))
+        try:
+            session.commit()
+        except IntegrityError:
+            # Another writer inserted this item between our check and our commit.
+            # Skipping one duplicate is correct; losing the rest of the batch is not.
+            session.rollback()
+            continue
         seen_urls.add(url)
         seen_hashes.add(h)
         inserted += 1
-    session.commit()
     return inserted
