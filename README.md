@@ -49,13 +49,14 @@ the same views populated with real, unprefixed news.
 
 | | |
 |---|---|
-| ![Feed tab filtered by competitor, domain, event type and impact, with a JFrog Delta panel expanded under two of the three items](docs/screenshots/feed.png) | ![Sonatype battlecard: a generated-and-cited "recent moves" panel above three human-curated columns for strengths, weaknesses, and how JFrog wins](docs/screenshots/battlecard.png) |
+| ![Feed tab showing competitor/domain/event/impact filter controls and a search box above three articles, two with a JFrog Delta panel expanded](docs/screenshots/feed.png) | ![Sonatype battlecard: a generated-and-cited "recent moves" panel above three human-curated columns for strengths, weaknesses, and how JFrog wins](docs/screenshots/battlecard.png) |
 | **Feed** — filterable and full-text searchable (SQLite FTS5), with a **Delta** panel tying a competitor move to the closest JFrog equivalent. | **Battlecard** — generated, cited "recent moves" sit visually apart from human-curated strengths/weaknesses. |
 
-![Compare tab: an 8-capability by 6-vendor matrix table above a capability radar chart](docs/screenshots/compare.png)
+![Compare tab: a capability matrix table for JFrog and two selected competitors above a matching capability radar chart](docs/screenshots/compare.png)
 
-**Compare** — an 8-capability × 6-vendor matrix (`config/feature_matrix.yaml`) plus a
-radar chart. The matrix is config, not generation — nothing on this tab comes from an LLM.
+**Compare** — an 8-capability × 6-vendor matrix (`config/feature_matrix.yaml`, 3 vendors
+shown here, all 6 toggleable) plus a radar chart. The matrix is config, not generation —
+nothing on this tab comes from an LLM.
 
 ## How it works
 
