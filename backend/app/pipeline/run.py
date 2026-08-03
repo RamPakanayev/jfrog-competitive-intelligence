@@ -65,6 +65,9 @@ def _llm_stages(session_factory, settings: Settings, appcfg: AppConfig, gateway)
 
 async def run_pipeline(session_factory, settings: Settings, appcfg: AppConfig, gateway,
                        transport: httpx.BaseTransport | None = None) -> dict:
+    if REFRESH_STATE["running"]:
+        log.warning("refresh already in progress; ignoring overlapping run")
+        return {"inserted": 0, "enriched": 0, "deltas": 0, "battlecards": 0, "skipped": True}
     run_id = uuid.uuid4().hex[:8]
     REFRESH_STATE.update(running=True, stage="fetching", counts={}, errors=[],
                          started_at=utcnow().isoformat(), finished_at=None)

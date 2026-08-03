@@ -63,3 +63,17 @@ async def test_pipeline_skips_llm_stages_without_gateway_availability(session_fa
                                 DeadGateway(), transport=make_transport())
     assert report["inserted"] == 1 and report["enriched"] == 0
     assert "LLM unavailable" in " ".join(REFRESH_STATE["errors"])
+
+
+async def test_overlapping_run_is_skipped_not_interleaved(session_factory):
+    REFRESH_STATE["running"] = True
+    try:
+        report = await run_pipeline(session_factory, Settings(_env_file=None),
+                                    one_competitor_cfg(), FakeGateway(),
+                                    transport=make_transport())
+    finally:
+        REFRESH_STATE["running"] = False
+    assert report["skipped"] is True
+    assert report["inserted"] == 0
+    with session_factory() as s:
+        assert s.query(Article).count() == 0, "a skipped run must not touch the database"
