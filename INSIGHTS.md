@@ -17,3 +17,11 @@ Running log of insights, challenges, and learnings gathered while building Ribbi
 5. **A second AI reviewer is a cheap red team.** Running the design past another model surfaced the domain-precision gap and the "dynamic vs static comparison" gap (which became Delta analysis) before any code was written.
 
 6. **Config-as-code keeps the tool alive after the demo.** Competitors, sources, matrix, and capability sheet live in YAML: adding competitor #6 is a pull request, not a feature request.
+
+## 2026-08-03 — Implementation phase
+
+7. **A green test suite can still be lying.** Two guards added to the config tests only counted once we deliberately broke the YAML (renamed `notes:` → `note:`, dropped a vendor from the matrix) and watched them fail. Mutation-testing a new assertion takes a minute and is the difference between a test that guards something and a test that decorates the file.
+
+8. **SQLite silently drops timezones, and the damage surfaces in the browser.** Datetimes written as aware UTC read back naive from a fresh session — invisible inside one session because SQLAlchemy's identity map hands back the original Python object. The real damage was downstream: the API serializes with `.isoformat()`, and an offset-less string like `2026-08-03T08:39:41` is parsed by JavaScript as *local* time, shifting every timestamp in the UI and pushing near-midnight items onto the wrong day. Fixed once in a `UtcDateTime` `TypeDecorator` rather than at a dozen call sites. Found only because the task explicitly asked "check what comes back in a fresh session" — the three passing tests never touched a fresh read.
+
+9. **The most valuable review findings were about what wasn't there.** Spec review confirms the code matches the plan; the findings that actually improved the system came from asking what the code fails to do — untested grounding text, two config files with nothing tying them together, secrets typed as plain strings. Verification catches deviation; adversarial questions catch design gaps.
