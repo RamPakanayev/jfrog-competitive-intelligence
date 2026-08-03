@@ -46,3 +46,8 @@ def test_enforce_digest_citations_drops_invalid():
 def test_enforce_battlecard_citations():
     moves = [Claim(text="cited", article_ids=[5]), Claim(text="uncited", article_ids=[42])]
     assert [m.text for m in enforce_battlecard_citations(moves, {5})] == ["cited"]
+
+
+def test_duplicate_citations_collapse_preserving_order():
+    claims = [Claim(text="repeated", article_ids=[3, 1, 3, 99, 1])]
+    assert enforce_battlecard_citations(claims, {1, 3})[0].article_ids == [3, 1]

@@ -59,7 +59,7 @@ def _clean_claims(claims: list, valid_ids: set[int]) -> list:
     """Strip unknown article_ids; drop claims left with none. The hallucination firewall."""
     cleaned = []
     for c in claims:
-        ids = [i for i in c.article_ids if i in valid_ids]
+        ids = list(dict.fromkeys(i for i in c.article_ids if i in valid_ids))
         if ids:
             cleaned.append(c.model_copy(update={"article_ids": ids}))
     return cleaned
