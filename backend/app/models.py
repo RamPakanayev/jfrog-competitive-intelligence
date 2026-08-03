@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 
 from sqlalchemy import JSON, DateTime, Text, TypeDecorator
+from sqlalchemy.ext.mutable import MutableDict, MutableList
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -51,7 +52,7 @@ class Article(Base):
     status: Mapped[str] = mapped_column(default="new", index=True)  # new|enriched|irrelevant|failed
     # enrichment
     relevant: Mapped[bool | None]
-    competitors: Mapped[list | None] = mapped_column(JSON)
+    competitors: Mapped[list | None] = mapped_column(MutableList.as_mutable(JSON))
     domain: Mapped[str | None]
     event_type: Mapped[str | None]
     summary: Mapped[str | None] = mapped_column(Text)
@@ -62,7 +63,7 @@ class Article(Base):
     delta_move: Mapped[str | None] = mapped_column(Text)
     delta_jfrog_equivalent: Mapped[str | None] = mapped_column(Text)
     delta_strategic_impact: Mapped[str | None]  # high|medium|low
-    delta_talking_points: Mapped[list | None] = mapped_column(JSON)
+    delta_talking_points: Mapped[list | None] = mapped_column(MutableList.as_mutable(JSON))
 
 
 class Digest(Base):
@@ -71,7 +72,7 @@ class Digest(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     date: Mapped[str] = mapped_column(unique=True, index=True)  # YYYY-MM-DD
     exec_summary: Mapped[str] = mapped_column(Text)
-    sections: Mapped[dict] = mapped_column(JSON)
+    sections: Mapped[dict] = mapped_column(MutableDict.as_mutable(JSON))
     generated_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
     model_used: Mapped[str] = mapped_column(default="")
 
@@ -81,7 +82,7 @@ class Battlecard(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     competitor_slug: Mapped[str] = mapped_column(unique=True, index=True)
-    recent_moves: Mapped[list] = mapped_column(JSON, default=list)
+    recent_moves: Mapped[list] = mapped_column(MutableList.as_mutable(JSON), default=list)
     generated_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
 
 

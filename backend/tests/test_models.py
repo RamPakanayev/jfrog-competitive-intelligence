@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy import text
 
 from app.models import Article, Digest
+from tests.conftest import make_article
 
 
 def test_tables_created(session):
@@ -49,3 +50,30 @@ def test_datetimes_round_trip_timezone_aware(session_factory):
         # the comparison that would raise TypeError with naive datetimes
         assert loaded.fetched_at <= datetime.now(timezone.utc)
         assert loaded.fetched_at.isoformat().endswith("+00:00")
+
+
+def test_json_columns_track_in_place_mutation(session_factory):
+    with session_factory() as s:
+        a = Article(url="https://x.com/json", content_hash="json", title="json check",
+                    source_name="t", source_type="rss", competitors=["snyk"])
+        s.add(a)
+        s.commit()
+        article_id = a.id
+
+    with session_factory() as s:
+        # Bind the loaded object to a name: SQLAlchemy's identity map holds only a
+        # weak reference, so a chained `s.get(...).competitors.append(...)` lets
+        # CPython refcount the Article to zero and garbage-collect it immediately
+        # after the statement -- before commit() -- silently dropping the queued
+        # mutation even though MutableList itself is tracking it correctly.
+        loaded = s.get(Article, article_id)
+        loaded.competitors.append("gitlab")
+        s.commit()
+
+    with session_factory() as fresh:
+        assert fresh.get(Article, article_id).competitors == ["snyk", "gitlab"]
+
+
+def test_make_article_allows_content_hash_override(session):
+    a = make_article(session, url="https://x.com/dup", title="dup", content_hash="shared")
+    assert a.content_hash == "shared"

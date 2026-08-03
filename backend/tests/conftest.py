@@ -26,7 +26,7 @@ def session(session_factory):
 
 
 def make_article(session: Session, *, url: str, title: str, status: str = "new", **kw) -> Article:
-    a = Article(url=url, content_hash=f"hash-{url}", title=title,
+    a = Article(url=url, content_hash=kw.pop("content_hash", f"hash-{url}"), title=title,
                 source_name=kw.pop("source_name", "Test Feed"),
                 source_type=kw.pop("source_type", "rss"),
                 published_at=kw.pop("published_at", datetime(2026, 8, 3, 9, tzinfo=timezone.utc)),
