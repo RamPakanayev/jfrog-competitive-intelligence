@@ -9,8 +9,8 @@ flowchart LR
     subgraph SRC[Data sources]
         RSS[RSS/Atom<br/>competitor blogs & release notes]
         HN[Hacker News<br/>Algolia API]
-        RD[Reddit JSON]
-        IND[Industry feeds<br/>CNCF · The New Stack · InfoQ]
+        GN[Google News RSS<br/>third-party coverage per competitor]
+        IND[Industry feeds<br/>CNCF · The New Stack · DevOps.com · SD Times]
         TV[Tavily search<br/>optional key]
     end
 
@@ -37,9 +37,16 @@ flowchart LR
     UI <-->|REST /api| API
 ```
 
-Note: the FTS5 table already backs the Feed tab's search box today. An analyst-chat
-tab with its own BM25-ranked retrieval module was designed (ADR-006) but not built in
-this pass — see the roadmap in README.md.
+Notes:
+- The FTS5 table already backs the Feed tab's search box today. An analyst-chat tab with its
+  own BM25-ranked retrieval module was designed (ADR-006) but not built in this pass — see the
+  roadmap in README.md.
+- Reddit was removed as a source after a live run showed it returns 403 to unauthenticated
+  clients; Google News RSS replaced it and restored third-party coverage (ADR-024, ADR-026).
+  The Reddit adapter and its tests remain in the codebase, disabled by config.
+- 20 sources total, all keyless: per competitor a vendor blog feed + a Hacker News query + a
+  Google News query, plus the four industry feeds. Tavily is optional and only used if a key
+  is present.
 
 ## 2. Daily pipeline sequence
 
@@ -59,7 +66,7 @@ sequenceDiagram
     loop each new item
         P->>L: enrich (structured JSON)
         L-->>P: relevant, competitors, domain, event_type,<br/>summary, jfrog_impact, so_what
-        alt jfrog_impact >= 4
+        alt jfrog_impact >= 3 (DELTA_THRESHOLD, calibrated on a live run — ADR-023)
             P->>L: delta analysis (grounded in capability sheet)
             L-->>P: move, jfrog_equivalent, impact, talking points
         end
