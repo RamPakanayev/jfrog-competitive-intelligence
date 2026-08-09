@@ -113,3 +113,11 @@ Running log of insights, challenges, and learnings gathered while building Ribbi
     fine; and Sonatype/Snyk/GitHub legitimately returned nothing because they simply had not
     published inside the window. Five sources, five different meanings for "no items today"
     — which is the argument for the per-source health table existing at all.
+
+24. **A test with a hard-coded date is a bomb with a timer on it.** `test_run_pipeline` fed the
+    orchestrator an RSS item dated `03 Aug 2026`. The pipeline drops anything published before
+    `now - FETCH_WINDOW_DAYS`, so the fixture passed the day it was written and silently began
+    failing three days later — nothing to do with the code, and it would have greeted anyone
+    cloning the repo with a red suite. Any fixture compared against `now` has to be *relative*
+    to now. Found only by re-running the suite days after the work was "finished", which is an
+    argument for verifying on a schedule rather than once at the end.

@@ -1,3 +1,6 @@
+from datetime import UTC, datetime, timedelta
+from email.utils import format_datetime
+
 import httpx
 
 from app.config import Settings
@@ -7,10 +10,14 @@ from app.models import Article, SourceRun
 from app.pipeline.run import REFRESH_STATE, run_pipeline
 from tests.conftest import FakeGateway
 
-RSS = (b'<?xml version="1.0"?><rss version="2.0"><channel><title>T</title>'
-       b'<item><title>Sonatype ships SBOM thing</title>'
-       b'<link>https://vendor.example/p1</link><description>d</description>'
-       b'<pubDate>Mon, 03 Aug 2026 08:00:00 GMT</pubDate></item></channel></rss>')
+# The pipeline drops anything published before `now - FETCH_WINDOW_DAYS`, so this item's
+# date must be relative. A hard-coded date silently ages out of the window and turns these
+# tests red on a date that has nothing to do with the code — which is exactly what happened.
+_RECENT = format_datetime(datetime.now(UTC) - timedelta(hours=1))
+RSS = (f'<?xml version="1.0"?><rss version="2.0"><channel><title>T</title>'
+       f'<item><title>Sonatype ships SBOM thing</title>'
+       f'<link>https://vendor.example/p1</link><description>d</description>'
+       f'<pubDate>{_RECENT}</pubDate></item></channel></rss>').encode()
 
 
 def make_transport():
